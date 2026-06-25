@@ -90,7 +90,10 @@ public class AudioManager : MonoBehaviour
         GameObject contentsRoot = PrefabUtility.LoadPrefabContents(assetPath);
         AudioManager temp = contentsRoot.GetComponentInChildren<AudioManager>();
         if (temp.setting != null)
+        {
+            PrefabUtility.UnloadPrefabContents(contentsRoot);
             return;
+        }
         temp.setting = Resources.Load<AudioSettingSO>("AudioSetting");
         PrefabUtility.SaveAsPrefabAsset(contentsRoot, assetPath);
         PrefabUtility.UnloadPrefabContents(contentsRoot);
