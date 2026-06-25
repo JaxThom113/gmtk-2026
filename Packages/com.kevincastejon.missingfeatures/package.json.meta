@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3328eeb4f24bc074f930b451edfe29ef
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/package.json
+  uploadId: 678106

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 857fce4b5a3fe6345a18df305a81c251
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/ShowPropIf/TestShowPropIfAttribute.unity
+  uploadId: 678106

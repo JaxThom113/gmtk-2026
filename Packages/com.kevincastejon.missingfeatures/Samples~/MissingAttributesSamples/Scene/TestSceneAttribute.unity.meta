@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 97ad2cd09b9af054cb6f731089a39158
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/Scene/TestSceneAttribute.unity
+  uploadId: 678106

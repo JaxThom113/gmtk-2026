@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e8065713bac39f4689d990fe123bc2b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/ShowPropConditional/TestShowPropConditional.unity
+  uploadId: 678106

@@ -1,0 +1,8 @@
+.unity-toggle__input {
+    justify-content: flex-start;
+    margin-right: 4px;
+    margin-left: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-left-width: 0;
+}

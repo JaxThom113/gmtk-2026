@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c65602705ba7c4845a2ee1432c13d3aa
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/com.kevincastejon.missingfeatures.samples.asmdef
+  uploadId: 678106

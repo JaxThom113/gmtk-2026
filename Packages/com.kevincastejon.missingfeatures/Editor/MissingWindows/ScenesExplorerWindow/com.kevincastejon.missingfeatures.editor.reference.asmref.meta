@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f7b6fe1c8dd90054f86df0a7f73c22bd
+AssemblyDefinitionReferenceImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Editor/MissingWindows/ScenesExplorerWindow/com.kevincastejon.missingfeatures.editor.reference.asmref
+  uploadId: 678106

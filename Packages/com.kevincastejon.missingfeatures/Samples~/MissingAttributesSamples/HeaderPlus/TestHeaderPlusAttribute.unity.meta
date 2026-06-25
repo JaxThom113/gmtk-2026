@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 900c306ad68e2dc4d9fdc12cd624fe5f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/HeaderPlus/TestHeaderPlusAttribute.unity
+  uploadId: 678106

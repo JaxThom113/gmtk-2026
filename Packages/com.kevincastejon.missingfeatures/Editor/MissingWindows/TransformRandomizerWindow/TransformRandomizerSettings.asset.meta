@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 537b2f50bc8d9244f8c01efcef704359
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Editor/MissingWindows/TransformRandomizerWindow/TransformRandomizerSettings.asset
+  uploadId: 678106
