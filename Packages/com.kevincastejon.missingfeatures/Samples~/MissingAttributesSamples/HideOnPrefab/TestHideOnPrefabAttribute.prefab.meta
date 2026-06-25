@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 33d6c21b16bf5e9449ae73701eb2d635
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/HideOnPrefab/TestHideOnPrefabAttribute.prefab
+  uploadId: 678106

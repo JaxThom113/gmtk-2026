@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c02455baf84f7f949a671d2f641cfcbe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Editor/MissingAttributes/HeaderPlusAttribute/HeaderPlusDrawer.cs
+  uploadId: 678106

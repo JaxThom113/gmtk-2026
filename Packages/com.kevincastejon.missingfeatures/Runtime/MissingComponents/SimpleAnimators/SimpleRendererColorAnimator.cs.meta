@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f008b67c081a43e4cb5c6a0ebb0b0d98
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Runtime/MissingComponents/SimpleAnimators/SimpleRendererColorAnimator.cs
+  uploadId: 678106

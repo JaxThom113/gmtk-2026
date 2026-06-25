@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0ba0deef51518474484f506651e79f5a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingComponentsSamples/Destroyer/Destroyer.unity
+  uploadId: 678106

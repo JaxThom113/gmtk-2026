@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c6886a47beac6c342b611c52c2b7c124
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/ReadOnlyProp/TestReadOnlyPropAttribute.unity
+  uploadId: 678106

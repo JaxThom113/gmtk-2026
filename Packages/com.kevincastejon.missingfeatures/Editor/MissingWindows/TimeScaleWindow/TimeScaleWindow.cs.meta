@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 503d45a9725ade44383ef41a2796cbf4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Editor/MissingWindows/TimeScaleWindow/TimeScaleWindow.cs
+  uploadId: 678106

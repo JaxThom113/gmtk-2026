@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4692c49c23f656546b47b4ab9e23d43d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingComponentsSamples/BetterToggleGroup/BetterToggleGroup.unity
+  uploadId: 678106

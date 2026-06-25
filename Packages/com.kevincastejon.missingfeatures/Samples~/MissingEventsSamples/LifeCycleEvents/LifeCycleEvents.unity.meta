@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a200b5cad6a4f8047ab3204f2804a9d9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingEventsSamples/LifeCycleEvents/LifeCycleEvents.unity
+  uploadId: 678106
