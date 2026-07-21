@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5046b755464f8ec47b791000c75d1d4a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Editor/MissingEvents/TimerEvent/TimerEventsEditor.cs
+  uploadId: 678106

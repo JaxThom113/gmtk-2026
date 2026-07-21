@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 91abe05b36329ab41ab0c4d200e50ff0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingComponentsSamples/Shared/Materials/Cyan.mat
+  uploadId: 678106

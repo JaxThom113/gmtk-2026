@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7fdd81d3313a5044195f3bf5838ce2ca
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingEventsSamples/EventsDataConverters/EventsDataConverters.unity
+  uploadId: 678106

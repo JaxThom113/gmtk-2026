@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d5cee767503cb504a96bf96c1342d8e0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingEventsSamples/PhysicsEvents/PhysicsEvents.unity
+  uploadId: 678106

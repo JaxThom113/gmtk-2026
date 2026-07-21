@@ -1,0 +1,34 @@
+{
+  "name": "com.kevincastejon.missingfeatures",
+  "version": "1.0.21",
+  "displayName": "Missing Features",
+  "description": "A bunch of basic missing features.\n\nThere are many basic features that are missing natively.\nThis package provides many tools to fill these holes and improve productivity.\nIt contains programming utilitary attributes that limits the need of making custom editors, or custom windows and ready-to-use components and events that limits the need of scripting, pushing further the \"visual scripting\" approach.",
+  "keywords": [
+    "basic",
+    "missing",
+    "features"
+  ],
+  "documentationUrl": "https://kevincastejon.fr/Documentations/Unity-Missing-Features/",
+  "samples": [
+    {
+      "displayName": "Missing Events Samples",
+      "description": "Demo scenes demonstrating the missing events features",
+      "path": "Samples~/MissingEventsSamples"
+    },
+    {
+      "displayName": "Missing Attributes Samples",
+      "description": "Demo scenes demonstrating the missing attributes features",
+      "path": "Samples~/MissingAttributesSamples"
+    },
+    {
+      "displayName": "Missing Components Samples",
+      "description": "Demo scenes demonstrating the missing components features",
+      "path": "Samples~/MissingComponentsSamples"
+    }
+  ],
+  "author": {
+    "name": "Kevin Castejon",
+    "email": "kevincastejon@hotmail.fr",
+    "url": "https://www.kevincastejon.fr"
+  }
+}

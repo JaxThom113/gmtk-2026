@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 752687c8f8d2678418a8d385ea0e830e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/ReadOnlyOnPrefab/TestReadOnlyOnPrefabAttribute.unity
+  uploadId: 678106

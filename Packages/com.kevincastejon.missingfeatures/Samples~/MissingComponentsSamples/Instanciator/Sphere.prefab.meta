@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2cb960aca3585fa4392e0c01609f015b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingComponentsSamples/Instanciator/Sphere.prefab
+  uploadId: 678106
