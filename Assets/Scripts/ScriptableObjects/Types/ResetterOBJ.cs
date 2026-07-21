@@ -38,7 +38,7 @@ public class ResetterOBJ : ScriptableObject
         }
         public static void GetInstance()
         {
-            Debug.Log("Domain reload complete! This runs inside the Editor.");
+            //Debug.Log("Domain reload complete! This runs inside the Editor.");
             // 1. Search for any asset of this exact type
             string[] guids = AssetDatabase.FindAssets($"t:{typeof(ResetterOBJ).Name}");
 
