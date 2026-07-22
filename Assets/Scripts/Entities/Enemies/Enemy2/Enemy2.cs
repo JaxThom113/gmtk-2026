@@ -1,3 +1,4 @@
+using Sezylrin.SimplePooling;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,17 +20,12 @@ public class Enemy2 : Enemy
     private Vector3 playerDir;
     private bool shooting;
 
-    private Rigidbody rb;
 
     /*
         This enemy moves toward the player, stops at a certain distance, then shoots
     */
 
-    protected override void Start()
-    {
-        base.Start();
-        rb = GetComponent<Rigidbody>();
-    }
+    
 
     void FixedUpdate()
     {
@@ -69,8 +65,11 @@ public class Enemy2 : Enemy
         shooting = true;
 
         yield return new WaitForSeconds(1f);
-
-        Instantiate(bullet, shootPos.position, shootPos.rotation);
+        Pooler.GetObject<Bullet>(bullet, shootPos.position, shootPos.rotation,
+            onNewInstance: (b) => b.Initialise(),
+            onGet: (b) => b.ResetObj() 
+            );
+        //Instantiate(bullet, shootPos.position, shootPos.rotation);
 
         shooting = false;
 

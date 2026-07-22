@@ -14,21 +14,14 @@ public class Enemy3 : Enemy
 
     private Vector3 playerDir;
     private Vector3 stepPos;
-    private bool stepping;
+    private bool stepping = false;
 
-    private Rigidbody rb;
 
     /*
         This enemy moves continuously toward the player in steps
     */
 
-    protected override void Start()
-    {
-        base.Start();
-        rb = GetComponent<Rigidbody>();
-        stepping = false;
-    }
-
+    
     void FixedUpdate()
     {
         FacePlayer();

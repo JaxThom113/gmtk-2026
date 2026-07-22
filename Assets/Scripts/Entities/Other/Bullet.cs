@@ -1,3 +1,5 @@
+using Sezylrin.SimplePooling;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,22 +10,41 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody rb;
 
-    void Awake()
+    [SerializeField]
+    private Timer despawnTimer;
+    [SerializeField]
+    private float despawnTime;
+    public void Initialise()
     {
         rb = GetComponent<Rigidbody>();
+        despawnTimer.GenerateTimer();
+        despawnTimer.SetTime(despawnTime);
+        despawnTimer.SubscribeToTimerIsZero(
+            
+            (object sender, EventArgs e) =>
+            {
+                PoolObject();
+            }
+        );
     }
 
-    void Start()
+    public void ResetObj()
     {
         rb.linearVelocity = transform.up * speed;
+        despawnTimer.RestartTimer();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            return;
-
+        PoolObject();
         // delete the bullet instance
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    private void PoolObject()
+    {
+        despawnTimer.StopAll();
+        Pooler.PoolObject(gameObject);
+
     }
 }

@@ -1,3 +1,4 @@
+using Sezylrin.SimplePooling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,20 @@ public abstract class Enemy : MonoBehaviour, IHealth
     [field: SerializeField]
     public float MaxHealth { get; set; }
 
-    protected virtual void Start()
+    protected Rigidbody rb;
+
+    
+
+    public void ResetObj()
     {
-        // set current health to max health
         CurrentHealth = MaxHealth;
     }
+
     public virtual void Initialize(Transform playerTransform)
     {
         // all enemies must be initialized with a reference to the player
         player = playerTransform;
+        rb = GetComponent<Rigidbody>();
     }
 
     public void TakeDamage(float damage)
@@ -26,6 +32,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
+            Pooler.PoolObject(gameObject);
             //Die();
         }
     }
