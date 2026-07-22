@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             return;
-            
+
         // delete the bullet instance
         Destroy(gameObject);
     }

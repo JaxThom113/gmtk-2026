@@ -69,10 +69,16 @@ public class Enemy3 : Enemy
         // take a step (move toward step position)
         while (Vector3.Distance(rb.position, stepPos) > 0.01f)
         {
+            Vector3 previousPosition = rb.position;
+
             float move = speed * Time.fixedDeltaTime;
             rb.MovePosition(Vector3.MoveTowards(rb.position, stepPos, move));
 
             yield return new WaitForFixedUpdate();
+
+            // if the enemy barely moved this frame, its step was block, so break out of the loop
+            if ((rb.position - previousPosition).sqrMagnitude < 0.000001f)
+                break;
         }
 
         // snap exactly to the destination

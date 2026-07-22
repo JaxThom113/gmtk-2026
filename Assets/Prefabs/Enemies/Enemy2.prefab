@@ -560,7 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
-  bullet: {fileID: 5502667426189631555, guid: 2553432a90377e144a7dce40c8922d30, type: 3}
+  bullet: {fileID: 5776959003838503944, guid: 2553432a90377e144a7dce40c8922d30, type: 3}
   shootPos: {fileID: 289472263898254990}
   damage: 10
   speed: 10
