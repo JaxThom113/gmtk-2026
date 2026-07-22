@@ -8,6 +8,8 @@ public class PlayerComponentManager : MonoBehaviour
     public InputController input { get; private set; }
     [field: SerializeField]
     public PlayerController control { get; private set; }
+    [field: SerializeField]
+    public PlayerAnim anim { get; private set; }
     public static GameObject Instance { get; private set; }
 
     private void Awake()
