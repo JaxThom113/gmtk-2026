@@ -129,7 +129,7 @@ public class ResetterOBJ : ScriptableObject
             obj.ResetValue();
         }
         //contentsRoot.GenerateCSV();
-        Debug.Log("Resetted Object");
+        //Debug.Log("Resetted Object");
         AssetDatabase.SaveAssets();
     }
 

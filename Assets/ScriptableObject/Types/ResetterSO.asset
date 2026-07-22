@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287ca7e7911f12c459a65da0af9b66d3, type: 3}
   m_Name: ResetterSO
   m_EditorClassIdentifier: Assembly-CSharp::ResetterOBJ
-  ScriptableObjectsToReset: []
+  ScriptableObjectsToReset:
+  - {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
+  - {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
