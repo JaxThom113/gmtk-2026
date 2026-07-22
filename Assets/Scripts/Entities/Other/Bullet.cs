@@ -1,3 +1,4 @@
+using Sezylrin.SimplePooling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class Bullet : MonoBehaviour
             return;
 
         // delete the bullet instance
-        Destroy(gameObject);
+        Pooler.PoolObject(gameObject);
+        //Destroy(gameObject);
     }
 }
