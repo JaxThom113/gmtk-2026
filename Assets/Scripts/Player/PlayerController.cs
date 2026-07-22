@@ -16,7 +16,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb { get; private set; }
     [SerializeField]
     private CapsuleCollider col;
-    
+    [SerializeField]
+    private PlayerComponentManager PCM;
+    [SerializeField]
+    private Timer cooldownTimer;
+
+    [SerializeField]
+    private BoolSO isPlayerDeadSO;
+
     [Header("Speed Stats")]
 
     [SerializeField]
@@ -28,8 +35,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnlyProp]
     private float currentMaxSpeed;    
     [SerializeField] [ReadOnlyProp]
-    private float currentSpeed;    
+    private float currentSpeed;
 
+    [Header("Attack Stats")]
+    [SerializeField]
+    private float attackCD;
 
     [Header("Camera")]
     /*[SerializeField, Range(0f, 8f)]
@@ -54,7 +64,7 @@ public class PlayerController : MonoBehaviour
     #region Unity Function
     void Awake()
     {        
-        
+        InitialiseAttacks();
     }
     public void Start()
     {
@@ -82,7 +92,16 @@ public class PlayerController : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>().normalized;
         direction = new Vector3(input.x, 0,input.y);
     }
-    
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if(cooldownTimer.IsTimeZero())
+        {
+            PCM.anim.PlayAttack();
+            cooldownTimer.SetTime(attackCD);
+            cooldownTimer.RestartTimer();
+        }
+    }
+
     private void UpdateMousePos()
     {
         rawPos = Mouse.current.position.ReadValue();
@@ -94,11 +113,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+
+    #endregion
+
+    #region Attack
+    private void InitialiseAttacks()
+    {
+        cooldownTimer.GenerateTimer();
+    }
     #endregion
 
     #region Movement
-    
+
     private void Move()
     {
         
@@ -122,6 +148,10 @@ public class PlayerController : MonoBehaviour
 
     private void RotateTo()
     {
+        if(isPlayerDeadSO.Bool || !cooldownTimer.IsTimeZero())
+        {
+            return;
+        }
         transform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion

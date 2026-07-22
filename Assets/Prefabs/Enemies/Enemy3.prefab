@@ -381,7 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0a4a6483b76df469f6425ec0d890d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3
-  health: 50
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 50
   damage: 20
   speed: 10
   stepSize: 5

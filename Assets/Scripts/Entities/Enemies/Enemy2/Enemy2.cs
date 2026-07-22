@@ -10,7 +10,6 @@ public class Enemy2 : Enemy
     [SerializeField] private Transform shootPos;
 
     [Header("Enemy Stats")]
-	[SerializeField] private float health;
 	[SerializeField] private float damage;
 
     [Header("Movement Settings")]
@@ -26,8 +25,9 @@ public class Enemy2 : Enemy
         This enemy moves toward the player, stops at a certain distance, then shoots
     */
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody>();
     }
 
