@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy3 : Enemy
 {
     [Header("Enemy Stats")]
-	[SerializeField] private float health;
 	[SerializeField] private float damage;
 
     [Header("Movement Settings")]
@@ -23,8 +22,9 @@ public class Enemy3 : Enemy
         This enemy moves continuously toward the player in steps
     */
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody>();
         stepping = false;
     }

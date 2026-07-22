@@ -279,10 +279,10 @@ GameObject:
   - component: {fileID: 4078125508690341455}
   - component: {fileID: 3326492603616964188}
   - component: {fileID: 7384605621985405168}
-  - component: {fileID: 6408834538166495837}
   - component: {fileID: 8662915930565529634}
   - component: {fileID: 7268615667763022171}
-  - component: {fileID: 4199583538810765222}
+  - component: {fileID: 1220799267374969847}
+  - component: {fileID: 8276117964343328848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -322,7 +322,7 @@ MonoBehaviour:
   <rb>k__BackingField: {fileID: 7357720056258974668}
   col: {fileID: 5447953482635767702}
   PCM: {fileID: 3326492603616964188}
-  cooldownTimer: {fileID: 4199583538810765222}
+  cooldownTimer: {fileID: 8276117964343328848}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   acceleration: 15
   maxSpeed: 8
@@ -332,7 +332,7 @@ MonoBehaviour:
   attackCD: 1
   cameraGroundCollisionMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   direction: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0, z: 0}
   rawPos: {x: 0, y: 0}
@@ -406,23 +406,10 @@ MonoBehaviour:
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   playerMaxHealth: 15
   healthDrainRate: 1
-  timer: {fileID: 6408834538166495837}
+  timer: {fileID: 1220799267374969847}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   PCM: {fileID: 3326492603616964188}
---- !u!114 &6408834538166495837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013176277656355755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a107dab65776e645824eb0cdd594b19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField: []
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnim
   currentAnim: {fileID: 11400000, guid: d282ee28750ac824ab874c5b55f0e362, type: 2}
---- !u!114 &4199583538810765222
+--- !u!114 &1220799267374969847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,17 +449,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 9013176277656355755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a107dab65776e645824eb0cdd594b19, type: 3}
+  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField:
-  - name: 
-    timerMode: 0
-    StartOnAwake: 0
-    time: 0
-    defaultTime: 0
-    isLooping: 0
-    additionalLoop: 0
-    onTimeIsZero:
-      m_PersistentCalls:
-        m_Calls: []
+  <times>k__BackingField: []
+--- !u!114 &8276117964343328848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013176277656355755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Timer
+  <times>k__BackingField: []

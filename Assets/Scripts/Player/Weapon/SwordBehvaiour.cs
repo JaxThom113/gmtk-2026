@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordBehvaiour : WeaponBase
+public class SwordBehvaiour : MeleeWeapon
 {
     [SerializeField]
     private BoxCollider swordCol;
@@ -24,5 +24,6 @@ public class SwordBehvaiour : WeaponBase
     public void DisableSwordCollider()
     {
         swordCol.enabled = false;
+        hitColliders.Clear();
     }
 }
