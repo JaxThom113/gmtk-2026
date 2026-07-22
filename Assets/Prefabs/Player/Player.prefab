@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 3326492603616964188}
   - component: {fileID: 7384605621985405168}
   - component: {fileID: 6408834538166495837}
+  - component: {fileID: 8662915930565529634}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -284,16 +285,9 @@ MonoBehaviour:
   drag: 5
   currentMaxSpeed: 0
   currentSpeed: 0
-  cameraMouseMin: 0
-  cameraMouseMax: 0
-  cameraMaxOffset: 0
-  <CameraFollowPoint>k__BackingField: {fileID: 814223186946832025}
   cameraGroundCollisionMask:
     serializedVersion: 2
     m_Bits: 64
-  camLerpDur: 0
-  currentOffset: 0
-  snapPoint: 0
   direction: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0, z: 0}
   rawPos: {x: 0, y: 0}
@@ -383,3 +377,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   <times>k__BackingField: []
+--- !u!114 &8662915930565529634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013176277656355755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178494f810f151d4281d5d0736f8a385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
+  playerLevelSO: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
+  currentExperience: 0
+  initialExpToNextLvl: 100
+  expIncreaseRate: 1.1
+  adjustExp: {fileID: 11400000, guid: 7dc50d259182c0245bddff6633bfcc5f, type: 2}

@@ -32,24 +32,16 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Camera")]
-    [SerializeField, Range(0f, 8f)]
+    /*[SerializeField, Range(0f, 8f)]
     private float cameraMouseMin;
     [SerializeField, Range(0f, 16f)]
     private float cameraMouseMax;
     [SerializeField, Range(0,16)]
     private float cameraMaxOffset;
     [field: SerializeField]
-    public Transform CameraFollowPoint { get; private set; }
+    public Transform CameraFollowPoint { get; private set; }*/
     [SerializeField]
     private LayerMask cameraGroundCollisionMask;
-    [Header("Controller Camera")]
-    [SerializeField]
-    private float camLerpDur;
-    [SerializeField, ReadOnlyProp]
-    private float currentOffset;
-    [SerializeField, Range(0f, 1f)]
-    private float snapPoint;
-    private Coroutine camLerp;
 
     [Header("Debug")]
     [SerializeField, ReadOnlyProp]
