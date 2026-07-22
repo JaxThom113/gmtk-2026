@@ -558,9 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caaba6d8f7106a43b18a7db81324e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 50
   bullet: {fileID: 5502667426189631555, guid: 2553432a90377e144a7dce40c8922d30, type: 3}
   shootPos: {fileID: 289472263898254990}
-  health: 50
   damage: 10
   speed: 10
   stopDistance: 15

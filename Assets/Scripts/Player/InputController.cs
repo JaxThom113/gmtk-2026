@@ -30,6 +30,7 @@ public class InputController : MonoBehaviour
         EnablePlayerInputs();
         player.Move.performed += PCM.control.SetDirection;
         player.Move.canceled += PCM.control.SetDirection;
+        player.Attack.performed += PCM.control.Attack;
     }
 
     public void EnablePlayerInputs()
@@ -43,6 +44,7 @@ public class InputController : MonoBehaviour
             return;
         player.Move.performed -= PCM.control.SetDirection;
         player.Move.canceled -= PCM.control.SetDirection;
+        player.Attack.performed -= PCM.control.Attack;
         DisablePlayerInputs();
     }
 
