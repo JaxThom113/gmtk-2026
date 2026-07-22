@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy2 : Enemy
 {
     [Header("Gun References")]
-    [SerializeField] private Transform bullet;
+    [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPos;
 
     [Header("Enemy Stats")]
@@ -72,10 +72,10 @@ public class Enemy2 : Enemy
 
         Instantiate(bullet, shootPos.position, shootPos.rotation);
 
+        shooting = false;
+
         // if player moved, break and chase player again
         if (Vector3.Distance(transform.position, player.transform.position) > stopDistance)
             yield break;
-
-        shooting = false;
     }
 }
