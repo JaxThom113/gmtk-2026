@@ -411,14 +411,14 @@ public class Timer : MonoBehaviour
     }
     #endregion
 
-    #region Set to Zero
+    #region Stop
     /// <summary>
     /// /// use to set all timers back to zero. Ignores looping timer
     /// Does not trigger any events. Ignores looping timers by default
     /// </summary>
     /// <param name="ignoreLoop">If looping timers get affected and reset to zero</param>
     /// <param name="disableLoop">If looping timers should get looping disabled</param>
-    public void SetAllToZero(bool ignoreLoop = true, bool disableLoop = false)
+    public void StopAll(bool ignoreLoop = true, bool disableLoop = false)
     {
         for (int i = 0; i < times.Length; i++)
         {
@@ -434,7 +434,7 @@ public class Timer : MonoBehaviour
     /// Use TriggerTimer if you wish to invoke an action instantly and stop the timer
     /// </summary>
     /// <param name="position"></param>
-    public void SetSpecificToZero(int position)
+    public void StopSpecific(int position)
     {
         if (ErrorPosition(position, "ResetSpecificToZero"))
             return;
@@ -444,9 +444,9 @@ public class Timer : MonoBehaviour
     /// Reset first timer to zero, does not result in invoke of the action.
     /// Use TriggerTimer if you wish to invoke an action instantly and stop the timer
     /// </summary>
-    public void SetSpecificToZero()
+    public void StopSpecific()
     {
-        SetSpecificToZero(0);
+        StopSpecific(0);
     }
     #endregion
 

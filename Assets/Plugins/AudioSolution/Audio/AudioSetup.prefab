@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
-  Use3D: 1
+  Use3D: 0
   IsString: 0
   AudioClipSOLoc: 
-  clipLoc: {fileID: 0}
+  clipLoc: {fileID: 11400000, guid: f8df8eeaf7e378042bbb99d3e3727ce4, type: 2}
