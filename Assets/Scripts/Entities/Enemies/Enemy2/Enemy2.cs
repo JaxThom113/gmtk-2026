@@ -65,7 +65,10 @@ public class Enemy2 : Enemy
         shooting = true;
 
         yield return new WaitForSeconds(1f);
-        Pooler.GetObject(bullet, shootPos.position, shootPos.rotation);
+        Pooler.GetObject<Bullet>(bullet, shootPos.position, shootPos.rotation,
+            onNewInstance: (b) => b.Initialise(),
+            onGet: (b) => b.ResetObj() 
+            );
         //Instantiate(bullet, shootPos.position, shootPos.rotation);
 
         shooting = false;
