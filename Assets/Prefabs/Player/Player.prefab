@@ -369,6 +369,7 @@ MonoBehaviour:
   drag: 5
   currentMaxSpeed: 0
   currentSpeed: 0
+  weaponRotSpeed: 8
   attackCD: 1
   animator: {fileID: 2708490409788090358}
   modelTurnSpeed: 5
