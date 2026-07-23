@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 1220799267374969847}
   - component: {fileID: 5719977272093131984}
   - component: {fileID: 6418179257755657505}
+  - component: {fileID: 7781489478450172478}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -344,7 +345,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &7312571583424678915
 MonoBehaviour:
@@ -364,13 +365,19 @@ MonoBehaviour:
   col: {fileID: 5447953482635767702}
   PCM: {fileID: 3326492603616964188}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
-  acceleration: 15
+  acceleration: 50
   maxSpeed: 8
   drag: 5
   currentMaxSpeed: 0
   currentSpeed: 0
   weaponRotSpeed: 8
-  attackCD: 1
+  dashDistance: 10
+  dashDuration: 0.5
+  playerCol: {fileID: 5447953482635767702}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  dashCD: 1
   animator: {fileID: 2708490409788090358}
   modelTurnSpeed: 5
   cameraGroundCollisionMask:
@@ -379,7 +386,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0, z: 0}
   rawPos: {x: 0, y: 0}
-  activeWeapon: {fileID: 3697343181508720654}
+  state: 0
 --- !u!114 &4078125508690341455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +417,7 @@ MonoBehaviour:
   <anim>k__BackingField: {fileID: 7268615667763022171}
   <timer>k__BackingField: {fileID: 5719977272093131984}
   <unlocks>k__BackingField: {fileID: 6418179257755657505}
+  <abilities>k__BackingField: {fileID: 7781489478450172478}
 --- !u!114 &7384605621985405168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSystems
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
-  playerMaxHealth: 15
+  playerMaxHealth: 999
   healthDrainRate: 0
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
@@ -512,8 +520,30 @@ MonoBehaviour:
   current:
     currentSpot: {fileID: 0}
     weapon: {fileID: 0}
-  weaponSwitchSpeed: 0
-  testWeapon: {fileID: 5645741380020598265}
+  weaponSwitchSpeed: 1
+  testWeapon: {fileID: 0}
+  isDashUnlocked: 1
+  isBlinkUnlocked: 0
+  isSlowTime: 0
+  isFreezeTime: 0
+  isRapidFire: 0
+  isArsenalUnleash: 0
+--- !u!114 &7781489478450172478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013176277656355755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e0cfeb581cde4699a198631c29efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAbilities
+  PCM: {fileID: 3326492603616964188}
+  isTimeSlow: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
+  timeSlowDuration: 3
+  timeSlowCD: 15
 --- !u!1 &9190717472721306908
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,15 +790,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8485465392720667583, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485465392720667583, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485465392720667583, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8485465392720667583, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -792,17 +822,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8485465392720667583, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
   m_PrefabInstance: {fileID: 6343894613912216082}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5645741380020598265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1608833268018943979, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}
-  m_PrefabInstance: {fileID: 6343894613912216082}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1625558e188c340b7bed9144d1b93f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShotgunBehaviour
 --- !u!1001 &7940929518995176746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,17 +888,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8485465392720667583, guid: 9fd6dc237b2a92445b17a9700d606ecc, type: 3}
   m_PrefabInstance: {fileID: 7940929518995176746}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3697343181508720654 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6736333204461241636, guid: 9fd6dc237b2a92445b17a9700d606ecc, type: 3}
-  m_PrefabInstance: {fileID: 7940929518995176746}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d8cca502a42bc4989e6b9702d4a8fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RailgunBehaviour
 --- !u!1001 &8556857101777579211
 PrefabInstance:
   m_ObjectHideFlags: 0

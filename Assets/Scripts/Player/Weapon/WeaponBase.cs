@@ -79,6 +79,8 @@ public class RangedWeapon : WeaponBase
     protected Transform bulletSP;
     [SerializeField]
     protected int pierce;
+    [SerializeField]
+    protected ParticleSystem particles;
 
     protected void ShootBullet(Vector3 dir)
     {
