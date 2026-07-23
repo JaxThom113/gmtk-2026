@@ -15,4 +15,4 @@ MonoBehaviour:
   Descirption: What the player level currently is
   _shouldReset: 1
   _defaultValue: 0
-  _int: 0
+  _int: 1
