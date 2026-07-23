@@ -271,6 +271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy1
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
+  playerTimeIncreaseAmount: 5
+  playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  expPrefab: {fileID: 5715302546398428204, guid: 066cfeacbfe9a4e498d58e136d8f8c3c, type: 3}
+  expAmount: 50
   damage: 5
   speed: 8
   stopDistance: 3
