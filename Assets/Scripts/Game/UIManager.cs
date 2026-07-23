@@ -20,12 +20,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private IntSO playerHealthSO;
     [SerializeField] private IntSO playerLevelSO;
     [SerializeField] private IntSO playerExperienceSO;
-
-    [Header("Timer")]
-    [SerializeField]
-    private Timer timer;
+    [SerializeField] private IntSO playerExperienceToNextLevelSO;
 
     bool isFlashing;
+    private Sequence flash;
     private Color clockTextColor;
 
     void Start()
@@ -38,6 +36,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateClock();
         UpdateLevel();
+        UpdateExperience();
     }   
 
     private void UpdateClock()
@@ -55,8 +54,9 @@ public class UIManager : MonoBehaviour
 
         clock.text = $"{minutesString}:{secondsString}";
 
-        Sequence flash = DOTween.Sequence();;
-        if (seconds <= 10)
+        Debug.Log(playerHealthSO.Int);
+
+        if (playerHealthSO.Int <= 10)
         {
             // flash red, resume timer to call the Flash() function
             if (!isFlashing)
@@ -64,6 +64,7 @@ public class UIManager : MonoBehaviour
                 isFlashing = true;
 
                 // smoothly flash to red then back to white
+                flash = DOTween.Sequence();
                 flash.Append(screen.GetComponent<Image>().DOColor(Color.red, 0.5f));
                 flash.Join(clock.DOColor(Color.red, 0.5f));
                 flash.SetLoops(-1, LoopType.Yoyo);
@@ -71,8 +72,11 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            // stop flashing, reset color
+            // stop flashing
             flash.Kill();
+            flash = null;
+
+            // reset colors
             screen.GetComponent<Image>().color = Color.white;
             clock.color = clockTextColor;
 
@@ -91,7 +95,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateExperience()
     {
-        
+        experienceSlider.maxValue = playerExperienceToNextLevelSO.Int;
+        experienceSlider.value = playerExperienceSO.Int;
     }
-
 }

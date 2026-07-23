@@ -85,10 +85,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {   
-        Debug.Log(direction);
-
-        
-
         Move();
         UpdateMousePos();
         RotateTo();

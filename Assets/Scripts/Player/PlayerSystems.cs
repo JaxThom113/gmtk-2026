@@ -3,16 +3,23 @@ using UnityEngine;
 
 public class PlayerSystems : MonoBehaviour
 {
+    [Header("SO References")]
     [SerializeField]
     private IntSO playerCurrentHealthSO;
-    [SerializeField]
-    private int playerMaxHealth;
-    [SerializeField]
-    private int healthDrainRate;
     [SerializeField]
     private IntSO adjustHealthSO;
     [SerializeField]
     private BoolSO isPlayerDeadSO;
+
+    [Header("Health/Clock Settings")]
+    [SerializeField]
+    private int playerMaxHealth; // max time the player can have on the clock
+    [SerializeField]
+    private int healthDrainRate; // how many seconds are subtracted per second
+    [SerializeField]
+    private float secondLength; // length of a second, decrease to make seconds go by faster
+
+    [Header("Other")]
     [SerializeField]
     private PlayerComponentManager PCM;
     [SerializeField]
@@ -26,7 +33,7 @@ public class PlayerSystems : MonoBehaviour
         playerCurrentHealthSO.Int = playerMaxHealth;
 
         PCM.timer.timer.ModifyTimerMode(timerPos, TimerMode.Precise);
-        PCM.timer.timer.SetTime(timerPos, 1f);
+        PCM.timer.timer.SetTime(timerPos, secondLength);
         PCM.timer.timer.ResumeTimer(timerPos);
         PCM.timer.timer.SetIsLooping(timerPos, true);
         PCM.timer.timer.SetAdditionalLoops( timerPos, -1);
@@ -59,7 +66,13 @@ public class PlayerSystems : MonoBehaviour
                 PCM.timer.timer.SetTime(iFrames, iframeDur);
             }
         }
-        playerCurrentHealthSO.Int += adjustHealthSO.Int;
+
+        // add health (time) back when killing an enemy
+        if (playerCurrentHealthSO.Int + adjustHealthSO.Int >= playerMaxHealth)
+            playerCurrentHealthSO.Int = playerMaxHealth;
+        else
+            playerCurrentHealthSO.Int += adjustHealthSO.Int;
+
         adjustHealthSO.ResetValue();
         CheckHealth();
     }
