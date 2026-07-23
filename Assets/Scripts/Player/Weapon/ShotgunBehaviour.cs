@@ -10,7 +10,8 @@ public class ShotgunBehaviour : RangedWeapon
     public override void Attack(Vector3 attackDir)
     {
         Vector2 initial = new Vector2(attackDir.x, attackDir.z).normalized;
-        Quaternion initialRot = Quaternion.Euler(0, 0, (float)projectiles * 0.5f * spread);
+        Debug.Log((float)projectiles * 0.5f * spread);
+        Quaternion initialRot = Quaternion.Euler(0, 0, ((float)projectiles - 1) * 0.5f * spread);
         initial = initialRot * initial;
         for (int i = 0; i < projectiles; i++)
         {

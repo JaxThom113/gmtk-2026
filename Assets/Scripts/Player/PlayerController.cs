@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {   
-        Debug.Log(direction);
+        //Debug.Log(direction);
 
         
 
@@ -131,7 +131,6 @@ public class PlayerController : MonoBehaviour
     {
         float input = context.ReadValue<float>();
         PCM.unlocks.WeaponSwitch((int)input);
-        Debug.Log(input);
     }
     public void Attack()
     {
