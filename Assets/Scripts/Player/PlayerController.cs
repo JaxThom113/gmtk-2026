@@ -120,6 +120,10 @@ public class PlayerController : MonoBehaviour
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
     }
 
+    public Vector3 GetAttackDir()
+    {
+        return (mousePos - transform.position).normalized;
+    }
     private void UpdateMousePos()
     {
         rawPos = Mouse.current.position.ReadValue();
