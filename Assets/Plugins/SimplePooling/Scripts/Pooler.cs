@@ -824,8 +824,8 @@ namespace Sezylrin.SimplePooling
                 }
                 transform = transform.parent;
             }
-            Debug.LogWarning($"Trying to return {instance.name} to a non existing pool.\n Ensure this prefab is spawned via the Pooling system or that you dont destroy pools with active objects ");
-            GameObject.Destroy(instance);
+            Debug.LogError($"Trying to return {instance.name} to a non existing pool.\n Ensure this prefab is spawned via the Pooling system or that you dont destroy pools with active objects ");
+
         }
         /// <summary>
         /// Clears every pool that uses the given prefab 

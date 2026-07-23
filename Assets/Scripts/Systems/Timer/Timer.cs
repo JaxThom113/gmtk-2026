@@ -59,7 +59,6 @@ public class Timer : MonoBehaviour
         public int additionalLoop;
         public int defaultLoopCount { get; set; }
         public float overflowTime { get; set; }
-        [field: SerializeField]
         public bool isPaused { get; set; }
         public bool isPrecise { get; set; }
         public bool isIgnoreTimescale { get; set; }
@@ -176,7 +175,6 @@ public class Timer : MonoBehaviour
         {
             times[i].SetName("timer " + i.ToString());
             ModifyTimerMode(i, mode);
-            times[i].StartOnAwake = true;
         }
     }
     /// <summary>
@@ -280,8 +278,6 @@ public class Timer : MonoBehaviour
             return;
         if (!startInstantly)
             PauseTimer(position);
-        else
-            ResumeTimer(position);
         times[position].time = amount;
         times[position].defaultTime = amount;
     }
@@ -415,14 +411,14 @@ public class Timer : MonoBehaviour
     }
     #endregion
 
-    #region Stop
+    #region Set to Zero
     /// <summary>
     /// /// use to set all timers back to zero. Ignores looping timer
     /// Does not trigger any events. Ignores looping timers by default
     /// </summary>
     /// <param name="ignoreLoop">If looping timers get affected and reset to zero</param>
     /// <param name="disableLoop">If looping timers should get looping disabled</param>
-    public void StopAll(bool ignoreLoop = true, bool disableLoop = false)
+    public void SetAllToZero(bool ignoreLoop = true, bool disableLoop = false)
     {
         for (int i = 0; i < times.Length; i++)
         {
@@ -438,7 +434,7 @@ public class Timer : MonoBehaviour
     /// Use TriggerTimer if you wish to invoke an action instantly and stop the timer
     /// </summary>
     /// <param name="position"></param>
-    public void StopSpecific(int position)
+    public void SetSpecificToZero(int position)
     {
         if (ErrorPosition(position, "ResetSpecificToZero"))
             return;
@@ -448,9 +444,9 @@ public class Timer : MonoBehaviour
     /// Reset first timer to zero, does not result in invoke of the action.
     /// Use TriggerTimer if you wish to invoke an action instantly and stop the timer
     /// </summary>
-    public void StopSpecific()
+    public void SetSpecificToZero()
     {
-        StopSpecific(0);
+        SetSpecificToZero(0);
     }
     #endregion
 
@@ -487,14 +483,14 @@ public class Timer : MonoBehaviour
     /// <param name="handle"></param>
     public void SubscribeToTimerIsZero(EventHandler handle)
     {
-        SubscribeToTimerIsZero(0, handle);
+        SubscribeToTimerIsZero(handle, 0);
     }
     /// <summary>
     /// Subscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void SubscribeToTimerIsZero(int position, EventHandler handle)
+    public void SubscribeToTimerIsZero(EventHandler handle, int position)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;
@@ -503,16 +499,16 @@ public class Timer : MonoBehaviour
      /// Unsubscribe to the first timer's OnTimeIsZero event
      /// </summary>
      /// <param name="handle"></param>
-    public void UnsubscribeToTimerIsZero(EventHandler handle)
+    public void UnsubscribeToTimerIsZer(EventHandler handle)
     {
-        UnsubscribeToTimerIsZero(0, handle);
+        UnsubscribeToTimerIsZer(handle, 0);
     }
     /// <summary>
     /// Unsubscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void UnsubscribeToTimerIsZero(int position, EventHandler handle)
+    public void UnsubscribeToTimerIsZer(EventHandler handle, int position)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;
