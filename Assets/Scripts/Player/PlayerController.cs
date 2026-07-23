@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     #region Unity Function
     void Awake()
     {
-        activeWeapon.SwitchWeapon();
+
     }
     public void Start()
     {
@@ -113,6 +113,13 @@ public class PlayerController : MonoBehaviour
         PCM.timer.timer.UnsubscribeToTimerIsZero(CDTimer, StartAttacking);
 
     }
+
+    public void SwitchWeapons(InputAction.CallbackContext context)
+    {
+        float input = context.ReadValue<float>();
+        PCM.unlocks.WeaponSwitch((int)input);
+        Debug.Log(input);
+    }
     public void Attack()
     {
         activeWeapon.Attack((mousePos - transform.position).normalized);
@@ -142,6 +149,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private WeaponBase activeWeapon;
 
+    public void SwitchActiveWeapon(WeaponBase activeWeapon)
+    {
+        this.activeWeapon = activeWeapon;
+        activeWeapon.SwitchWeapon();
+    }
     #endregion
 
     #region Movement
