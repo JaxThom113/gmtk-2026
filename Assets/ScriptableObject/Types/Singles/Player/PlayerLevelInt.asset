@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IntSO
   Descirption: What the player level currently is
   _shouldReset: 1
-  _defaultValue: 0
+  _defaultValue: 1
   _int: 1

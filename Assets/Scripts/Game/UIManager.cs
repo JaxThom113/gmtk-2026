@@ -15,12 +15,14 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI clock;
 	[SerializeField] private TextMeshProUGUI levelNumber;
 	[SerializeField] private Slider experienceSlider;
+	[SerializeField] private GameObject deathScreen;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
     [SerializeField] private IntSO playerLevelSO;
     [SerializeField] private IntSO playerExperienceSO;
     [SerializeField] private IntSO playerExperienceToNextLevelSO;
+    [SerializeField] private BoolSO isPlayerDeadSO;
 
     bool isFlashing;
     private Sequence flash;
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        isPlayerDeadSO.Bool = false;
         isFlashing = false;
         clockTextColor = clock.color;
     }
@@ -37,6 +40,9 @@ public class UIManager : MonoBehaviour
         UpdateClock();
         UpdateLevel();
         UpdateExperience();
+
+        if (isPlayerDeadSO.Bool)
+            deathScreen.SetActive(true);
     }   
 
     private void UpdateClock()
@@ -53,8 +59,6 @@ public class UIManager : MonoBehaviour
             secondsString = "0" + secondsString; 
 
         clock.text = $"{minutesString}:{secondsString}";
-
-        Debug.Log(playerHealthSO.Int);
 
         if (playerHealthSO.Int <= 10)
         {
