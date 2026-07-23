@@ -29,9 +29,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
     [SerializeField]
     private int expAmount;
 
-
     protected Rigidbody rb;
-    
 
     public void ResetObj()
     {
@@ -40,7 +38,6 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     public virtual void Initialize(Transform playerTransform)
     {
-        // all enemies must be initialized with a reference to the player
         player = playerTransform;
         rb = GetComponent<Rigidbody>();
         timeSlowedActive.onValueChanged += slowTime;
@@ -57,14 +54,22 @@ public abstract class Enemy : MonoBehaviour, IHealth
         {
             playerTimeAdjustment.Int += playerTimeIncreaseAmount;
             Pooler.GetObject<ExpOrb>(expPrefab, transform.position, Quaternion.identity,
-                onGet: (e) => 
+                onGet: (e) =>
                 {
                     e.ResetObj();
                     e.SetExpAmount(expAmount);
                 }
                 );
             Pooler.PoolObject(gameObject);
-            //Die();
         }
+    }
+
+    protected void GoToFrame(Animator animator, AnimationClip clip, int frame)
+    {
+        animator.enabled = false;
+        animator.Rebind();
+        animator.Update(0f);
+        float time = Mathf.Clamp(frame / clip.frameRate, 0f, clip.length);
+        clip.SampleAnimation(animator.gameObject, time);
     }
 }

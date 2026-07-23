@@ -1,25 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy3 : Enemy
 {
-
     [Header("Movement Settings")]
-	[SerializeField] private float speed;
-	[SerializeField] private float stepSize;
-	[SerializeField] private float stopDistance;
+    [SerializeField] private float speed;
+    [SerializeField] private float stepSize;
+    [SerializeField] private float stopDistance;
+    [SerializeField] private float StartShootingRange = 10f;
+    [SerializeField] private float stepDelay = 1f;
 
     private Vector3 playerDir;
     private Vector3 stepPos;
-    private bool stepping = false;
+    private bool stepping;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+    public AnimationClip moveAnim;
+    public AnimationClip shootMoveAnim;
+    public AnimationClip standShootAnim;
 
-    /*
-        This enemy moves continuously toward the player in steps
-    */
+    private int animFrame;
+    private AnimationClip lastClip;
+    private const int FrameStep = 10;
 
-    
     void FixedUpdate()
     {
         FacePlayer();
@@ -28,55 +32,68 @@ public class Enemy3 : Enemy
 
     private void Move()
     {
-        if (!stepping)
-            StartCoroutine(TakeStep());
+        if (stepping || player == null || rb == null)
+            return;
+
+        float playerDistance = Vector3.Distance(transform.position, player.position);
+
+        stepping = true;
+        StartCoroutine(TakeStep(playerDistance));
     }
 
     private void FacePlayer()
     {
-        // face toward the player
         if (playerDir.sqrMagnitude > 0.001f)
             transform.rotation = Quaternion.LookRotation(playerDir);
     }
 
-    private IEnumerator TakeStep()
+    private IEnumerator TakeStep(float playerDistance)
     {
-        if (player == null)
-            yield break;
+        playerDir = (player.position - transform.position).normalized;
 
-        // move towards player
-        float playerDistance = Vector3.Distance(transform.position, player.transform.position);
-        if (playerDistance <= stopDistance)
-            yield break;
-
-        stepping = true;
-
-        playerDir = (player.transform.position - transform.position).normalized;
-
-        // don't overshoot the stop distance
-        float step = Mathf.Min(stepSize, playerDistance - stopDistance);
-        stepPos = transform.position + playerDir * step;
-
-        // take a step (move toward step position)
-        while (Vector3.Distance(rb.position, stepPos) > 0.01f)
+        // Only move when outside stop range; still animate while stopped to shoot
+        if (playerDistance > stopDistance)
         {
-            Vector3 previousPosition = rb.position;
-
-            float move = speed * Time.fixedDeltaTime;
-            rb.MovePosition(Vector3.MoveTowards(rb.position, stepPos, move));
-
-            yield return new WaitForFixedUpdate();
-
-            // if the enemy barely moved this frame, its step was block, so break out of the loop
-            if ((rb.position - previousPosition).sqrMagnitude < 0.000001f)
-                break;
+            float step = Mathf.Min(stepSize, playerDistance - stopDistance);
+            stepPos = transform.position + playerDir * step;
+            rb.MovePosition(stepPos);
         }
 
-        // snap exactly to the destination
-        rb.MovePosition(stepPos);
+        AnimationClip clip = PickClip(playerDistance);
+        if (animator != null && clip != null)
+            GoToFrame(animator, clip, CurrentFrame(clip));
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(stepDelay);
 
         stepping = false;
+    }
+
+    private AnimationClip PickClip(float distanceFromPlayer)
+    {
+        AnimationClip clip;
+        if (distanceFromPlayer <= stopDistance)
+            clip = standShootAnim;
+        else if (distanceFromPlayer <= StartShootingRange)
+            clip = shootMoveAnim;
+        else
+            clip = moveAnim;
+
+        if (clip != lastClip && animator != null)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+            animFrame = 0;
+            lastClip = clip;
+        }
+
+        return clip;
+    }
+
+    private int CurrentFrame(AnimationClip clip)
+    {
+        int frameCount = Mathf.Max(1, Mathf.RoundToInt(clip.length * clip.frameRate));
+        int frame = animFrame % frameCount;
+        animFrame = (animFrame + FrameStep) % frameCount;
+        return frame;
     }
 }
