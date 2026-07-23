@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     #region Unity Function
     void Awake()
     {
+        activeWeapon.SwitchWeapon();
     }
     public void Start()
     {
@@ -90,14 +91,33 @@ public class PlayerController : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>().normalized;
         direction = new Vector3(input.x, 0,input.y);
     }
-    public void Attack(InputAction.CallbackContext context)
+    private bool isAttacking = false;
+    public void AttemptAttack(InputAction.CallbackContext context)
     {
-        if(PCM.timer.timer.IsTimeZero(CDTimer))
+        isAttacking = true;
+        if (PCM.timer.timer.IsTimeZero(CDTimer))
         {
-            PCM.anim.PlayAttack();
-            PCM.timer.timer.SetTime(CDTimer, attackCD);
-            PCM.timer.timer.RestartTimer(CDTimer);
+            Attack();
+            PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking);
         }
+    }
+
+    public void StartAttacking(object sender, EventArgs e)
+    {
+        if(isAttacking)
+            Attack();
+    }
+    public void StopAttack(InputAction.CallbackContext callback)
+    {
+        isAttacking=false;
+        PCM.timer.timer.UnsubscribeToTimerIsZero(CDTimer, StartAttacking);
+
+    }
+    public void Attack()
+    {
+        activeWeapon.Attack((mousePos - transform.position).normalized);
+        PCM.anim.PlayAttack();
+        PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
     }
 
     private void UpdateMousePos()
@@ -115,6 +135,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Attack
+    [SerializeField]
+    private WeaponBase activeWeapon;
+
     #endregion
 
     #region Movement
@@ -142,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateTo()
     {
-        if(isPlayerDeadSO.Bool || !PCM.timer.timer.IsTimeZero(CDTimer))
+        if(isPlayerDeadSO.Bool || (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon))
         {
             return;
         }

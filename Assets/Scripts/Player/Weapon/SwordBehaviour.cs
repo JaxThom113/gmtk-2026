@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordBehvaiour : MeleeWeapon
+public class SwordBehaviour : MeleeWeapon
 {
     [SerializeField]
     private BoxCollider swordCol;
