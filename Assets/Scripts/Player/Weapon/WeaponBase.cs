@@ -39,6 +39,16 @@ public class WeaponBase : MonoBehaviour
     {
         this.attackDir = attackDir;
     }
+
+    public void StoreWeapon()
+    {
+        anim.SetBool("isStored", true);
+    }
+
+    public void ActiveWeapon()
+    {
+        anim.SetBool("isStored", false);
+    }
 }
 
 public class MeleeWeapon : WeaponBase
