@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy1 : Enemy
 {
-    [Header("Enemy Stats")]
-	[SerializeField] private float damage;
 
     [Header("Movement Settings")]
 	[SerializeField] private float speed;

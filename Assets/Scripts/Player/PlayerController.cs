@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider col;
     [SerializeField]
     private PlayerComponentManager PCM;
-    [SerializeField]
-    private Timer cooldownTimer;
 
     [SerializeField]
     private BoolSO isPlayerDeadSO;
@@ -61,10 +59,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField, ReadOnlyProp]
     private Vector2 rawPos;
 
+    private int CDTimer = (int)PlayerTimer.AttackCD;
     #region Unity Function
     void Awake()
-    {        
-        InitialiseAttacks();
+    {
     }
     public void Start()
     {
@@ -94,11 +92,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack(InputAction.CallbackContext context)
     {
-        if(cooldownTimer.IsTimeZero())
+        if(PCM.timer.timer.IsTimeZero(CDTimer))
         {
             PCM.anim.PlayAttack();
-            cooldownTimer.SetTime(attackCD);
-            cooldownTimer.RestartTimer();
+            PCM.timer.timer.SetTime(CDTimer, attackCD);
+            PCM.timer.timer.RestartTimer(CDTimer);
         }
     }
 
@@ -117,10 +115,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Attack
-    private void InitialiseAttacks()
-    {
-        cooldownTimer.GenerateTimer();
-    }
     #endregion
 
     #region Movement
@@ -148,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
     private void RotateTo()
     {
-        if(isPlayerDeadSO.Bool || !cooldownTimer.IsTimeZero())
+        if(isPlayerDeadSO.Bool || !PCM.timer.timer.IsTimeZero(CDTimer))
         {
             return;
         }
