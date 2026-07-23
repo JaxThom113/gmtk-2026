@@ -14,8 +14,9 @@ public class InputController : MonoBehaviour
     [SerializedDictionary("key name", "value name")]
     SerializedDictionary<int, int> example;
 
-    [SerializeField]
-    private PlayerComponentManager PCM;
+    [SerializeField] private PlayerComponentManager PCM;
+    [SerializeField] private PauseMenu pauseMenu;
+
     private void Awake()
     {
         input = new PlayerInputs();
@@ -31,6 +32,7 @@ public class InputController : MonoBehaviour
         player.Move.performed += PCM.control.SetDirection;
         player.Move.canceled += PCM.control.SetDirection;
         player.Attack.performed += PCM.control.Attack;
+        player.Pause.performed += pauseMenu.OnPause;
     }
 
     public void EnablePlayerInputs()
@@ -45,6 +47,7 @@ public class InputController : MonoBehaviour
         player.Move.performed -= PCM.control.SetDirection;
         player.Move.canceled -= PCM.control.SetDirection;
         player.Attack.performed -= PCM.control.Attack;
+        player.Pause.performed -= pauseMenu.OnPause;
         DisablePlayerInputs();
     }
 
