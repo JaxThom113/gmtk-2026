@@ -4,6 +4,7 @@ using UnityEngine;
 
 using AYellowpaper.SerializedCollections;
 using TMPro;
+using Sezylrin.SimplePooling;
 
 public class GameManager : MonoBehaviour
 {
@@ -76,9 +77,11 @@ public class GameManager : MonoBehaviour
 
             // instantiate the enemy and give it a reference to the player's position
             Vector3 randPos = new Vector3(Random.Range(0, 15), 1, Random.Range(0, 15));
-            GameObject enemyObj = Instantiate(enemy, randPos, Quaternion.identity);
-            enemyObj.GetComponent<Enemy>()?.Initialize(player.transform);
-
+            /*GameObject enemyObj = Instantiate(enemy, randPos, Quaternion.identity);
+            enemyObj.GetComponent<Enemy>()?.Initialize(player.transform);*/
+            Pooler.GetObject<Enemy>(enemy, randPos, Quaternion.identity, 
+                onNewInstance: (e) => e.Initialize(player.transform),
+                onGet: (e) => e.ResetObj());
             // decrement the amount of the enemy type just spawned
             remaining[enemy]--;
 

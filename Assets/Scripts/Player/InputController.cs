@@ -31,8 +31,10 @@ public class InputController : MonoBehaviour
         EnablePlayerInputs();
         player.Move.performed += PCM.control.SetDirection;
         player.Move.canceled += PCM.control.SetDirection;
-        player.Attack.performed += PCM.control.Attack;
+        player.Attack.performed += PCM.control.AttemptAttack;
+        player.Attack.canceled += PCM.control.StopAttack;
         player.Pause.performed += pauseMenu.OnPause;
+        player.SwitchWeapon.performed += PCM.control.SwitchWeapons;
     }
 
     public void EnablePlayerInputs()
@@ -46,8 +48,10 @@ public class InputController : MonoBehaviour
             return;
         player.Move.performed -= PCM.control.SetDirection;
         player.Move.canceled -= PCM.control.SetDirection;
-        player.Attack.performed -= PCM.control.Attack;
         player.Pause.performed -= pauseMenu.OnPause;
+        player.Attack.performed -= PCM.control.AttemptAttack;
+        player.Attack.canceled -= PCM.control.StopAttack;
+        player.SwitchWeapon.performed -= PCM.control.SwitchWeapons;
         DisablePlayerInputs();
     }
 

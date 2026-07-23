@@ -25,6 +25,6 @@ public class PlayerAnim : MonoBehaviour
 
     public void PlayAttack()
     {
-        anim.Play("SwordSwing");
+        anim.Play("Attack");
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy1 : Enemy
 {
-    [Header("Enemy Stats")]
-	[SerializeField] private float damage;
 
     [Header("Movement Settings")]
 	[SerializeField] private float speed;
@@ -13,17 +11,11 @@ public class Enemy1 : Enemy
 
     private Vector3 playerDir;
 
-    private Rigidbody rb;
-
     /*
         This enemy moves continuously toward the player, then attacks in melee
     */
 
-    protected override void Start()
-    {
-        base.Start();
-        rb = GetComponent<Rigidbody>();
-    }
+    
 
     void FixedUpdate()
     {

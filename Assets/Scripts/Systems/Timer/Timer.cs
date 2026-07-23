@@ -59,6 +59,7 @@ public class Timer : MonoBehaviour
         public int additionalLoop;
         public int defaultLoopCount { get; set; }
         public float overflowTime { get; set; }
+        [field: SerializeField]
         public bool isPaused { get; set; }
         public bool isPrecise { get; set; }
         public bool isIgnoreTimescale { get; set; }
@@ -175,6 +176,7 @@ public class Timer : MonoBehaviour
         {
             times[i].SetName("timer " + i.ToString());
             ModifyTimerMode(i, mode);
+            times[i].StartOnAwake = true;
         }
     }
     /// <summary>
@@ -278,6 +280,8 @@ public class Timer : MonoBehaviour
             return;
         if (!startInstantly)
             PauseTimer(position);
+        else
+            ResumeTimer(position);
         times[position].time = amount;
         times[position].defaultTime = amount;
     }
@@ -483,14 +487,14 @@ public class Timer : MonoBehaviour
     /// <param name="handle"></param>
     public void SubscribeToTimerIsZero(EventHandler handle)
     {
-        SubscribeToTimerIsZero(handle, 0);
+        SubscribeToTimerIsZero(0, handle);
     }
     /// <summary>
     /// Subscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void SubscribeToTimerIsZero(EventHandler handle, int position)
+    public void SubscribeToTimerIsZero(int position, EventHandler handle)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;
@@ -499,16 +503,16 @@ public class Timer : MonoBehaviour
      /// Unsubscribe to the first timer's OnTimeIsZero event
      /// </summary>
      /// <param name="handle"></param>
-    public void UnsubscribeToTimerIsZer(EventHandler handle)
+    public void UnsubscribeToTimerIsZero(EventHandler handle)
     {
-        UnsubscribeToTimerIsZer(handle, 0);
+        UnsubscribeToTimerIsZero(0, handle);
     }
     /// <summary>
     /// Unsubscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void UnsubscribeToTimerIsZer(EventHandler handle, int position)
+    public void UnsubscribeToTimerIsZero(int position, EventHandler handle)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;

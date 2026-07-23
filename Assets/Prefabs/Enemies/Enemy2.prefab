@@ -544,7 +544,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &7037131480871233360
 MonoBehaviour:
@@ -560,6 +560,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
+  playerTimeIncreaseAmount: 5
+  playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  expPrefab: {fileID: 5715302546398428204, guid: 066cfeacbfe9a4e498d58e136d8f8c3c, type: 3}
+  expAmount: 50
   bullet: {fileID: 5776959003838503944, guid: 2553432a90377e144a7dce40c8922d30, type: 3}
   shootPos: {fileID: 289472263898254990}
   damage: 10

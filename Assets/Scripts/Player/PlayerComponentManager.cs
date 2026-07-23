@@ -10,6 +10,10 @@ public class PlayerComponentManager : MonoBehaviour
     public PlayerController control { get; private set; }
     [field: SerializeField]
     public PlayerAnim anim { get; private set; }
+    [field: SerializeField]
+    public PlayerTimers timer { get; private set; }
+    [field:SerializeField]
+    public PlayerUnlocks unlocks { get; private set; }
     public static GameObject Instance { get; private set; }
 
     private void Awake()
