@@ -176,6 +176,7 @@ public class Timer : MonoBehaviour
         {
             times[i].SetName("timer " + i.ToString());
             ModifyTimerMode(i, mode);
+            times[i].StartOnAwake = true;
         }
     }
     /// <summary>
@@ -279,6 +280,8 @@ public class Timer : MonoBehaviour
             return;
         if (!startInstantly)
             PauseTimer(position);
+        else
+            ResumeTimer(position);
         times[position].time = amount;
         times[position].defaultTime = amount;
     }
@@ -500,16 +503,16 @@ public class Timer : MonoBehaviour
      /// Unsubscribe to the first timer's OnTimeIsZero event
      /// </summary>
      /// <param name="handle"></param>
-    public void UnsubscribeToTimerIsZer(EventHandler handle)
+    public void UnsubscribeToTimerIsZero(EventHandler handle)
     {
-        UnsubscribeToTimerIsZer(handle, 0);
+        UnsubscribeToTimerIsZero(0, handle);
     }
     /// <summary>
     /// Unsubscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void UnsubscribeToTimerIsZer(EventHandler handle, int position)
+    public void UnsubscribeToTimerIsZero(int position, EventHandler handle)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;
