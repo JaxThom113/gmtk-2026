@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
 
     [field: Header("Core variables")]
     [field: SerializeField]
-    public Rigidbody rb { get; private set; }
+    public Rigidbody rb { get; private set; } 
+    [SerializeField]  private Transform pivotTransform; 
+    [SerializeField]  private Transform modelTransform;
     [SerializeField]
     private CapsuleCollider col;
     [SerializeField]
@@ -33,12 +35,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnlyProp]
     private float currentMaxSpeed;    
     [SerializeField] [ReadOnlyProp]
-    private float currentSpeed;
+    private float currentSpeed; 
+
 
     [Header("Attack Stats")]
     [SerializeField]
     private float attackCD;
 
+
+    [Header("Animation")]
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private float modelTurnSpeed = 12f;
     [Header("Camera")]
     /*[SerializeField, Range(0f, 8f)]
     private float cameraMouseMin;
@@ -75,7 +84,11 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {   
+        Debug.Log(direction);
+
+        
+
         Move();
         UpdateMousePos();
         RotateTo();
@@ -160,16 +173,31 @@ public class PlayerController : MonoBehaviour
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * currentMaxSpeed;
             }
-        }
+        } 
+        
+        ModelControl();
+
     }
 
+    private void ModelControl() { 
+        if(animator != null) { 
+            animator.SetFloat("Speed", currentSpeed); 
+            
+        }  
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            Vector3 flat = new Vector3(direction.x, 0f, direction.z);
+            Quaternion targetRot = Quaternion.LookRotation(flat);
+            modelTransform.rotation = Quaternion.Slerp( modelTransform.rotation, targetRot, modelTurnSpeed * Time.fixedDeltaTime);
+        }
+    }
     private void RotateTo()
     {
         if(isPlayerDeadSO.Bool || (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon))
         {
             return;
         }
-        transform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
+        pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion
 }
