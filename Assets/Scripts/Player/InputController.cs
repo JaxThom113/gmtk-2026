@@ -32,6 +32,7 @@ public class InputController : MonoBehaviour
         player.Move.canceled += PCM.control.SetDirection;
         player.Attack.performed += PCM.control.AttemptAttack;
         player.Attack.canceled += PCM.control.StopAttack;
+        player.SwitchWeapon.performed += PCM.control.SwitchWeapons;
     }
 
     public void EnablePlayerInputs()
@@ -47,6 +48,7 @@ public class InputController : MonoBehaviour
         player.Move.canceled -= PCM.control.SetDirection;
         player.Attack.performed -= PCM.control.AttemptAttack;
         player.Attack.canceled -= PCM.control.StopAttack;
+        player.SwitchWeapon.performed -= PCM.control.SwitchWeapons;
         DisablePlayerInputs();
     }
 
