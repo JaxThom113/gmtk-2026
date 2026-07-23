@@ -10,9 +10,6 @@ public class Enemy2 : Enemy
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPos;
 
-    [Header("Enemy Stats")]
-	[SerializeField] private float damage;
-
     [Header("Movement Settings")]
 	[SerializeField] private float speed;
 	[SerializeField] private float stopDistance;
@@ -66,7 +63,7 @@ public class Enemy2 : Enemy
 
         yield return new WaitForSeconds(1f);
         Pooler.GetObject<Bullet>(bullet, shootPos.position, shootPos.rotation,
-            onNewInstance: (b) => b.Initialise(),
+            onNewInstance: (b) => b.Initialise(damage),
             onGet: (b) => b.ResetObj() 
             );
         //Instantiate(bullet, shootPos.position, shootPos.rotation);

@@ -59,6 +59,7 @@ public class Timer : MonoBehaviour
         public int additionalLoop;
         public int defaultLoopCount { get; set; }
         public float overflowTime { get; set; }
+        [field: SerializeField]
         public bool isPaused { get; set; }
         public bool isPrecise { get; set; }
         public bool isIgnoreTimescale { get; set; }
@@ -483,14 +484,14 @@ public class Timer : MonoBehaviour
     /// <param name="handle"></param>
     public void SubscribeToTimerIsZero(EventHandler handle)
     {
-        SubscribeToTimerIsZero(handle, 0);
+        SubscribeToTimerIsZero(0, handle);
     }
     /// <summary>
     /// Subscribe to the timer at position's OnTimeIsZero event
     /// </summary>
     /// <param name="handle"></param>
     /// <param name="position"></param>
-    public void SubscribeToTimerIsZero(EventHandler handle, int position)
+    public void SubscribeToTimerIsZero(int position, EventHandler handle)
     {
         if (ErrorPosition(position, "SubscribeToEvent"))
             return;

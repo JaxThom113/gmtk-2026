@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordBehvaiour
   anim: {fileID: 1480925306580563035}
   animSO: {fileID: 11400000, guid: d282ee28750ac824ab874c5b55f0e362, type: 2}
+  damage: 10
   swordCol: {fileID: 8148556139486790224}
 --- !u!1 &8728622281379009226
 GameObject:
@@ -163,7 +164,7 @@ GameObject:
   - component: {fileID: 462867660265180202}
   - component: {fileID: 346587667392042918}
   - component: {fileID: 5447953482635767702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,8 +283,8 @@ GameObject:
   - component: {fileID: 8662915930565529634}
   - component: {fileID: 7268615667763022171}
   - component: {fileID: 1220799267374969847}
-  - component: {fileID: 8276117964343328848}
-  m_Layer: 0
+  - component: {fileID: 5719977272093131984}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +323,6 @@ MonoBehaviour:
   <rb>k__BackingField: {fileID: 7357720056258974668}
   col: {fileID: 5447953482635767702}
   PCM: {fileID: 3326492603616964188}
-  cooldownTimer: {fileID: 8276117964343328848}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   acceleration: 15
   maxSpeed: 8
@@ -391,6 +391,7 @@ MonoBehaviour:
   <input>k__BackingField: {fileID: 4078125508690341455}
   <control>k__BackingField: {fileID: 7312571583424678915}
   <anim>k__BackingField: {fileID: 7268615667763022171}
+  <timer>k__BackingField: {fileID: 5719977272093131984}
 --- !u!114 &7384605621985405168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,10 +407,10 @@ MonoBehaviour:
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   playerMaxHealth: 15
   healthDrainRate: 1
-  timer: {fileID: 1220799267374969847}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   PCM: {fileID: 3326492603616964188}
+  iframeDur: 0
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   <times>k__BackingField: []
---- !u!114 &8276117964343328848
+--- !u!114 &5719977272093131984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,7 +463,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9013176277656355755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
+  m_Script: {fileID: 11500000, guid: b303642f470da4f449188955ce087ab3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField: []
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTimers
+  PCM: {fileID: 3326492603616964188}
+  timer: {fileID: 1220799267374969847}

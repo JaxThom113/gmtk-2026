@@ -14,8 +14,12 @@ public class Bullet : MonoBehaviour
     private Timer despawnTimer;
     [SerializeField]
     private float despawnTime;
-    public void Initialise()
+    [SerializeField]
+    private IntSO adjustHealthSO;
+    private int dmg;
+    public void Initialise(int damage)
     {
+        dmg = damage;
         rb = GetComponent<Rigidbody>();
         despawnTimer.GenerateTimer();
         despawnTimer.SetTime(despawnTime);
@@ -36,6 +40,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        adjustHealthSO.Int = dmg;
         PoolObject();
         // delete the bullet instance
         //Destroy(gameObject);
