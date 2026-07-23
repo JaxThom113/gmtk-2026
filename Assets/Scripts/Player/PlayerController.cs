@@ -35,8 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnlyProp]
     private float currentMaxSpeed;    
     [SerializeField] [ReadOnlyProp]
-    private float currentSpeed; 
-
+    private float currentSpeed;
+    [SerializeField]
+    private float weaponRotSpeed;
 
     [Header("Attack Stats")]
     [SerializeField]
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
     #region Unity Function
     void Awake()
     {
-        activeWeapon.SwitchWeapon();
+
     }
     public void Start()
     {
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {   
-      
+        //Debug.Log(direction);
 
         
 
@@ -126,6 +127,12 @@ public class PlayerController : MonoBehaviour
         PCM.timer.timer.UnsubscribeToTimerIsZero(CDTimer, StartAttacking);
 
     }
+
+    public void SwitchWeapons(InputAction.CallbackContext context)
+    {
+        float input = context.ReadValue<float>();
+        PCM.unlocks.WeaponSwitch((int)input);
+    }
     public void Attack()
     {
         activeWeapon.Attack((mousePos - transform.position).normalized);
@@ -133,6 +140,10 @@ public class PlayerController : MonoBehaviour
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
     }
 
+    public Vector3 GetAttackDir()
+    {
+        return (mousePos - transform.position).normalized;
+    }
     private void UpdateMousePos()
     {
         rawPos = Mouse.current.position.ReadValue();
@@ -151,6 +162,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private WeaponBase activeWeapon;
 
+    public void SwitchActiveWeapon(WeaponBase activeWeapon)
+    {
+        this.activeWeapon = activeWeapon;
+        activeWeapon.SwitchWeapon();
+    }
     #endregion
 
     #region Movement
@@ -197,7 +213,14 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
+        Vector3 mouse = new Vector3(mousePos.x, transform.position.y, mousePos.z);
+        Vector3 lookdir = mouse - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(lookdir,Vector3.up);
+
+        // 4. Smoothly rotate from current rotation to target rotation
+        pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
+    
+        //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion
 }
