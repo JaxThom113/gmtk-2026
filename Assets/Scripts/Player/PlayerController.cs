@@ -35,8 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnlyProp]
     private float currentMaxSpeed;    
     [SerializeField] [ReadOnlyProp]
-    private float currentSpeed; 
-
+    private float currentSpeed;
+    [SerializeField]
+    private float weaponRotSpeed;
 
     [Header("Attack Stats")]
     [SerializeField]
@@ -212,7 +213,14 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
+        Vector3 mouse = new Vector3(mousePos.x, transform.position.y, mousePos.z);
+        Vector3 lookdir = mouse - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(lookdir,Vector3.up);
+
+        // 4. Smoothly rotate from current rotation to target rotation
+        pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
+    
+        //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion
 }
