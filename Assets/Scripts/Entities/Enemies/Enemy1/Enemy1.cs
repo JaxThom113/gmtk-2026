@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,26 @@ public class Enemy1 : Enemy
 	[SerializeField] private float speed;
 	[SerializeField] private float stopDistance;
 
+
+
     private Vector3 playerDir;
 
     /*
         This enemy moves continuously toward the player, then attacks in melee
     */
 
-    
+    protected override void slowTime(object sender, EventArgs e)
+    {
+        base.slowTime(sender, e);
+        if (timeSlowedActive.Bool)
+        {
+            speed *= 0.5f;
+        }
+        else
+        {
+            speed *= 2;
+        }
+    }
 
     void FixedUpdate()
     {
