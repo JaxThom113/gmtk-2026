@@ -83,8 +83,30 @@ public class UpgradeMenu : MonoBehaviour
     {
         Debug.Log($"Selected {selectedUpgrade.name} (Level {selectedUpgrade.level})!");
 
-        
-        
+
+        switch (selectedUpgrade.type)
+        {
+            case UpgradeType.Weapon:
+                WeaponSO weapon = selectedUpgrade as WeaponSO;
+                if (weapon.weaponPF != null)
+                {
+                    weapon.weaponSO.WeaponBase = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
+                }
+                else
+                {
+                    Debug.Log("weapon not yet created");
+                }
+                break;
+            case UpgradeType.Ability:
+                AbilitySO ability = selectedUpgrade as AbilitySO;
+                if (ability.unlockAbility != null)
+                {
+                    ability.unlockAbility.Bool = true;
+                }
+                break;
+            case UpgradeType.Passive:
+                break;
+        }
 
 
         // apply the upgrade here
