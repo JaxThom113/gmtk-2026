@@ -16,7 +16,11 @@ public class RailgunBehaviour : RangedWeapon
         startupTimer.GenerateTimer();
         startupTimer.SubscribeToTimerIsZero(fireWeapon);
         startupTimer.SetTime(chargeUpDur, false);
-        playerController = gameObject.GetComponentInParent<PlayerController>();
+    }
+
+    public void SetPlayerController(PlayerController playerController)
+    {
+        this.playerController = playerController;
     }
 
     public override void Attack(Vector3 attackDir)
@@ -30,7 +34,6 @@ public class RailgunBehaviour : RangedWeapon
     {
         anim.Play("Attack");
         charging.Stop();
-        Debug.Log(playerController.GetAttackDir());
         Vector3 dir = playerController.GetAttackDir();
         dir.y = 0;
         dir.Normalize();
