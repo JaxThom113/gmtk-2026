@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IntSO
   Descirption: 
   _shouldReset: 1
-  _defaultValue: 1
-  _int: 1
+  _defaultValue: 0
+  _int: 0

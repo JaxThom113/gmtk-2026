@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject upgradeMenu;
     [SerializeField] private UpgradeMenu upgradeMenuScript;
 
-
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
     [SerializeField] private IntSO playerLevelSO;
@@ -150,11 +149,22 @@ public class UIManager : MonoBehaviour
 
     private void UpdateSlots(Sprite sprite)
     {
+        // add new weapon to a slot
+        playerWeaponCountSO.Int += 1;
         switch (playerWeaponCountSO.Int)
         {
-            case 1: slot2.sprite = sprite; break;
-            case 2: slot3.sprite = sprite; break;
-            case 3: slot4.sprite = sprite; break;
+            case 1: 
+                slot2.gameObject.SetActive(true);
+                slot2.sprite = sprite; 
+                break;
+            case 2: 
+                slot3.gameObject.SetActive(true);
+                slot3.sprite = sprite; 
+                break;
+            case 3:
+                slot4.gameObject.SetActive(true);
+                slot4.sprite = sprite; 
+                break;
         }
     }
 }

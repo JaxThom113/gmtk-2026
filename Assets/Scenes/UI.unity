@@ -1268,6 +1268,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4563873622669743724, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
   m_PrefabInstance: {fileID: 493802595}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &493802597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2700392842229595262, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
+  m_PrefabInstance: {fileID: 493802595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112507593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94c676c064252d418a00c763813e006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMenu
 --- !u!1 &534474576
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2404,7 @@ MonoBehaviour:
   slot4: {fileID: 1034048892}
   deathScreen: {fileID: 615478231}
   upgradeMenu: {fileID: 112507593}
+  upgradeMenuScript: {fileID: 493802597}
   playerHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   playerLevelSO: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
   playerExperienceSO: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}

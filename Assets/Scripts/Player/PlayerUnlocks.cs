@@ -25,8 +25,6 @@ public class PlayerUnlocks : MonoBehaviour
     [SerializeField]
     private IntSO playerSelectedWeapon;
     [SerializeField]
-    private IntSO playerWeaponCount;
-    [SerializeField]
     private BoolSO weaponsFull;
     [SerializeField]
     private weaponPos current;
@@ -44,8 +42,7 @@ public class PlayerUnlocks : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        playerWeaponCount.Int += 1;
+    {        
         weapons.Add(weapons.Count, new weaponPos(activeWeapon,startingWeapon));
         SetWeapon(weapons[0]);
         PCM.control.SwitchActiveWeapon(startingWeapon);
