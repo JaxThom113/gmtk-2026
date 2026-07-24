@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour
     public void SwitchActiveWeapon(WeaponBase activeWeapon)
     {
         this.activeWeapon = activeWeapon;
-        activeWeapon.SwitchWeapon();
     }
     #endregion
 

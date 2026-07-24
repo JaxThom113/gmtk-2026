@@ -8,7 +8,6 @@ public class WeaponBase : MonoBehaviour
 {
     private PlayerComponentManager PCM;
     public Animator anim;
-    public AnimatorSO animSO;
     [SerializeField]
     protected float damage = 10f;
     [SerializeField]
@@ -71,10 +70,6 @@ public class WeaponBase : MonoBehaviour
                 anim.speed = 1;
             }
         }
-    }
-    public void SwitchWeapon()
-    {
-        animSO.Animator = anim;
     }
 
     public float GetAttackInterval()
