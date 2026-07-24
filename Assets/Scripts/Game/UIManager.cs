@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI levelNumber;
 	[SerializeField] private Slider experienceSlider;
 	[SerializeField] private GameObject deathScreen;
+    [SerializeField] private GameObject upgradeMenu;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
@@ -27,22 +28,28 @@ public class UIManager : MonoBehaviour
     bool isFlashing;
     private Sequence flash;
     private Color clockTextColor;
+    private int previousLevel;
 
     void Start()
     {
         isPlayerDeadSO.Bool = false;
         isFlashing = false;
         clockTextColor = clock.color;
+        previousLevel = playerLevelSO.Int;
     }
 
     void Update()
     {
         UpdateClock();
-        UpdateLevel();
         UpdateExperience();
+
+        if (playerLevelSO.Int != previousLevel)
+            UpdateLevel();
 
         if (isPlayerDeadSO.Bool)
             deathScreen.SetActive(true);
+
+        previousLevel = playerLevelSO.Int;
     }   
 
     private void UpdateClock()
@@ -88,6 +95,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void UpdateExperience()
+    {
+        experienceSlider.maxValue = playerExperienceToNextLevelSO.Int;
+        experienceSlider.value = playerExperienceSO.Int;
+    }
+
     private void UpdateLevel()
     {
         string levelString = playerLevelSO.Int.ToString();
@@ -95,11 +108,8 @@ public class UIManager : MonoBehaviour
             levelString = "0" + levelString;
 
         levelNumber.text = $"LVL {levelString}";
-    }
 
-    private void UpdateExperience()
-    {
-        experienceSlider.maxValue = playerExperienceToNextLevelSO.Int;
-        experienceSlider.value = playerExperienceSO.Int;
+        // display upgrade menu
+        upgradeMenu.SetActive(true);
     }
 }
