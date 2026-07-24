@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UpgradeUI : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private Image artwork;
 
+    [SerializeField] private Button selectButton;
+    private UpgradeSO upgrade;
+    public event Action<UpgradeSO> OnSelected;
+
     private Color32 weaponColor = new Color32(255, 100, 0, 255); // orange
     private Color32 abilityColor = new Color32(175, 0, 255, 255); // purple
     private Color32 passiveColor = new Color32(75, 255, 0, 255); // green
 
     public void Initialize(UpgradeSO data, int currentLevel)
     {
+        upgrade = data;
+
         Color32 currentColor = new Color32(255, 255, 255, 255);;
         switch (data.type)
         {
@@ -39,5 +46,9 @@ public class UpgradeUI : MonoBehaviour
 
         artwork.sprite = data.image;
         descriptionText.text = data.description;
+
+        // when the select button is clicked, return the UpgradeSO
+        selectButton.onClick.RemoveAllListeners();
+        selectButton.onClick.AddListener(() =>{ OnSelected?.Invoke(upgrade); });
     }
 }

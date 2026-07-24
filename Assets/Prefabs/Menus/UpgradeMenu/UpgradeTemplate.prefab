@@ -410,6 +410,7 @@ MonoBehaviour:
   typeText: {fileID: 7367689622489136912}
   descriptionText: {fileID: 1472356013960312441}
   artwork: {fileID: 2421166835940776126}
+  selectButton: {fileID: 8882220570644643187}
 --- !u!225 &5239873316405320028
 CanvasGroup:
   m_ObjectHideFlags: 0
