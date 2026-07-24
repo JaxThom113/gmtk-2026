@@ -43,10 +43,9 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     [Header("Animation")]
     [SerializeField] protected Animator animator;
+    [SerializeField] protected float stepsPerCycle = 4f;
 
-    protected int animFrame;
     protected AnimationClip lastClip;
-    protected const int FrameStep = 10;
 
     public void ResetObj()
     {
@@ -118,19 +117,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
             rb.MovePosition(stepPos);
         }
 
-        AnimationClip clip = PickClip(playerDistance);
-        if (clip != lastClip)
-        {
-            animator.Rebind();
-            animator.Update(0f);
-            animFrame = 0;
-            lastClip = clip;
-        }
-
-        GoToFrame(animator, clip, CurrentFrame(clip));
-
+        PlaySynced(PickClip(playerDistance));
         yield return new WaitForSeconds(stepDelay);
-
         stepping = false;
     }
 
@@ -139,18 +127,26 @@ public abstract class Enemy : MonoBehaviour, IHealth
         return null;
     }
 
-    protected int CurrentFrame(AnimationClip clip)
+    protected void PlaySynced(AnimationClip clip)
     {
-        int frameCount = Mathf.Max(1, Mathf.RoundToInt(clip.length * clip.frameRate));
-        int frame = animFrame % frameCount;
-        animFrame = (animFrame + FrameStep) % frameCount;
-        return frame;
+        if (animator == null || clip == null)
+            return;
+
+        animator.speed = clip.length / (stepDelay * Mathf.Max(0.01f, stepsPerCycle));
+        if (clip != lastClip)
+        {
+            lastClip = clip;
+            animator.Play(clip.name, 0, 0f);
+        }
     }
 
-    protected void GoToFrame(Animator animator, AnimationClip clip, int frame)
+    protected void PlayClip(AnimationClip clip, float speed = 1f)
     {
-        animator.enabled = false;
-        float time = Mathf.Clamp(frame / clip.frameRate, 0f, clip.length);
-        clip.SampleAnimation(animator.gameObject, time);
+        if (animator == null || clip == null)
+            return;
+
+        lastClip = clip;
+        animator.speed = speed;
+        animator.Play(clip.name, 0, 0f);
     }
 }

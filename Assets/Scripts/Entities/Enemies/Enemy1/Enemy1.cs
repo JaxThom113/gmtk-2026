@@ -95,7 +95,6 @@ public class Enemy1 : Enemy
             isAttacking = true;
             attackTime = 0f;
             attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
-            lastClip = attackAnimation;
             yield return AttackRoutine();
             stepping = false;
             yield break;
@@ -111,14 +110,7 @@ public class Enemy1 : Enemy
         }
 
         attackCollider.enabled = false;
-
-        if (runAnim != lastClip)
-        {
-            animFrame = 0;
-            lastClip = runAnim;
-        }
-
-        GoToFrame(animator, runAnim, CurrentFrame(runAnim));
+        PlaySynced(runAnim);
         yield return new WaitForSeconds(stepDelay);
         stepping = false;
     }
@@ -163,23 +155,21 @@ public class Enemy1 : Enemy
     private IEnumerator AttackRoutine()
     {
         attackCollider.enabled = true;
-        animator.enabled = false;
-        attackAnimation.SampleAnimation(animator.gameObject, attackTime);
-        rb.MoveRotation(attackLockRot);
+        attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+        PlayClip(attackAnimation);
 
-        yield return new WaitForSeconds(attackStepDelay);
-        attackTime += attackStepDelay;
-
-        rb.MoveRotation(attackLockRot);
-        rb.angularVelocity = Vector3.zero;
-
-        if (attackTime >= attackAnimation.length)
+        float end = Time.time + attackAnimation.length;
+        while (Time.time < end)
         {
-            isAttacking = false;
-            attackTime = 0f;
-            attackCollider.enabled = false;
-            StartCoroutine(AttackCooldown());
+            rb.MoveRotation(attackLockRot);
+            rb.angularVelocity = Vector3.zero;
+            yield return null;
         }
+
+        isAttacking = false;
+        attackTime = 0f;
+        attackCollider.enabled = false;
+        StartCoroutine(AttackCooldown());
     }
 
     protected override AnimationClip PickClip(float distanceFromPlayer)
