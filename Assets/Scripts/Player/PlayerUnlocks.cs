@@ -94,6 +94,10 @@ public class PlayerUnlocks : MonoBehaviour
     }
     private void AddWeapon(WeaponBase newWeapon)
     {
+        if(newWeapon is RailgunBehaviour)
+        {
+            (newWeapon as RailgunBehaviour).SetPlayerController(PCM.control);
+        }
         weaponPos newWep = new weaponPos(weaponSlots[weapons.Count - 1], newWeapon);
         newWeapon.transform.SetParent(newWep.currentSpot, false);
         weapons.Add(weapons.Count, newWep);
