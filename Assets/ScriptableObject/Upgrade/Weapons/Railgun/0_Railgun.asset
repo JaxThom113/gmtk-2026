@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e24fa6a252952c4c9ef7b4b8c1057ab, type: 3}
   m_Name: 0_Railgun
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   level: 0
@@ -18,3 +18,5 @@ MonoBehaviour:
   image: {fileID: 0}
   description: Charges up and fires high-damage, piercing rounds
   nextLevel: {fileID: 11400000, guid: 799cda9dc2f64e4408df21df684aceef, type: 2}
+  weaponPF: {fileID: 4542480673720939051, guid: 9fd6dc237b2a92445b17a9700d606ecc, type: 3}
+  weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
