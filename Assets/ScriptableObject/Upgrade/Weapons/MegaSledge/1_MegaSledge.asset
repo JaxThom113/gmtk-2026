@@ -15,6 +15,6 @@ MonoBehaviour:
   level: 1
   title: MegaSledge
   type: 0
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 87f7a264c610c7947a4f1dc657d6ecf1, type: 3}
   description: Upgrade damage
   nextLevel: {fileID: 11400000, guid: 97facb9d5e468eb47af109c6fde896cb, type: 2}
