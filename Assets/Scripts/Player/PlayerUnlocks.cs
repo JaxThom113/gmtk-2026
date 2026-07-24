@@ -97,4 +97,13 @@ public class PlayerUnlocks : MonoBehaviour
         public Transform currentSpot;
         public WeaponBase weapon;
     }
+
+    public bool isDashUnlocked;
+    public bool isBlinkUnlocked;
+    public bool isSlowTime;
+    public bool isFreezeTime;
+    public bool isRapidFire;
+    public bool isArsenalUnleash;
+    
+
 }

@@ -1,4 +1,5 @@
 using Sezylrin.SimplePooling;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
 {
     [Header("core")]
     protected Transform player;
+    [SerializeField]
+    protected BoolSO timeSlowedActive;
     [Header("Health")]
     [field: SerializeField]
     public float CurrentHealth { get; set; }
@@ -26,9 +29,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
     [SerializeField]
     private int expAmount;
 
-
     protected Rigidbody rb;
-    
 
     public void ResetObj()
     {
@@ -37,11 +38,15 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     public virtual void Initialize(Transform playerTransform)
     {
-        // all enemies must be initialized with a reference to the player
         player = playerTransform;
         rb = GetComponent<Rigidbody>();
+        timeSlowedActive.onValueChanged += slowTime;
     }
 
+    protected virtual void slowTime(object sender, EventArgs e)
+    {
+
+    }
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
@@ -49,14 +54,22 @@ public abstract class Enemy : MonoBehaviour, IHealth
         {
             playerTimeAdjustment.Int += playerTimeIncreaseAmount;
             Pooler.GetObject<ExpOrb>(expPrefab, transform.position, Quaternion.identity,
-                onGet: (e) => 
+                onGet: (e) =>
                 {
                     e.ResetObj();
                     e.SetExpAmount(expAmount);
                 }
                 );
             Pooler.PoolObject(gameObject);
-            //Die();
         }
+    }
+
+    protected void GoToFrame(Animator animator, AnimationClip clip, int frame)
+    {
+        animator.enabled = false;
+        animator.Rebind();
+        animator.Update(0f);
+        float time = Mathf.Clamp(frame / clip.frameRate, 0f, clip.length);
+        clip.SampleAnimation(animator.gameObject, time);
     }
 }

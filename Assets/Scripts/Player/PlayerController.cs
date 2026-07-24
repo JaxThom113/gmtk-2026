@@ -1,3 +1,4 @@
+using DG.Tweening;
 using KevinCastejon.MissingFeatures.MissingAttributes;
 using System;
 using System.Collections;
@@ -9,7 +10,11 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    private enum playerState
+    {
+        moving,
+        dashing,
+    }
 
     [field: Header("Core variables")]
     [field: SerializeField]
@@ -35,13 +40,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] [ReadOnlyProp]
     private float currentMaxSpeed;    
     [SerializeField] [ReadOnlyProp]
-    private float currentSpeed; 
-
-
-    [Header("Attack Stats")]
+    private float currentSpeed;
     [SerializeField]
-    private float attackCD;
+    private float weaponRotSpeed;
 
+    [Header("Dash")]
+    [SerializeField]
+    private float dashDistance;
+    [SerializeField]
+    private float dashDuration;
+    [SerializeField]
+    private CapsuleCollider playerCol;
+    [SerializeField]
+    private LayerMask enemyLayer;
+    [SerializeField]
+    private float dashCD;
 
     [Header("Animation")]
     [SerializeField]
@@ -67,12 +80,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 mousePos;
     [SerializeField, ReadOnlyProp]
     private Vector2 rawPos;
+    [SerializeField,ReadOnlyProp]
+    private playerState state;
 
     private int CDTimer = (int)PlayerTimer.AttackCD;
+    private int DashCD = (int)PlayerTimer.DashCD;
     #region Unity Function
     void Awake()
     {
-
+        
     }
     public void Start()
     {
@@ -84,14 +100,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {   
-        //Debug.Log(direction);
-
-        
-
+    {
         Move();
         UpdateMousePos();
         RotateTo();
+
+        
     }
 
     #endregion
@@ -99,6 +113,14 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region GetInputs
+    
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (!PCM.unlocks.isDashUnlocked)
+            return;
+        if(PCM.timer.timer.IsTimeZero(DashCD))
+            PlayerDash();
+    }
     public void SetDirection(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>().normalized;
@@ -158,7 +180,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Attack
-    [SerializeField]
     private WeaponBase activeWeapon;
 
     public void SwitchActiveWeapon(WeaponBase activeWeapon)
@@ -169,10 +190,30 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Movement
+    private void PlayerDash()
+    {
+        if (PCM.unlocks.isBlinkUnlocked)
+        {
+            transform.position = direction * dashDistance + transform.position;
+        }
+        else
+        {
+            playerCol.excludeLayers += enemyLayer;
+            state = playerState.dashing;
+            Tween tween = transform.DOMove(direction * dashDistance + transform.position, dashDuration)
+                .SetEase(Ease.OutCubic);
+            tween.onComplete = () => {
+                state = playerState.moving;
+                playerCol.excludeLayers -= enemyLayer;
+            };
+        }
+        PCM.timer.timer.SetTime(DashCD, dashCD);
 
+    }
     private void Move()
     {
-        
+        if (state.Equals(playerState.dashing))
+            return;
         currentMaxSpeed = maxSpeed;
         currentSpeed = rb.linearVelocity.magnitude;
         if (direction.Equals(Vector2.zero))
@@ -183,8 +224,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.linearDamping = 0;
-            rb.linearVelocity += direction * acceleration * rb.mass;
-            if ((rb.linearVelocity + direction * acceleration * rb.mass).magnitude > currentMaxSpeed)
+            rb.linearVelocity += direction * acceleration * Time.fixedDeltaTime;
+            if ((rb.linearVelocity + direction * acceleration * Time.fixedDeltaTime).magnitude > currentMaxSpeed)
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * currentMaxSpeed;
             }
@@ -212,7 +253,16 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
+        Vector3 mouse = new Vector3(mousePos.x, transform.position.y, mousePos.z);
+        Vector3 lookdir = mouse - transform.position;
+        if (lookdir.Equals(Vector3.zero))
+            lookdir = Vector3.forward;
+        Quaternion targetRotation = Quaternion.LookRotation(lookdir,Vector3.up);
+
+        // 4. Smoothly rotate from current rotation to target rotation
+        pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
+    
+        //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion
 }
