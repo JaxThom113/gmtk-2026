@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2caaba6d8f7106a43b18a7db81324e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
+  timeSlowedActive: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
   playerTimeIncreaseAmount: 5

@@ -172,6 +172,24 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FreezeTime"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8a1b700-0d07-4a24-8827-82a3ba10f61c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RapidFire"",
+                    ""type"": ""Button"",
+                    ""id"": ""1dcb2c01-114e-4b40-8a32-88ed4fbc0e10"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -548,6 +566,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""498c8193-f72b-45fb-9911-7c03d86f505f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FreezeTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bd50510-72dd-408f-a8df-c7c98f138a24"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RapidFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1142,6 +1182,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_Player_FreezeTime = m_Player.FindAction("FreezeTime", throwIfNotFound: true);
+        m_Player_RapidFire = m_Player.FindAction("RapidFire", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1244,6 +1286,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_SwitchWeapon;
+    private readonly InputAction m_Player_FreezeTime;
+    private readonly InputAction m_Player_RapidFire;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1291,6 +1335,14 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/SwitchWeapon".
         /// </summary>
         public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/FreezeTime".
+        /// </summary>
+        public InputAction @FreezeTime => m_Wrapper.m_Player_FreezeTime;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RapidFire".
+        /// </summary>
+        public InputAction @RapidFire => m_Wrapper.m_Player_RapidFire;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1344,6 +1396,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @SwitchWeapon.started += instance.OnSwitchWeapon;
             @SwitchWeapon.performed += instance.OnSwitchWeapon;
             @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @FreezeTime.started += instance.OnFreezeTime;
+            @FreezeTime.performed += instance.OnFreezeTime;
+            @FreezeTime.canceled += instance.OnFreezeTime;
+            @RapidFire.started += instance.OnRapidFire;
+            @RapidFire.performed += instance.OnRapidFire;
+            @RapidFire.canceled += instance.OnRapidFire;
         }
 
         /// <summary>
@@ -1382,6 +1440,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @SwitchWeapon.started -= instance.OnSwitchWeapon;
             @SwitchWeapon.performed -= instance.OnSwitchWeapon;
             @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @FreezeTime.started -= instance.OnFreezeTime;
+            @FreezeTime.performed -= instance.OnFreezeTime;
+            @FreezeTime.canceled -= instance.OnFreezeTime;
+            @RapidFire.started -= instance.OnRapidFire;
+            @RapidFire.performed -= instance.OnRapidFire;
+            @RapidFire.canceled -= instance.OnRapidFire;
         }
 
         /// <summary>
@@ -1745,6 +1809,20 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FreezeTime" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFreezeTime(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RapidFire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRapidFire(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

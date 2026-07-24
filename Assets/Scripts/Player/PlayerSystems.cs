@@ -59,6 +59,7 @@ public class PlayerSystems : MonoBehaviour
         {
             if (!PCM.timer.timer.IsTimeZero(iFrames))
             {
+                adjustHealthSO.ResetValue();
                 return;
             }
             else

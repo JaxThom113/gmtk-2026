@@ -79,13 +79,13 @@ public class Timer : MonoBehaviour
     #region Unity Functions
     private void Start()
     {
-        for (int i = 0; i < times.Length; i++)
+        /*for (int i = 0; i < times.Length; i++)
         {
             SetTime(i, times[i].defaultTime, times[i].StartOnAwake);
             ModifyTimerMode(i, times[i].timerMode);
 
             times[i].defaultLoopCount = times[i].additionalLoop;
-        }
+        }*/
     }
     private void LateUpdate()
     {

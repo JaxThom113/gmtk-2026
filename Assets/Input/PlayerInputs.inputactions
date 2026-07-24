@@ -86,6 +86,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "FreezeTime",
+                    "type": "Button",
+                    "id": "d8a1b700-0d07-4a24-8827-82a3ba10f61c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RapidFire",
+                    "type": "Button",
+                    "id": "1dcb2c01-114e-4b40-8a32-88ed4fbc0e10",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -464,6 +482,28 @@
                     "action": "SwitchWeapon",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "498c8193-f72b-45fb-9911-7c03d86f505f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreezeTime",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bd50510-72dd-408f-a8df-c7c98f138a24",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RapidFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

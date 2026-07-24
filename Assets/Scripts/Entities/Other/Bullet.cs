@@ -17,6 +17,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private IntSO adjustHealthSO;
     private int dmg;
+
+    [SerializeField]
+    protected BoolSO timeSlowedActive;
     public void Initialise(int damage)
     {
         dmg = damage;
@@ -30,8 +33,20 @@ public class Bullet : MonoBehaviour
                 PoolObject();
             }
         );
+        timeSlowedActive.onValueChanged += SlowDown;
     }
 
+    private void SlowDown(object sender, EventArgs e)
+    {
+        if (timeSlowedActive.Bool)
+        {
+            rb.linearVelocity = transform.up * speed * 0.5f;
+        }
+        else
+        {
+            rb.linearVelocity = transform.up * speed;
+        }
+    }
     public void ResetObj()
     {
         rb.linearVelocity = transform.up * speed;
@@ -53,6 +68,8 @@ public class Bullet : MonoBehaviour
 
     private void PoolObject()
     {
+        if (!gameObject.activeSelf)
+            return;
         despawnTimer.StopAll();
         Pooler.PoolObject(gameObject);
     }

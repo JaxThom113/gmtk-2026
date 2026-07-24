@@ -158,6 +158,7 @@ MonoBehaviour:
   despawnTimer: {fileID: 2760515981638923203}
   despawnTime: 10
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  timeSlowedActive: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
 --- !u!114 &2760515981638923203
 MonoBehaviour:
   m_ObjectHideFlags: 0
