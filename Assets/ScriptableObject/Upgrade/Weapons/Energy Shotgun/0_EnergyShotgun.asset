@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Energy Shotgun
   type: 0
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d498dc85355858a48abdce37c8a47dd5, type: 3}
   description: Fires a spead of 5 bullets at a slow rate
   nextLevel: {fileID: 11400000, guid: 9695d7c0de14cf047ad1d3e518137633, type: 2}
   weaponPF: {fileID: 4542480673720939051, guid: 8c45c319d636d93479e1e41c36fbf048, type: 3}

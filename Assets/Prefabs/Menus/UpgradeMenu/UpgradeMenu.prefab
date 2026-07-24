@@ -428,6 +428,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 143295bbf13751a48996f0daa19d9e71, type: 2}
   - {fileID: 11400000, guid: 0e0d0dc7bcb946149ac4a08739373d6a, type: 2}
   - {fileID: 11400000, guid: f8d58763400946f47b58825d371cf5c0, type: 2}
+  - {fileID: 11400000, guid: 7acdb9e937a528446b853a41572c0cdb, type: 2}
   slotPositions:
   - {fileID: 5398965847739796026}
   - {fileID: 8740765126297464253}
