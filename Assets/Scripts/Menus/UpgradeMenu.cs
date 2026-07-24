@@ -54,6 +54,7 @@ public class UpgradeMenu : MonoBehaviour
             // instantiate an empty card and fill it with data from a random SO
             UpgradeUI card = Instantiate(upgradeTemplate, slotPositions[i]);
             card.Initialize(remainingUpgrades[randUpgrade], 1);
+            card.OnSelected += OnUpgradeSelected;
             currentCards.Add(card);
 
             RectTransform rect = card.GetComponent<RectTransform>();
@@ -76,5 +77,33 @@ public class UpgradeMenu : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(0.2f);
         }
+    }
+
+    private void OnUpgradeSelected(UpgradeSO selectedUpgrade)
+    {
+        Debug.Log($"Selected {selectedUpgrade.name} (Level {selectedUpgrade.level})!");
+
+        
+        
+
+
+        // apply the upgrade here
+
+
+
+
+
+
+        // remove the current upgrade, add the leveled up version if there is one
+        upgrades.Remove(selectedUpgrade);
+        if (selectedUpgrade.nextLevel != null)
+            upgrades.Add(selectedUpgrade.nextLevel);
+
+        foreach (var card in currentCards)
+            Destroy(card.gameObject);
+
+        gameObject.SetActive(false);
+        overlay.SetActive(false);
+        Time.timeScale = 1;
     }
 }

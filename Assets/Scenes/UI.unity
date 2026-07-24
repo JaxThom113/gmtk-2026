@@ -210,6 +210,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 642798805}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &112507593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4626579040184842363, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
+  m_PrefabInstance: {fileID: 493802595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &133503022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1887,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1158712983}
   - component: {fileID: 1158712982}
-  - component: {fileID: 1158712981}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1890,19 +1894,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1158712981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158712980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField: []
 --- !u!114 &1158712982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,7 +1912,7 @@ MonoBehaviour:
   levelNumber: {fileID: 565915276}
   experienceSlider: {fileID: 1853292543}
   deathScreen: {fileID: 615478231}
-  upgradeMenu: {fileID: 0}
+  upgradeMenu: {fileID: 112507593}
   playerHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   playerLevelSO: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
   playerExperienceSO: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
