@@ -4,6 +4,11 @@ public enum PlayerTimer
     healthDrain,
     AttackCD,
     Iframes,
+    DashCD,
+    timeSlowDuration,
+    timeSlowCD,
+    fullArsenalDuration,
+    fullArsenalCD,
 }
 public class PlayerTimers : MonoBehaviour
 {

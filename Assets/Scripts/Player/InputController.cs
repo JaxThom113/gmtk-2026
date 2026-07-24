@@ -25,9 +25,6 @@ public class InputController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerComponentManager.Instance != gameObject)
-            return;
-        //Debug.Log("called");
         EnablePlayerInputs();
         player.Move.performed += PCM.control.SetDirection;
         player.Move.canceled += PCM.control.SetDirection;
@@ -35,6 +32,9 @@ public class InputController : MonoBehaviour
         player.Attack.canceled += PCM.control.StopAttack;
         player.Pause.performed += pauseMenu.OnPause;
         player.SwitchWeapon.performed += PCM.control.SwitchWeapons;
+        player.Dash.performed += PCM.control.Dash;
+        player.FreezeTime.performed += PCM.abilities.UseTimeSlow;
+        player.RapidFire.performed += PCM.abilities.UseArsenal;
     }
 
     public void EnablePlayerInputs()
@@ -44,14 +44,17 @@ public class InputController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (PlayerComponentManager.Instance != gameObject)
-            return;
         player.Move.performed -= PCM.control.SetDirection;
+
+
         player.Move.canceled -= PCM.control.SetDirection;
         player.Pause.performed -= pauseMenu.OnPause;
         player.Attack.performed -= PCM.control.AttemptAttack;
         player.Attack.canceled -= PCM.control.StopAttack;
         player.SwitchWeapon.performed -= PCM.control.SwitchWeapons;
+        player.Dash.performed -= PCM.control.Dash;
+        player.FreezeTime.performed -= PCM.abilities.UseTimeSlow;
+        player.FreezeTime.performed -= PCM.abilities.UseArsenal;
         DisablePlayerInputs();
     }
 

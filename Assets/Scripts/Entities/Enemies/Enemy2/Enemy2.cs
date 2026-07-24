@@ -1,7 +1,5 @@
 using Sezylrin.SimplePooling;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy2 : Enemy
@@ -10,35 +8,22 @@ public class Enemy2 : Enemy
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPos;
 
-    [Header("Movement Settings")]
-	[SerializeField] private float speed;
-	[SerializeField] private float stopDistance;
-
-    private Vector3 playerDir;
     private bool shooting;
 
-
-    /*
-        This enemy moves toward the player, stops at a certain distance, then shoots
-    */
-
-    
-
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         FacePlayer();
-        Move();
+        MoveContinuous();
     }
 
-    private void Move()
+    private void MoveContinuous()
     {
         if (player == null)
             return;
-        
-        playerDir = (player.transform.position - transform.position).normalized;
 
-        // move towards player
-        if (Vector3.Distance(transform.position, player.transform.position) > stopDistance)
+        playerDir = (player.position - transform.position).normalized;
+
+        if (Vector3.Distance(transform.position, player.position) > stopDistance)
         {
             rb.linearVelocity = playerDir * speed;
         }
@@ -50,13 +35,6 @@ public class Enemy2 : Enemy
         }
     }
 
-    private void FacePlayer()
-    {
-        // face toward the player
-        if (playerDir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(playerDir);
-    }
-
     private IEnumerator Shoot()
     {
         shooting = true;
@@ -64,14 +42,12 @@ public class Enemy2 : Enemy
         yield return new WaitForSeconds(1f);
         Pooler.GetObject<Bullet>(bullet, shootPos.position, shootPos.rotation,
             onNewInstance: (b) => b.Initialise(damage),
-            onGet: (b) => b.ResetObj() 
+            onGet: (b) => b.ResetObj()
             );
-        //Instantiate(bullet, shootPos.position, shootPos.rotation);
 
         shooting = false;
 
-        // if player moved, break and chase player again
-        if (Vector3.Distance(transform.position, player.transform.position) > stopDistance)
+        if (Vector3.Distance(transform.position, player.position) > stopDistance)
             yield break;
     }
 }

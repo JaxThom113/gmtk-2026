@@ -6,11 +6,15 @@ public class ShotgunBehaviour : RangedWeapon
     private int projectiles;
     [SerializeField]
     private int spread;
+    [SerializeField]
+    private ParticleSystem particles;
 
     public override void Attack(Vector3 attackDir)
     {
+        anim.Play("Attack");
+        particles.Play();
         Vector2 initial = new Vector2(attackDir.x, attackDir.z).normalized;
-        Quaternion initialRot = Quaternion.Euler(0, 0, (float)projectiles * 0.5f * spread);
+        Quaternion initialRot = Quaternion.Euler(0, 0, ((float)projectiles - 1) * 0.5f * spread);
         initial = initialRot * initial;
         for (int i = 0; i < projectiles; i++)
         {
