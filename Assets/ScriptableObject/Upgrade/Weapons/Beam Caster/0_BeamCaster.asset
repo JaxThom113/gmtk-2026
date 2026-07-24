@@ -18,5 +18,5 @@ MonoBehaviour:
   image: {fileID: 0}
   description: Fires a continuous beam of light to vaporize your foes
   nextLevel: {fileID: 11400000, guid: cb47ee53962ceac4d8a2e844044826cc, type: 2}
-  weaponPF: {fileID: 0}
-  weaponSO: {fileID: 0}
+  weaponPF: {fileID: 4630794833444348898, guid: 2fc396acd113e8343bdf4e1e8bf32190, type: 3}
+  weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}

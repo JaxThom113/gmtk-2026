@@ -131,10 +131,10 @@ public class PlayerController : MonoBehaviour
     public void AttemptAttack(InputAction.CallbackContext context)
     {
         isAttacking = true;
+        PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking);
         if (PCM.timer.timer.IsTimeZero(CDTimer))
         {
             Attack();
-            PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking);
         }
     }
 
@@ -146,6 +146,10 @@ public class PlayerController : MonoBehaviour
     public void StopAttack(InputAction.CallbackContext callback)
     {
         isAttacking=false;
+        if (activeWeapon is LaserBehaviour)
+        {
+            (activeWeapon as LaserBehaviour).StopLaser();
+        }
         PCM.timer.timer.UnsubscribeToTimerIsZero(CDTimer, StartAttacking);
 
     }
