@@ -6,6 +6,8 @@ public class SwordBehaviour : MeleeWeapon
     private BoxCollider swordCol;
     [SerializeField]
     private TrailRenderer trailRenderer;
+    [SerializeField]
+    private ParticleSystem slash;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -29,5 +31,10 @@ public class SwordBehaviour : MeleeWeapon
         swordCol.enabled = false;
         hitColliders.Clear();
         trailRenderer.enabled = false;
+    }
+
+    public void PlaySlash()
+    {
+        slash.Play();
     }
 }

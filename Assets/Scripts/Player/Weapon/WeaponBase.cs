@@ -101,10 +101,13 @@ public class WeaponBase : MonoBehaviour
 
 public class MeleeWeapon : WeaponBase
 {
-    
+    [SerializeField]
+    protected bool isAnimPlaying;
+
     protected List<Collider> hitColliders = new List<Collider>();
-    protected virtual void OnTriggerEnter(Collider other)
+    public virtual void DoDamage(Collider other)
     {
+        Debug.Log("triggwering");
         if (other.TryGetComponent(out IHealth health))
         {
             if(hitColliders.Contains(other))
@@ -112,6 +115,20 @@ public class MeleeWeapon : WeaponBase
             hitColliders.Add(other);
             health.TakeDamage(damage);
         }
+    }
+
+    public void AnimationPlaying()
+    {
+        isAnimPlaying = true;
+    }
+
+    public void AnimationStopped()
+    {
+        isAnimPlaying = false;
+    }
+    public bool GetAnimState()
+    {
+        return isAnimPlaying;
     }
 }
 

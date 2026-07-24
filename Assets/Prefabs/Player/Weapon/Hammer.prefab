@@ -14947,7 +14947,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8223125031832038791
 MonoBehaviour:
@@ -15057,7 +15057,7 @@ Transform:
   m_GameObject: {fileID: 2502413201572114709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4784, y: 3.72, z: -4.63}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15104,9 +15104,11 @@ MonoBehaviour:
   isRapidActive: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 1478257280792006453}
+  isAnimPlaying: 0
   hammerCol: {fileID: 116583244615003863}
   trailRenderer: {fileID: 2595581396790728553}
   impact: {fileID: 3505376403573785178}
+  knockback: 3
 --- !u!114 &1478257280792006453
 MonoBehaviour:
   m_ObjectHideFlags: 0

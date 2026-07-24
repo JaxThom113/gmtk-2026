@@ -30,7 +30,8 @@ public class InputController : MonoBehaviour
         player.Move.canceled += PCM.control.SetDirection;
         player.Attack.performed += PCM.control.AttemptAttack;
         player.Attack.canceled += PCM.control.StopAttack;
-        player.Pause.performed += pauseMenu.OnPause;
+        if(pauseMenu != null ) 
+            player.Pause.performed += pauseMenu.OnPause;
         player.SwitchWeapon.performed += PCM.control.SwitchWeapons;
         player.Dash.performed += PCM.control.Dash;
         player.FreezeTime.performed += PCM.abilities.UseTimeSlow;
@@ -48,9 +49,10 @@ public class InputController : MonoBehaviour
 
 
         player.Move.canceled -= PCM.control.SetDirection;
-        player.Pause.performed -= pauseMenu.OnPause;
         player.Attack.performed -= PCM.control.AttemptAttack;
-        player.Attack.canceled -= PCM.control.StopAttack;
+        player.Attack.canceled -= PCM.control.StopAttack; 
+        if (pauseMenu != null)
+            player.Pause.performed -= pauseMenu.OnPause;
         player.SwitchWeapon.performed -= PCM.control.SwitchWeapons;
         player.Dash.performed -= PCM.control.Dash;
         player.FreezeTime.performed -= PCM.abilities.UseTimeSlow;

@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour
 
         // 4. Smoothly rotate from current rotation to target rotation
         pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
-        if (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon)
+        if (activeWeapon is MeleeWeapon && (activeWeapon as MeleeWeapon).GetAnimState())
             return;
         pivotTransformActive.rotation = Quaternion.Slerp(pivotTransformActive.rotation, targetRotation, weaponRotSpeed * Time.deltaTime);
         //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
