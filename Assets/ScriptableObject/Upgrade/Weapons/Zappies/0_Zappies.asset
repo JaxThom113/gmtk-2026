@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e24fa6a252952c4c9ef7b4b8c1057ab, type: 3}
   m_Name: 0_Zappies
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   level: 0
@@ -18,3 +18,5 @@ MonoBehaviour:
   image: {fileID: 0}
   description: Dual electric pistols that fire at a very fast rate
   nextLevel: {fileID: 11400000, guid: b97992cb697455642b604ad7aeff1a5f, type: 2}
+  weaponPF: {fileID: 6209468972355197218, guid: df910132fb2021d46a1ae7c82853847c, type: 3}
+  weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
