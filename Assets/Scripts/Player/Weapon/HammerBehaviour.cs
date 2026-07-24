@@ -30,7 +30,7 @@ public class HammerBehaviour : MeleeWeapon
         trailRenderer.enabled = false;
     }
 
-    public void DoDamage(Collider other)
+    public override void DoDamage(Collider other)
     {
         if (other.TryGetComponent(out IHealth health))
         {

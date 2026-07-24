@@ -107,7 +107,6 @@ public class MeleeWeapon : WeaponBase
     protected List<Collider> hitColliders = new List<Collider>();
     public virtual void DoDamage(Collider other)
     {
-        Debug.Log("triggwering");
         if (other.TryGetComponent(out IHealth health))
         {
             if(hitColliders.Contains(other))
