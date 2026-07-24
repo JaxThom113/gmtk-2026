@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e24fa6a252952c4c9ef7b4b8c1057ab, type: 3}
   m_Name: 0_MegaSledge
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   level: 0
   title: MegaSledge
   type: 0
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 87f7a264c610c7947a4f1dc657d6ecf1, type: 3}
   description: Powerful hammer that knocks back enemies
   nextLevel: {fileID: 11400000, guid: ef1e738204f90ff49ac287f737b1c707, type: 2}
+  weaponPF: {fileID: 0}
+  weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
+  icon: {fileID: 21300000, guid: 2a01ee8430ec9304e867f60608b2bdf8, type: 3}

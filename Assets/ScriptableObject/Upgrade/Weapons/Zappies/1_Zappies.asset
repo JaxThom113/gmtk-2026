@@ -15,6 +15,6 @@ MonoBehaviour:
   level: 1
   title: Zappies
   type: 0
-  image: {fileID: 21300000, guid: a480d1007f66f2d4d956440c1f72af98, type: 3}
+  artwork: {fileID: 21300000, guid: 2dfdf1eb2c6e9f341a766a8c9ac42441, type: 3}
   description: Upgrade damage
   nextLevel: {fileID: 11400000, guid: dd50bb3166b2e6e4d8376f60a316ecde, type: 2}

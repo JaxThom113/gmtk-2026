@@ -15,8 +15,9 @@ MonoBehaviour:
   level: 0
   title: Railgun
   type: 0
-  image: {fileID: 0}
+  artwork: {fileID: 0}
   description: Charges up and fires high-damage, piercing rounds
   nextLevel: {fileID: 11400000, guid: 799cda9dc2f64e4408df21df684aceef, type: 2}
   weaponPF: {fileID: 4542480673720939051, guid: 9fd6dc237b2a92445b17a9700d606ecc, type: 3}
   weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

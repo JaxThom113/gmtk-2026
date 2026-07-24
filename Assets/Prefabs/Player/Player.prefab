@@ -534,7 +534,8 @@ MonoBehaviour:
   weapons:
     _serializedList: []
   startingWeapon: {fileID: 6688111007867034967}
-  selectedWeapon: 0
+  playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
+  playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   weaponsFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
   current:
     currentSpot: {fileID: 0}
