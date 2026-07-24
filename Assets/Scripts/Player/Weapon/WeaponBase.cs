@@ -38,6 +38,7 @@ public class WeaponBase : MonoBehaviour
     public virtual void Attack(Vector3 attackDir)
     {
         this.attackDir = attackDir;
+        anim.Play("Attack");
     }
 
     public void StoreWeapon()
@@ -79,8 +80,6 @@ public class RangedWeapon : WeaponBase
     protected Transform bulletSP;
     [SerializeField]
     protected int pierce;
-    [SerializeField]
-    protected ParticleSystem particles;
 
     protected void ShootBullet(Vector3 dir)
     {
