@@ -70,6 +70,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "56d1d8d8-0aac-4cbe-990f-b9aa7bff82bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SwitchWeapon",
                     "type": "Value",
                     "id": "6de24fb2-7e1a-4d63-a6a1-b635c2ea20f9",
@@ -429,6 +438,19 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "cab5ee7c-f08d-4d10-b153-15f3cf872c7f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d12b5268-d8b0-454b-b025-a5a587542c07",
                     "name": "1D Axis",
                     "id": "28ce2456-0fe9-4c2a-a95c-de01a45ae131",
                     "path": "1DAxis",
