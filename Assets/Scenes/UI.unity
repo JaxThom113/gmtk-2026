@@ -210,6 +210,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 642798805}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &112507593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4626579040184842363, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
+  m_PrefabInstance: {fileID: 493802595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &133503022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,19 +1581,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 814223186946832025, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
   m_PrefabInstance: {fileID: 1585970476}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &783093598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783093589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField: []
 --- !u!1 &806026302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1874,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1158712983}
   - component: {fileID: 1158712982}
-  - component: {fileID: 1158712981}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1890,19 +1881,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1158712981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1158712980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
-  <times>k__BackingField: []
 --- !u!114 &1158712982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,7 +1899,7 @@ MonoBehaviour:
   levelNumber: {fileID: 565915276}
   experienceSlider: {fileID: 1853292543}
   deathScreen: {fileID: 615478231}
-  upgradeMenu: {fileID: 0}
+  upgradeMenu: {fileID: 112507593}
   playerHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   playerLevelSO: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
   playerExperienceSO: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
@@ -3089,26 +3067,6 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 641576070}
-    - target: {fileID: 7312571583424678915, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      propertyPath: modelTransform
-      value: 
-      objectReference: {fileID: 1594274004}
-    - target: {fileID: 7312571583424678915, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      propertyPath: pivotTransform
-      value: 
-      objectReference: {fileID: 1974406174}
-    - target: {fileID: 7312571583424678915, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      propertyPath: cameraGroundCollisionMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      propertyPath: timer
-      value: 
-      objectReference: {fileID: 783093598}
-    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3117,16 +3075,8 @@ PrefabInstance:
     - {fileID: 6408834538166495837, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 783093598}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
---- !u!4 &1594274004 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 209521887506136644, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-  m_PrefabInstance: {fileID: 1585970476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1614149367
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,11 +3581,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1513947459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1974406174 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2692545437804978739, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-  m_PrefabInstance: {fileID: 1585970476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2136925982
 GameObject:
   m_ObjectHideFlags: 0
