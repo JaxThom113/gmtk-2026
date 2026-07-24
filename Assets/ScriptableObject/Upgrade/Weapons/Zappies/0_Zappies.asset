@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Zappies
   type: 0
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: a480d1007f66f2d4d956440c1f72af98, type: 3}
   description: Dual electric pistols that fire at a very fast rate
   nextLevel: {fileID: 11400000, guid: b97992cb697455642b604ad7aeff1a5f, type: 2}
   weaponPF: {fileID: 6209468972355197218, guid: df910132fb2021d46a1ae7c82853847c, type: 3}

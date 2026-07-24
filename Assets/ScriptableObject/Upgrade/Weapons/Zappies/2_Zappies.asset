@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
   m_Name: 2_Zappies
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
-  level: 0
+  level: 2
   title: Zappies
   type: 0
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: a480d1007f66f2d4d956440c1f72af98, type: 3}
   description: Upgrade damage again
   nextLevel: {fileID: 0}
