@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 3326492603616964188}
   - component: {fileID: 7384605621985405168}
   - component: {fileID: 8662915930565529634}
-  - component: {fileID: 7268615667763022171}
   - component: {fileID: 1220799267374969847}
   - component: {fileID: 5719977272093131984}
   - component: {fileID: 6418179257755657505}
@@ -445,7 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerComponentManager
   <input>k__BackingField: {fileID: 4078125508690341455}
   <control>k__BackingField: {fileID: 7312571583424678915}
-  <anim>k__BackingField: {fileID: 7268615667763022171}
   <timer>k__BackingField: {fileID: 5719977272093131984}
   <unlocks>k__BackingField: {fileID: 6418179257755657505}
   <abilities>k__BackingField: {fileID: 7781489478450172478}
@@ -485,19 +483,6 @@ MonoBehaviour:
   initialExpToNextLvl: 100
   expIncreaseRate: 1.1
   adjustExp: {fileID: 11400000, guid: 7dc50d259182c0245bddff6633bfcc5f, type: 2}
---- !u!114 &7268615667763022171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9013176277656355755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6ac5805ec49b142a3e9eb3b4ca4929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnim
-  currentAnim: {fileID: 11400000, guid: d282ee28750ac824ab874c5b55f0e362, type: 2}
 --- !u!114 &1220799267374969847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnlocks
   PCM: {fileID: 3326492603616964188}
+  newWeapon: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
   activeWeapon: {fileID: 8171539650069271838}
   weaponSlots:
   - {fileID: 7917416422987206424}
@@ -575,6 +561,9 @@ MonoBehaviour:
   isTimeSlow: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
   timeSlowDuration: 3
   timeSlowCD: 15
+  isRapidFire: {fileID: 0}
+  timeArsenalDuration: 0
+  timeArsenalCD: 0
 --- !u!1 &9190717472721306908
 GameObject:
   m_ObjectHideFlags: 0
