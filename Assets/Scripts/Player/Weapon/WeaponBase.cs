@@ -103,7 +103,7 @@ public class MeleeWeapon : WeaponBase
 {
     
     protected List<Collider> hitColliders = new List<Collider>();
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out IHealth health))
         {
