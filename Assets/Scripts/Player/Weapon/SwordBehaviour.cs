@@ -4,6 +4,8 @@ public class SwordBehaviour : MeleeWeapon
 {
     [SerializeField]
     private BoxCollider swordCol;
+    [SerializeField]
+    private TrailRenderer trailRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {
@@ -19,11 +21,13 @@ public class SwordBehaviour : MeleeWeapon
     public void EnableSwordCollider()
     {
         swordCol.enabled = true;
+        trailRenderer.enabled = true;
     }
 
     public void DisableSwordCollider()
     {
         swordCol.enabled = false;
         hitColliders.Clear();
+        trailRenderer.enabled = false;
     }
 }

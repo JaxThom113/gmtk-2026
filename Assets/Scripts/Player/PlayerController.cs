@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField]
     public Rigidbody rb { get; private set; } 
     [SerializeField]  private Transform pivotTransform; 
+    [SerializeField]  private Transform pivotTransformActive; 
     [SerializeField]  private Transform modelTransform;
     [SerializeField]
     private CapsuleCollider col;
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {   
         Move();
         UpdateMousePos();
         RotateTo();
@@ -157,7 +158,6 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         activeWeapon.Attack((mousePos - transform.position).normalized);
-        PCM.anim.PlayAttack();
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
     }
 
@@ -185,7 +185,6 @@ public class PlayerController : MonoBehaviour
     public void SwitchActiveWeapon(WeaponBase activeWeapon)
     {
         this.activeWeapon = activeWeapon;
-        activeWeapon.SwitchWeapon();
     }
     #endregion
 
@@ -249,7 +248,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RotateTo()
     {
-        if(isPlayerDeadSO.Bool || (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon))
+        if(isPlayerDeadSO.Bool /*|| (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon*/)
         {
             return;
         }
@@ -261,7 +260,9 @@ public class PlayerController : MonoBehaviour
 
         // 4. Smoothly rotate from current rotation to target rotation
         pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
-    
+        if (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon)
+            return;
+        pivotTransformActive.rotation = Quaternion.Slerp(pivotTransformActive.rotation, targetRotation, weaponRotSpeed * Time.deltaTime);
         //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion

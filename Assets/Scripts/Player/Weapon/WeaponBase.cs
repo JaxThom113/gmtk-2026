@@ -6,38 +6,81 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
+    private PlayerComponentManager PCM;
     public Animator anim;
-    public AnimatorSO animSO;
     [SerializeField]
     protected float damage = 10f;
     [SerializeField]
     protected float attackInterval;
     protected Vector3 attackDir;
+    [SerializeField]
+    protected BoolSO isRapidActive;
+    [SerializeField]
+    protected BoolSO isArsenalUnlocked;
+    [SerializeField]
+    protected Timer attackTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
+        isRapidActive.onValueChanged += RapidMode;
+        attackTimer.GenerateTimer();
+        attackTimer.SetTime(attackInterval,false);
+        attackTimer.SetIsLooping(true);
+        attackTimer.SetAdditionalLoops(-1);
+        attackTimer.SubscribeToTimerIsZero(AutoAttack);
         //animSO.Animator = anim;
     }
-
+    private void AutoAttack(object sender, EventArgs e)
+    {
+        Attack(transform.forward);
+    }
     // Update is called once per frame
     void Update()
     {
         
     }
-
-    public void SwitchWeapon()
+    private void StartAttacking()
     {
-        animSO.Animator = anim;
+        attackTimer.ResumeTimer();
+    }
+    protected virtual void RapidMode(object sender, EventArgs e)
+    {
+        if (isRapidActive.Bool)
+        {
+            if(isArsenalUnlocked.Bool)
+            {
+                ActiveWeapon();
+                Invoke("StartAttacking", 0.25f);
+            }
+            else
+            {
+                anim.speed = 2;
+            }
+        }
+        else
+        {
+            if (isArsenalUnlocked.Bool)
+            {
+                StoreWeapon();
+                attackTimer.PauseTimer();
+                attackTimer.StopSpecific();
+            }
+            else
+            {
+                anim.speed = 1;
+            }
+        }
     }
 
     public float GetAttackInterval()
     {
-        return attackInterval;
+        return isRapidActive.Bool? attackInterval * 0.5f : attackInterval;
     }
 
     public virtual void Attack(Vector3 attackDir)
     {
         this.attackDir = attackDir;
+        anim.Play("Attack");
     }
 
     public void StoreWeapon()
@@ -48,6 +91,11 @@ public class WeaponBase : MonoBehaviour
     public void ActiveWeapon()
     {
         anim.SetBool("isStored", false);
+    }
+
+    public void AssignPCM(PlayerComponentManager PCM)
+    {
+        this.PCM = PCM;
     }
 }
 
@@ -79,8 +127,6 @@ public class RangedWeapon : WeaponBase
     protected Transform bulletSP;
     [SerializeField]
     protected int pierce;
-    [SerializeField]
-    protected ParticleSystem particles;
 
     protected void ShootBullet(Vector3 dir)
     {

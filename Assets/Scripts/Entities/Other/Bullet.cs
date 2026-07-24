@@ -55,10 +55,15 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        adjustHealthSO.Int = dmg;
+        // ignore collisions with other enemies
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            return;
+
+        // deal damage to the player before destroying bullet object
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            adjustHealthSO.Int = -dmg;
+
         PoolObject();
-        // delete the bullet instance
-        //Destroy(gameObject);
     }
 
     private void PoolObject()
@@ -67,6 +72,5 @@ public class Bullet : MonoBehaviour
             return;
         despawnTimer.StopAll();
         Pooler.PoolObject(gameObject);
-
     }
 }

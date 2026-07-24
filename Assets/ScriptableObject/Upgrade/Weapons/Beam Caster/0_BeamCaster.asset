@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e24fa6a252952c4c9ef7b4b8c1057ab, type: 3}
+  m_Name: 0_BeamCaster
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
+  level: 0
+  title: Beam Caster
+  type: 0
+  image: {fileID: 0}
+  description: Fires a continuous beam of light to vaporize your foes
+  nextLevel: {fileID: 11400000, guid: cb47ee53962ceac4d8a2e844044826cc, type: 2}
+  weaponPF: {fileID: 0}
+  weaponSO: {fileID: 0}

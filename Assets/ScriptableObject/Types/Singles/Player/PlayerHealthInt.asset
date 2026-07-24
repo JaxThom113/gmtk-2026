@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f9941d88651174e9668658ce97bb03, type: 3}
   m_Name: PlayerHealthInt
   m_EditorClassIdentifier: Assembly-CSharp::IntSO
-  Descirption: current player health
+  Descirption: Current player health
   _shouldReset: 0
   _defaultValue: 0
   _int: 0
