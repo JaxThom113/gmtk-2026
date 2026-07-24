@@ -451,8 +451,6 @@
                 {
                     "name": "",
                     "id": "d12b5268-d8b0-454b-b025-a5a587542c07",
-                    "name": "1D Axis",
-                    "id": "28ce2456-0fe9-4c2a-a95c-de01a45ae131",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
