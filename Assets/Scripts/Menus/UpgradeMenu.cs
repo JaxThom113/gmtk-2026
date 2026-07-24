@@ -88,7 +88,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             case UpgradeType.Weapon:
                 WeaponSO weapon = selectedUpgrade as WeaponSO;
-                if (weapon.weaponPF != null)
+                if (weapon != null)
                 {
                     weapon.weaponSO.WeaponBase = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
                 }
