@@ -51,21 +51,23 @@ MonoBehaviour:
   enemy3: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
   wave1:
     _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 6
     - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
+      Value: 2
+    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
+      Value: 2
+    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
       Value: 2
   wave2:
     _serializedList:
     - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
       Value: 8
     - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 2
+      Value: 8
   wave3:
     _serializedList:
     - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
       Value: 10
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 4
     - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
+      Value: 4
+    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
       Value: 4
