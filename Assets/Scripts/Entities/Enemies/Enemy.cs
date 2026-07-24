@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sezylrin.SimplePooling;
 using System;
 using System.Collections;
@@ -148,5 +149,11 @@ public abstract class Enemy : MonoBehaviour, IHealth
         lastClip = clip;
         animator.speed = speed;
         animator.Play(clip.name, 0, 0f);
+    }
+
+    public void TakeKnockback(Vector3 dir, float amount)
+    {
+        if(gameObject.activeSelf)
+            rb.DOMove(dir * amount + rb.position,0.25f).SetEase(Ease.OutCubic);
     }
 }

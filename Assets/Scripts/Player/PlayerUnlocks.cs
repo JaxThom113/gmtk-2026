@@ -63,7 +63,8 @@ public class PlayerUnlocks : MonoBehaviour
     {
         current = weapon;
         current.currentSpot = activeWeapon;
-        current.weapon.transform.SetParent(current.currentSpot);
+        current.weapon.transform.SetParent(current.currentSpot,true);
+        current.weapon.transform.DOLocalMove(Vector3.zero, 0.25f);
     }
     // Update is called once per frame
     void Update()
@@ -82,6 +83,8 @@ public class PlayerUnlocks : MonoBehaviour
         weaponPos selected = weapons[playerSelectedWeapon.Int];
         current.currentSpot = selected.currentSpot;
         current.weapon.transform.SetParent(current.currentSpot, true);
+        current.weapon.transform.DOLocalMove(Vector3.zero, 0.25f);
+
         current.weapon.StoreWeapon();
         SetWeapon(selected);
         PCM.control.SwitchActiveWeapon(selected.weapon);
