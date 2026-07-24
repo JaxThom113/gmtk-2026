@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {   
         Move();
         UpdateMousePos();
         RotateTo();

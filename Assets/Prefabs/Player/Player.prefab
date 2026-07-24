@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputController
   PCM: {fileID: 3326492603616964188}
+  pauseMenu: {fileID: 0}
 --- !u!114 &3326492603616964188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +465,9 @@ MonoBehaviour:
   healthDrainRate: 1
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
+  playerMaxHealth: 30
+  healthDrainRate: 1
+  secondLength: 1
   PCM: {fileID: 3326492603616964188}
   iframeDur: 2
 --- !u!114 &8662915930565529634
@@ -479,8 +483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
   playerLevelSO: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
-  currentExperience: 0
-  initialExpToNextLvl: 100
+  playerExperienceSO: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
+  playerExperienceToNextLevelSO: {fileID: 11400000, guid: 62fababf323a31d41a80ea585e3b2568, type: 2}
+  adjustExp: {fileID: 11400000, guid: 7dc50d259182c0245bddff6633bfcc5f, type: 2}
+  initialExpRequirement: 100
   expIncreaseRate: 1.1
   adjustExp: {fileID: 11400000, guid: 7dc50d259182c0245bddff6633bfcc5f, type: 2}
 --- !u!114 &1220799267374969847
