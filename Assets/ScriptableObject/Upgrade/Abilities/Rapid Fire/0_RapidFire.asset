@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Script: {fileID: 11500000, guid: 00b5f56036963e84c82fc228b77a2fb0, type: 3}
   m_Name: 0_RapidFire
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   level: 0
@@ -18,3 +18,4 @@ MonoBehaviour:
   image: {fileID: 0}
   description: Puts your weapons in overdrive to attack faster
   nextLevel: {fileID: 11400000, guid: ca7c009c67a61a94f8648040f35600a0, type: 2}
+  unlockAbility: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
