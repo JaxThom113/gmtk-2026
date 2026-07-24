@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DuelPistolBehaviour : RangedWeapon
@@ -22,6 +23,25 @@ public class DuelPistolBehaviour : RangedWeapon
             particleL.Play();
         else particleR.Play();
         alternateGun = !alternateGun;
+        transform.localEulerAngles = Vector3.zero;
+    }
 
+    protected override void RapidMode(object sender, EventArgs e)
+    {
+        base.RapidMode(sender, e);
+        if (isRapidActive.Bool)
+        {
+            var main = particleL.main;
+            main.simulationSpeed = 2;
+            main = particleR.main;
+            main.simulationSpeed = 2;
+        }
+        else
+        {
+            var main = particleL.main;
+            main.simulationSpeed = 1;
+            main = particleR.main;
+            main.simulationSpeed = 1;
+        }
     }
 }
