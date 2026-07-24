@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField]
     public Rigidbody rb { get; private set; } 
     [SerializeField]  private Transform pivotTransform; 
+    [SerializeField]  private Transform pivotTransformActive; 
     [SerializeField]  private Transform modelTransform;
     [SerializeField]
     private CapsuleCollider col;
@@ -248,7 +249,7 @@ public class PlayerController : MonoBehaviour
     }
     private void RotateTo()
     {
-        if(isPlayerDeadSO.Bool || (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon))
+        if(isPlayerDeadSO.Bool /*|| (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon*/)
         {
             return;
         }
@@ -260,7 +261,9 @@ public class PlayerController : MonoBehaviour
 
         // 4. Smoothly rotate from current rotation to target rotation
         pivotTransform.rotation = Quaternion.Slerp(pivotTransform.rotation, targetRotation, weaponRotSpeed*Time.deltaTime);
-    
+        if (!PCM.timer.timer.IsTimeZero(CDTimer) && activeWeapon is MeleeWeapon)
+            return;
+        pivotTransformActive.rotation = Quaternion.Slerp(pivotTransformActive.rotation, targetRotation, weaponRotSpeed * Time.deltaTime);
         //pivotTransform.LookAt(new Vector3(mousePos.x, transform.position.y, mousePos.z));
     }
     #endregion

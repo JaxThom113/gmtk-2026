@@ -6,40 +6,70 @@ public class PlayerAbilities : MonoBehaviour
 {
     [SerializeField]
     private PlayerComponentManager PCM;
+    [Header("slow time")]
     [SerializeField]
     private BoolSO isTimeSlow;
     [SerializeField]
     private float timeSlowDuration;
     [SerializeField]
     private float timeSlowCD;
+    [SerializeField]
+    private BoolSO isRapidFire;
+    [SerializeField]
+    private float timeArsenalDuration;
+    [SerializeField]
+    private float timeArsenalCD;
 
-    private int Dur = (int)PlayerTimer.timeSlowDuration;
-    private int CD = (int)PlayerTimer.timeSlowCD;
+
+    private int TimeDur = (int)PlayerTimer.timeSlowDuration;
+    private int TimeCD = (int)PlayerTimer.timeSlowCD;
+    private int ArsenalDur = (int)PlayerTimer.fullArsenalDuration;
+    private int ArsenalCD = (int)(PlayerTimer.fullArsenalCD);
 
     private void Start()
     {
-        PCM.timer.timer.SubscribeToTimerIsZero(Dur, StartCD);
+        PCM.timer.timer.SubscribeToTimerIsZero(TimeDur, StartCD);
         
-        PCM.timer.timer.SetTime(Dur, timeSlowDuration, false);
-        PCM.timer.timer.SetTime(CD, timeSlowCD,false);
-        PCM.timer.timer.StopSpecific(CD);
+        PCM.timer.timer.SetTime(TimeDur, timeSlowDuration, false);
+        PCM.timer.timer.SetTime(TimeCD, timeSlowCD,false);
+        PCM.timer.timer.StopSpecific(TimeCD);
+
+        PCM.timer.timer.SubscribeToTimerIsZero(ArsenalDur, StartArsenalCD);
+
+        PCM.timer.timer.SetTime(ArsenalDur, timeArsenalDuration, false);
+        PCM.timer.timer.SetTime(ArsenalCD, timeArsenalCD, false);
+        PCM.timer.timer.StopSpecific(ArsenalCD);
     }
     #region inputs
     public void UseTimeSlow(InputAction.CallbackContext context)
     {
         if (!PCM.unlocks.isSlowTime)
             return;
-        if (PCM.timer.timer.IsTimeZero(CD))
+        if (PCM.timer.timer.IsTimeZero(TimeCD))
         {
-            PCM.timer.timer.RestartTimer(Dur);
+            PCM.timer.timer.RestartTimer(TimeDur);
             isTimeSlow.Bool = true;
         }
     }
-
+    public void UseArsenal(InputAction.CallbackContext context)
+    {
+        if (!PCM.unlocks.isRapidFire)
+            return;
+        if (PCM.timer.timer.IsTimeZero(ArsenalCD))
+        {
+            PCM.timer.timer.RestartTimer(ArsenalDur);
+            isRapidFire.Bool = true;
+        }
+    }
     private void StartCD(object sender, EventArgs e)
     {
-        PCM.timer.timer.RestartTimer(CD);
+        PCM.timer.timer.RestartTimer(TimeCD);
         isTimeSlow.Bool = false;
+    }
+    private void StartArsenalCD(object sender, EventArgs e)
+    {
+        PCM.timer.timer.RestartTimer(ArsenalCD);
+        isRapidFire.Bool = false;
     }
     #endregion
 }

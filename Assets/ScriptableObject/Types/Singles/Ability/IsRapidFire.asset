@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ced0be75aa3f58c4eadad9a791e55e9a, type: 3}
-  m_Name: IsTimeStopped
+  m_Name: IsRapidFire
   m_EditorClassIdentifier: Assembly-CSharp::BoolSO
   Descirption: 
   _shouldReset: 1

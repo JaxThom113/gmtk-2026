@@ -69,7 +69,7 @@ public class PlayerUnlocks : MonoBehaviour
 
         weaponPos selected = weapons[selectedWeapon];
         current.currentSpot = selected.currentSpot;
-        current.weapon.transform.SetParent(current.currentSpot, true); 
+        current.weapon.transform.SetParent(current.currentSpot, true);
         current.weapon.StoreWeapon();
         SetWeapon(selected);
         PCM.control.SwitchActiveWeapon(selected.weapon);
