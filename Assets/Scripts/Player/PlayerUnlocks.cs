@@ -22,8 +22,10 @@ public class PlayerUnlocks : MonoBehaviour
     private SerializedDictionary<int, weaponPos> weapons = new SerializedDictionary<int, weaponPos>();
     [SerializeField]
     private WeaponBase startingWeapon;
-    [SerializeField, ReadOnlyProp]
-    private int selectedWeapon;
+    [SerializeField]
+    private IntSO playerSelectedWeapon;
+    [SerializeField]
+    private IntSO playerWeaponCount;
     [SerializeField]
     private BoolSO weaponsFull;
     [SerializeField]
@@ -43,6 +45,7 @@ public class PlayerUnlocks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerWeaponCount.Int += 1;
         weapons.Add(weapons.Count, new weaponPos(activeWeapon,startingWeapon));
         SetWeapon(weapons[0]);
         PCM.control.SwitchActiveWeapon(startingWeapon);
@@ -70,13 +73,13 @@ public class PlayerUnlocks : MonoBehaviour
 
     public void WeaponSwitch(int switchDir)
     {
-        selectedWeapon += switchDir;
-        if (selectedWeapon < 0)
-            selectedWeapon += weapons.Count;
-        selectedWeapon = selectedWeapon % (weapons.Count);
+        playerSelectedWeapon.Int += switchDir;
+        if (playerSelectedWeapon.Int < 0)
+            playerSelectedWeapon.Int += weapons.Count;
+        playerSelectedWeapon.Int = playerSelectedWeapon.Int % (weapons.Count);
 
 
-        weaponPos selected = weapons[selectedWeapon];
+        weaponPos selected = weapons[playerSelectedWeapon.Int];
         current.currentSpot = selected.currentSpot;
         current.weapon.transform.SetParent(current.currentSpot, true);
         current.weapon.StoreWeapon();

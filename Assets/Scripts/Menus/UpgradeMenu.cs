@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
-
+using System;
 using DG.Tweening;
 
 public class UpgradeMenu : MonoBehaviour
@@ -20,6 +21,8 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private float duration = 0.4f;
 
     private List<UpgradeUI> currentCards;
+
+    public event Action<Sprite> OnNewWeapon;
 
     void OnEnable()
     {
@@ -49,7 +52,7 @@ public class UpgradeMenu : MonoBehaviour
         List<UpgradeSO> remainingUpgrades = new List<UpgradeSO>(upgrades);
         for (int i = 0; i < 3; i++)
         {
-            int randUpgrade = Random.Range(0, remainingUpgrades.Count);
+            int randUpgrade = UnityEngine.Random.Range(0, remainingUpgrades.Count);
 
             // instantiate an empty card and fill it with data from a random SO
             UpgradeUI card = Instantiate(upgradeTemplate, slotPositions[i]);
@@ -83,7 +86,6 @@ public class UpgradeMenu : MonoBehaviour
     {
         Debug.Log($"Selected {selectedUpgrade.name} (Level {selectedUpgrade.level})!");
 
-
         switch (selectedUpgrade.type)
         {
             case UpgradeType.Weapon:
@@ -91,6 +93,8 @@ public class UpgradeMenu : MonoBehaviour
                 if (weapon != null)
                 {
                     weapon.weaponSO.WeaponBase = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
+                    
+                    OnNewWeapon?.Invoke(weapon.icon);
                 }
                 else
                 {
@@ -107,14 +111,6 @@ public class UpgradeMenu : MonoBehaviour
             case UpgradeType.Passive:
                 break;
         }
-
-
-        // apply the upgrade here
-
-
-
-
-
 
         // remove the current upgrade, add the leveled up version if there is one
         upgrades.Remove(selectedUpgrade);
