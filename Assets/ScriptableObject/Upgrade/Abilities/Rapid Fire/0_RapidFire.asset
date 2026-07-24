@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Name: 0_RapidFire
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
+  level: 0
+  title: Rapid Fire
+  type: 1
+  image: {fileID: 0}
+  description: Puts your weapons in overdrive to attack faster
+  nextLevel: {fileID: 11400000, guid: ca7c009c67a61a94f8648040f35600a0, type: 2}

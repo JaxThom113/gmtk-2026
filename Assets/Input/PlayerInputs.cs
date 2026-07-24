@@ -537,8 +537,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d12b5268-d8b0-454b-b025-a5a587542c07"",
-                    ""name"": ""1D Axis"",
-                    ""id"": ""28ce2456-0fe9-4c2a-a95c-de01a45ae131"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1182,8 +1180,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         m_Player_FreezeTime = m_Player.FindAction("FreezeTime", throwIfNotFound: true);
         m_Player_RapidFire = m_Player.FindAction("RapidFire", throwIfNotFound: true);
         // UI

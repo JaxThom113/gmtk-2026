@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Name: 3_Healthy
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
+  level: 3
+  title: Healthy
+  type: 2
+  image: {fileID: 0}
+  description: Double your maximum time count (to 8:00)
+  nextLevel: {fileID: 11400000, guid: e855ccd1b79f18b498884d38ed2122d8, type: 2}
