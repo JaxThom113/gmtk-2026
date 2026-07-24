@@ -6,20 +6,29 @@ public class HammerBehaviour : MeleeWeapon
     private SphereCollider hammerCol; 
     [SerializeField]
     private TrailRenderer trailRenderer;
+    [SerializeField]
+    private ParticleSystem impact;
     public void EnableHammerCollider()
     {
         hammerCol.enabled = true;
+        impact.Play();
+    }
+    public void EnableHammerTrail()
+    {
         trailRenderer.enabled = true;
     }
-
     public void DisableHammerCollider()
     {
         hammerCol.enabled = false;
         hitColliders.Clear();
+    }
+
+    public void DisableHammerTrail()
+    {
         trailRenderer.enabled = false;
     }
 
-    protected override void OnTriggerEnter(Collider other)
+    public void DoDamage(Collider other)
     {
         if (other.TryGetComponent(out IHealth health))
         {
@@ -28,7 +37,5 @@ public class HammerBehaviour : MeleeWeapon
             hitColliders.Add(other);
             health.TakeDamage(damage);
         }
-
-
     }
 }
