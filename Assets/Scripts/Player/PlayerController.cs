@@ -157,7 +157,6 @@ public class PlayerController : MonoBehaviour
     public void Attack()
     {
         activeWeapon.Attack((mousePos - transform.position).normalized);
-        PCM.anim.PlayAttack();
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
     }
 

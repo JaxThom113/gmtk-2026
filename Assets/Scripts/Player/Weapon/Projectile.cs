@@ -9,7 +9,8 @@ public class Projectile : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private Timer despawnTimer;
-
+    [SerializeField]
+    private TrailRenderer trail;
 
     private int pierce;
     private float damage;
@@ -20,6 +21,8 @@ public class Projectile : MonoBehaviour
     }
     public void ResetObj(Vector3 dir, int pierce, float projectileLifeTime, float projectileSpeed, float damage)
     {
+        if(trail != null)
+            trail.Clear();
         this.damage = damage;
         this.pierce = pierce;
         rb.linearVelocity = dir * projectileSpeed;
