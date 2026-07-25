@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 4
   title: Healthy
   type: 2
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 571dd0ac66cda504f8d3c1aa354e7772, type: 3}
   description: Double your maximum time count (to 16:00)
   nextLevel: {fileID: 0}
   increase: 480

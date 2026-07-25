@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Swift
   type: 2
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 8d0edbe97fb3c9341ba6cc96bd07b14a, type: 3}
   description: Increase your running speed (total +2)
   nextLevel: {fileID: 11400000, guid: afec6ea07c5ebcf48a9d2cf2a3920f6c, type: 2}
   increase: 2

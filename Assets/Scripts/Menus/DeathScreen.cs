@@ -11,11 +11,13 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] private GameObject hud;
 
     public event Action OnEndGame;
+    public event Action OnDeathStartGame;
 
     public void OnPlayAgainClicked()
     {
-        // reload scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        OnDeathStartGame.Invoke();
+
+        gameObject.SetActive(false);
     }
 
     public void OnMainMenuClicked()

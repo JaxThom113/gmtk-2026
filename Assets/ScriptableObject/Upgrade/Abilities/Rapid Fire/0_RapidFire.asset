@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Rapid Fire
   type: 1
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 609aa6223ab6c224c8d0d9701cdd9697, type: 3}
   description: Puts your weapons in overdrive to attack faster
   nextLevel: {fileID: 11400000, guid: ca7c009c67a61a94f8648040f35600a0, type: 2}
   unlockAbility: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}

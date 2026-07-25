@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Time Slow
   type: 1
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 01c4f3a960671f24cb891bb460604ab9, type: 3}
   description: Slows the passage of time for a short duration
   nextLevel: {fileID: 11400000, guid: 0294257a784a121478eb3a234d594a8c, type: 2}
   unlockAbility: {fileID: 11400000, guid: ba901a2db2dafbf40bf3d8cec816ecad, type: 2}

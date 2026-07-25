@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [Header("Menu References")]
 	[SerializeField] private MainMenu mainMenu;
 	[SerializeField] private DeathScreen deathScreen;
+	[SerializeField] private WinScreen winScreen;
+	[SerializeField] private PauseMenu pauseMenu;
 
     [Header("Manager References")]
     [SerializeField] private UIManager uiManager;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private BoolSO gamePlaying;
 	[SerializeField] private IntSO gameWave;
 	[SerializeField] private BoolSO playerDead;
+	[SerializeField] private BoolSO gameWin;
 	[SerializeField] private IntSO playerMaxHealth;
 	[SerializeField] private IntSO playerSpeed;
 	[SerializeField] private IntSO playerLevel;
@@ -39,7 +42,6 @@ public class GameManager : MonoBehaviour
     [Header("Resetter")]
 	[SerializeField] private ResetterOBJ resetter;
 
-
     private Coroutine startWaves;
     private GameObject enemyContainer;
     private GameObject spawnedPlayer;
@@ -47,13 +49,19 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         mainMenu.OnStartGame += StartGame;
+
+        deathScreen.OnDeathStartGame += RefreshGame;
+        winScreen.OnWinStartGame += RefreshGame;
+
         deathScreen.OnEndGame += EndGame;
+        winScreen.OnWinGame += EndGame;
     }
 
     void OnDisable()
     {
         mainMenu.OnStartGame -= StartGame;
         deathScreen.OnEndGame -= EndGame;
+        winScreen.OnWinGame -= EndGame;
     }
 
     private void StartGame()
@@ -76,8 +84,12 @@ public class GameManager : MonoBehaviour
 
         enemyContainer = new GameObject("EnemyContainer");
 
-        // spawn the player, attach the camera follow point
+        // spawn the player, give its InputManager a reference to the PauseMenu
         spawnedPlayer = Instantiate(player, new Vector3(0, 1.25f, 0), Quaternion.identity);
+        var inputController = spawnedPlayer.GetComponent<InputController>();
+        inputController?.SetPauseMenu(pauseMenu);
+
+        // attach the camera follow point
         playerPoint.position = new Vector3(0, 1.25f, 0);
         playerPoint.SetParent(spawnedPlayer.transform, true);
 
@@ -104,6 +116,12 @@ public class GameManager : MonoBehaviour
         uiManager.gameObject.SetActive(false);
     }
 
+    private void RefreshGame()
+    {
+        EndGame();
+        StartGame();
+    }
+
     private IEnumerator PlayGame()
     {
         foreach (var wave in game.waves)
@@ -113,8 +131,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(game.waveDelay);
         }
 
-        // victory state
-        Debug.Log("Victory!");
+        // win state
+        gameWin.Bool = true;
     }
     
     private IEnumerator PlayWave(WaveSO wave)

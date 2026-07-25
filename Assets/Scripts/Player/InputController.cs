@@ -70,4 +70,18 @@ public class InputController : MonoBehaviour
     {
         
     }
+
+    public void SetPauseMenu(PauseMenu pauseMenu)
+    {
+        if (this.pauseMenu == pauseMenu) 
+            return;
+
+        if (this.pauseMenu != null)
+            player.Pause.performed -= this.pauseMenu.OnPause;
+
+        this.pauseMenu = pauseMenu;
+
+        if (this.pauseMenu != null)
+            player.Pause.performed += this.pauseMenu.OnPause;
+    }
 }

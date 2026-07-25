@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputController
   PCM: {fileID: 3326492603616964188}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 8487866146698013478, guid: ef654d3d7c8bf3c4c9de43fee7f993f5, type: 3}
 --- !u!114 &3326492603616964188
 MonoBehaviour:
   m_ObjectHideFlags: 0

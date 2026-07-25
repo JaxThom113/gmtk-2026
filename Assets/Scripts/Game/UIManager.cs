@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     [Header("Menu References")]
     [SerializeField] private UpgradeMenu upgradeMenu;
     [SerializeField] private DeathScreen deathScreen;
+    [SerializeField] private WinScreen winScreen;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private IntSO playerWeaponCountSO;
     [SerializeField] private BoolSO playerDeadSO;
     [SerializeField] private IntSO gameWaveSO;
+    [SerializeField] private BoolSO gameWinSO;
 
     bool isFlashing;
     private Sequence flash;
@@ -78,6 +80,12 @@ public class UIManager : MonoBehaviour
         
         if (!deathScreen.gameObject.activeSelf && playerDeadSO.Bool)
             deathScreen.gameObject.SetActive(true);
+
+        if (!winScreen.gameObject.activeSelf && gameWinSO.Bool)
+        {
+            winScreen.gameObject.SetActive(true);
+            gameWinSO.Bool = false;
+        }
 
         previousLevel = playerLevelSO.Int;
     }   
