@@ -31,6 +31,8 @@ public class PlayerSystems : MonoBehaviour
     private SkinnedMeshRenderer rend;
     [SerializeField]
     float duration;
+    [ColorUsage(true, true),SerializeField]
+    private Color deathColor;
 
     private int timerPos = (int)PlayerTimer.healthDrain;
     private int iFrames = (int)PlayerTimer.Iframes;
@@ -93,7 +95,9 @@ public class PlayerSystems : MonoBehaviour
             PCM.timer.timer.StopSpecific(timerPos);
             PCM.input.DisablePlayerInputs();
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
-            
+
+            propertyBlock.SetColor("_OutlineColour", deathColor);
+            propertyBlock.SetFloat("_SpiralStrength", 0);
             DOVirtual.Float(1.1f, 0, duration, onVirtualUpdate: (f) =>
             {
                 propertyBlock.SetFloat("_DissolveAmount", f);
