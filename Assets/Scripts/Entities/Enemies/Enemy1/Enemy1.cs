@@ -35,8 +35,9 @@ public class Enemy1 : Enemy
 
     protected override void FixedUpdate()
     {
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
+        if (isDead)
+            return;
+
         if (rb == null || player == null)
             return;
 

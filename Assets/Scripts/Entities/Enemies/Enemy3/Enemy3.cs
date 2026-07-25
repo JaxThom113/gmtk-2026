@@ -32,6 +32,8 @@ public class Enemy3 : Enemy
     private float nextFireTime;
     protected override void FixedUpdate()
     {
+        if (isDead)
+            return;
         if (timer.IsTimeZero())
         {
             FacePlayer();

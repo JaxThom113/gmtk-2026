@@ -95,7 +95,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolveAmount: 1.1
-    - _DissolveScale: 500
+    - _DissolveScale: 269
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _ENVIRONMENTREFLECTIONS_OFF: 0
@@ -105,7 +105,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineThickness: 0.1
+    - _OutlineThickness: 0.05
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -125,7 +125,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 7.4408894, g: 1.7858238, b: 0.121668115, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColour: {r: 0, g: 6.550925, b: 7.999999, a: 1}
+    - _OutlineColour: {r: 10.680627, g: 3.4477105, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
