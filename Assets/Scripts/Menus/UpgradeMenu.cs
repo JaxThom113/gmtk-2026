@@ -92,8 +92,9 @@ public class UpgradeMenu : MonoBehaviour
                 WeaponSO weapon = selectedUpgrade as WeaponSO;
                 if (weapon != null)
                 {
-                    weapon.weaponSO.WeaponBase = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
+                    WeaponBase temp = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
                     
+                    weapon.weaponSO.WeaponBase = temp;
                     OnNewWeapon?.Invoke(weapon.icon);
                 }
                 else
