@@ -20,6 +20,9 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     protected BoolSO timeSlowedActive;
+
+    [SerializeField]
+    protected bool despawnOnHit;
     public void Initialise(int damage)
     {
         dmg = damage;
@@ -40,30 +43,25 @@ public class Bullet : MonoBehaviour
     {
         if (timeSlowedActive.Bool)
         {
-            rb.linearVelocity = transform.up * speed * 0.5f;
+            rb.linearVelocity = transform.forward * speed * 0.5f;
         }
         else
         {
-            rb.linearVelocity = transform.up * speed;
+            rb.linearVelocity = transform.forward * speed;
         }
     }
     public void ResetObj()
     {
-        rb.linearVelocity = transform.up * speed;
+        rb.linearVelocity = transform.forward * speed;
         despawnTimer.RestartTimer();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
         // ignore collisions with other enemies
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            return;
-
-        // deal damage to the player before destroying bullet object
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-            adjustHealthSO.Int = -dmg;
-
-        PoolObject();
+        adjustHealthSO.Int = -dmg;
+        if(despawnOnHit)
+            PoolObject();
     }
 
     private void PoolObject()
