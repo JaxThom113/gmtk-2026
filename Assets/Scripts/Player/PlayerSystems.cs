@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -24,6 +25,12 @@ public class PlayerSystems : MonoBehaviour
     private PlayerComponentManager PCM;
     [SerializeField]
     private float iframeDur;
+
+    [Header("death")]
+    [SerializeField]
+    private SkinnedMeshRenderer rend;
+    [SerializeField]
+    float duration;
 
     private int timerPos = (int)PlayerTimer.healthDrain;
     private int iFrames = (int)PlayerTimer.Iframes;
@@ -80,12 +87,19 @@ public class PlayerSystems : MonoBehaviour
 
     public void CheckHealth()
     {
-        if (playerCurrentHealthSO.Int <= 0)
+        if (playerCurrentHealthSO.Int <= 0 && !isPlayerDeadSO.Bool)
         {
             playerCurrentHealthSO.Int = 0;
             PCM.timer.timer.StopSpecific(timerPos);
-            isPlayerDeadSO.Bool = true;
             PCM.input.DisablePlayerInputs();
+            MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+            
+            DOVirtual.Float(1.1f, 0, duration, onVirtualUpdate: (f) =>
+            {
+                propertyBlock.SetFloat("_DissolveAmount", f);
+                rend.SetPropertyBlock(propertyBlock);
+            }).OnComplete(() => isPlayerDeadSO.Bool = true);
+;
         }
     }
 }
