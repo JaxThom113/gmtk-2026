@@ -50,6 +50,7 @@ public class LaserBehaviour : WeaponBase
         laserStarted=false;
         charge.Stop();
         impact.Stop();
+
         foreach (LineRenderer lineRenderer in lineRenderer)
         {
             lineRenderer.enabled = false;
