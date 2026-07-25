@@ -171,6 +171,13 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 50
   playerTimeIncreaseAmount: 5
   playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  deathColor: {r: 10.680627, g: 3.4477105, b: 0, a: 1}
+  deathTimeDur: 1
+  rend: {fileID: 847380459771537232}
+  outlineOBJ: {fileID: 8426594207689620868}
+  outlineLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   damage: 20
   expPrefab: {fileID: 5715302546398428204, guid: 066cfeacbfe9a4e498d58e136d8f8c3c, type: 3}
   expAmount: 50
@@ -10519,7 +10526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7685872939558490761}
   - component: {fileID: 847380459771537232}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}

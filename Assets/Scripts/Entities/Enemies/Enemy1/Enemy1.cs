@@ -189,7 +189,6 @@ public class Enemy1 : Enemy
 
     public void TriggerAttack()
     {
-        Debug.Log("attack started");
         attackCollider.enabled = true;
         impact.Play();
 
@@ -197,12 +196,10 @@ public class Enemy1 : Enemy
 
     public void StopAttack()
     {
-        Debug.Log("attack stopped");
         attackCollider.enabled = false;
     }
     public void DoDamage()
     {
-        Debug.Log("damage?");
         playerTimeAdjustment.Int = -damage;
     }
 }
