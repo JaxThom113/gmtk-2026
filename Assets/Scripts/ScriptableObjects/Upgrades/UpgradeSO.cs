@@ -9,7 +9,7 @@ public enum UpgradeType
     Passive
 }
 
-[CreateAssetMenu(fileName = "New Upgrade", menuName = "Game/Upgrade Card")]
+[CreateAssetMenu(fileName = "UpgradeSO", menuName = "ScriptableObjects/Upgrades/UpgradeSO")]
 public class UpgradeSO : ScriptableObject
 {
     [Header("Upgrade Data")]

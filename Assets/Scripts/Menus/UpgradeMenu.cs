@@ -109,6 +109,8 @@ public class UpgradeMenu : MonoBehaviour
                 }
                 break;
             case UpgradeType.Passive:
+                PassiveSO passive = selectedUpgrade as PassiveSO;
+                passive.statToIncrease.Int += passive.increase;
                 break;
         }
 

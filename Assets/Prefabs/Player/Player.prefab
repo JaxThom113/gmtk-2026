@@ -395,7 +395,7 @@ MonoBehaviour:
   PCM: {fileID: 3326492603616964188}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   acceleration: 50
-  maxSpeed: 8
+  speedSO: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
   drag: 5
   currentMaxSpeed: 0
   currentSpeed: 0
@@ -462,8 +462,8 @@ MonoBehaviour:
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
-  playerMaxHealth: 30
-  healthDrainRate: 0
+  playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
+  healthDrainRate: 1
   secondLength: 1
   PCM: {fileID: 3326492603616964188}
   iframeDur: 2

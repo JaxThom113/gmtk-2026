@@ -1058,14 +1058,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 783093589}
-  enemy1: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-  enemy2: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-  enemy3: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
   waveCounter: {fileID: 9119802548766659487}
   deathScreen: {fileID: 11279038}
   gameStarted: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
   playerDead: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   playerHealth: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
+  playerLevel: {fileID: 0}
+  playerSelectedWeapon: {fileID: 0}
+  playerWeaponCount: {fileID: 0}
+  playerWeaponFull: {fileID: 0}
   wave1:
     _serializedList:
     - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
@@ -1715,8 +1716,6 @@ MonoBehaviour:
   slot2: {fileID: 243508629331997452}
   slot3: {fileID: 1086037845462763094}
   slot4: {fileID: 5449307689562872544}
-  moveDistance: 40
-  duration: 0.4
   upgradeMenu: {fileID: 398495293}
   upgradeMenuScript: {fileID: 398495295}
   playerHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
@@ -1745,6 +1744,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4563873622669743724, guid: ef654d3d7c8bf3c4c9de43fee7f993f5, type: 3}
   m_PrefabInstance: {fileID: 947459509}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1228116404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8487866146698013478, guid: ef654d3d7c8bf3c4c9de43fee7f993f5, type: 3}
+  m_PrefabInstance: {fileID: 947459509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5322bb853b66b9e4780012eaea00d025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
 --- !u!1 &1383456521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2134,7 @@ PrefabInstance:
     - target: {fileID: 4078125508690341455, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1228116404}
     - target: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_Name
       value: Player

@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab190ce3cbc99a4ea55500c22421161, type: 3}
+  m_Script: {fileID: 11500000, guid: d91bedf0e7dbb9c42ba8d20791159169, type: 3}
   m_Name: 1_Healthy
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
   level: 1
   title: Healthy
   type: 2
-  image: {fileID: 0}
+  artwork: {fileID: 0}
   description: Double your maximum time count (to 2:00)
   nextLevel: {fileID: 11400000, guid: a8736fbf13ffd5346a4f06d8a76aa79e, type: 2}
+  increase: 60
+  statToIncrease: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponSO", menuName = "Scriptable Objects/WeaponSO")]
+[CreateAssetMenu(fileName = "WeaponSO", menuName = "ScriptableObjects/Upgrades/WeaponSO")]
 public class WeaponSO : UpgradeSO
 {
     public GameObject weaponPF;
