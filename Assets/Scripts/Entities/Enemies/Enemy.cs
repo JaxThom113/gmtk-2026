@@ -20,6 +20,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
     protected int playerTimeIncreaseAmount;
     [SerializeField]
     protected IntSO playerTimeAdjustment;
+    [SerializeField]
+    protected Collider hitbox;
     [Header("Disintegrate")]
     [SerializeField]
     [ColorUsage(true,true)]
@@ -69,6 +71,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         isDead = false; 
         animator.enabled = true;
         outlineOBJ.layer = layer;
+        hitbox.enabled = true;
     }
 
     public virtual void Initialize(Transform playerTransform)
@@ -89,6 +92,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
+            hitbox.enabled = false;
             playerTimeAdjustment.Int += playerTimeIncreaseAmount;
             Pooler.GetObject<ExpOrb>(expPrefab, transform.position, Quaternion.identity,
                 onGet: (e) =>

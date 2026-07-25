@@ -46,7 +46,9 @@ public class Enemy3 : Enemy
     public override void ResetObj()
     {
         base.ResetObj();
-        AimArm();
+        //AimArm();
+        nextFireTime = Time.time + 2;
+        timer.StopSpecific();
     }
     protected virtual void AimArm()
     {
