@@ -1111,6 +1111,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   <times>k__BackingField: []
+--- !u!137 &1204073912 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6684728254698192254, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+  m_PrefabInstance: {fileID: 1968343516525037812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1233091091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 814223186946832025, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
@@ -1642,8 +1647,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1204073912}
+    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: playerMaxHealth
-      value: 999
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_Name
