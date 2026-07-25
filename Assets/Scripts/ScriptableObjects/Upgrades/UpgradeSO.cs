@@ -16,7 +16,7 @@ public class UpgradeSO : ScriptableObject
     public int level;
     public string title;
     public UpgradeType type;
-    public Sprite image;
+    public Sprite artwork;
     [TextArea(3, 6)]
     public string description;
     public UpgradeSO nextLevel;

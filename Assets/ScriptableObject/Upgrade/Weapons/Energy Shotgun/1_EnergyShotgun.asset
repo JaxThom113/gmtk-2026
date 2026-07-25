@@ -15,6 +15,6 @@ MonoBehaviour:
   level: 1
   title: Energy Shotgun
   type: 0
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 0e5a148dfb6d99946bc22525500eaf2c, type: 3}
   description: Upgrade damage
   nextLevel: {fileID: 11400000, guid: 0bc9a3f7c59371645a5b62bbe81626cd, type: 2}

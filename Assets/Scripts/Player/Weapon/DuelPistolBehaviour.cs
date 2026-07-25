@@ -14,6 +14,8 @@ public class DuelPistolBehaviour : RangedWeapon
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Attack(Vector3 attackDir)
     {
+        attackDir.y = 0;
+        attackDir.Normalize();
         ShootBullet(attackDir);
 
 

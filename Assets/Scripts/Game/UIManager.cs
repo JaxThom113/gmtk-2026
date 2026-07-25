@@ -9,26 +9,48 @@ using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("Topbar")]
 	[SerializeField] private TextMeshProUGUI waveCounter;
 	[SerializeField] private GameObject screen;
 	[SerializeField] private TextMeshProUGUI clock;
 	[SerializeField] private TextMeshProUGUI levelNumber;
 	[SerializeField] private Slider experienceSlider;
-	[SerializeField] private GameObject deathScreen;
+
+    [Header("Hotbar")]
+    [SerializeField] private RectTransform selection;
+    [SerializeField] private Image slot1;
+    [SerializeField] private Image slot2;
+    [SerializeField] private Image slot3;
+    [SerializeField] private Image slot4;
+	
+    [Header("Menu References")]
+    [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject upgradeMenu;
+    [SerializeField] private UpgradeMenu upgradeMenuScript;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
     [SerializeField] private IntSO playerLevelSO;
     [SerializeField] private IntSO playerExperienceSO;
     [SerializeField] private IntSO playerExperienceToNextLevelSO;
+    [SerializeField] private IntSO playerSelectedWeaponSO;
+    [SerializeField] private IntSO playerWeaponCountSO;
     [SerializeField] private BoolSO isPlayerDeadSO;
 
     bool isFlashing;
     private Sequence flash;
     private Color clockTextColor;
     private int previousLevel;
+
+    void OnEnable()
+    {
+        upgradeMenuScript.OnNewWeapon += UpdateSlots;
+    }
+
+    void OnDisable()
+    {
+        upgradeMenuScript.OnNewWeapon -= UpdateSlots;
+    }
 
     void Start()
     {
@@ -42,6 +64,7 @@ public class UIManager : MonoBehaviour
     {
         UpdateClock();
         UpdateExperience();
+        UpdateHotbar();
 
         if (playerLevelSO.Int != previousLevel)
             UpdateLevel();
@@ -109,7 +132,39 @@ public class UIManager : MonoBehaviour
 
         levelNumber.text = $"LVL {levelString}";
 
-        // display upgrade menu
+        // display upgrade menu s
         upgradeMenu.SetActive(true);
+    }
+
+    private void UpdateHotbar()
+    {
+        switch (playerSelectedWeaponSO.Int)
+        {
+            case 0: selection.position = slot1.rectTransform.position; break;
+            case 1: selection.position = slot2.rectTransform.position; break;
+            case 2: selection.position = slot3.rectTransform.position; break;
+            case 3: selection.position = slot4.rectTransform.position; break;
+        }
+    }
+
+    private void UpdateSlots(Sprite sprite)
+    {
+        // add new weapon to a slot
+        playerWeaponCountSO.Int += 1;
+        switch (playerWeaponCountSO.Int)
+        {
+            case 1: 
+                slot2.gameObject.SetActive(true);
+                slot2.sprite = sprite; 
+                break;
+            case 2: 
+                slot3.gameObject.SetActive(true);
+                slot3.sprite = sprite; 
+                break;
+            case 3:
+                slot4.gameObject.SetActive(true);
+                slot4.sprite = sprite; 
+                break;
+        }
     }
 }

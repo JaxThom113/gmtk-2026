@@ -12,6 +12,9 @@ public class Enemy1 : Enemy
     [Header("Enemy1 Animations")]
     public AnimationClip runAnim;
     public AnimationClip attackAnimation;
+    [Header("vfx")]
+    [SerializeField]
+    ParticleSystem impact;
 
     private bool isCooldown;
     private bool isAttacking;
@@ -154,7 +157,6 @@ public class Enemy1 : Enemy
 
     private IEnumerator AttackRoutine()
     {
-        attackCollider.enabled = true;
         attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
         PlayClip(attackAnimation);
 
@@ -168,7 +170,6 @@ public class Enemy1 : Enemy
 
         isAttacking = false;
         attackTime = 0f;
-        attackCollider.enabled = false;
         StartCoroutine(AttackCooldown());
     }
 
@@ -186,12 +187,22 @@ public class Enemy1 : Enemy
         isCooldown = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TriggerAttack()
     {
-        if (!attackCollider.enabled)
-            return;
+        Debug.Log("attack started");
+        attackCollider.enabled = true;
+        impact.Play();
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            Debug.Log("hit player");
+    }
+
+    public void StopAttack()
+    {
+        Debug.Log("attack stopped");
+        attackCollider.enabled = false;
+    }
+    public void DoDamage()
+    {
+        Debug.Log("damage?");
+        playerTimeAdjustment.Int = -damage;
     }
 }
