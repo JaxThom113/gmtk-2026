@@ -8,16 +8,29 @@ using Sezylrin.SimplePooling;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("UI Reference")]
-	[SerializeField] private TextMeshProUGUI waveCounter;
-
     [Header("Player Reference")]
 	[SerializeField] private GameObject player;
 
-    [Header("Enemy References")]
-	[SerializeField] private GameObject enemy1;
-	[SerializeField] private GameObject enemy2;
-	[SerializeField] private GameObject enemy3;
+    [Header("UI References")]
+	[SerializeField] private TextMeshProUGUI waveCounter;
+	[SerializeField] private DeathScreen deathScreen;
+
+    [Header("SO References")]
+	[SerializeField] private BoolSO gameStarted;
+	[SerializeField] private BoolSO playerDead;
+	[SerializeField] private IntSO playerHealth;
+	[SerializeField] private IntSO playerLevel;
+	[SerializeField] private IntSO playerSelectedWeapon;
+	[SerializeField] private IntSO playerWeaponCount;
+	[SerializeField] private BoolSO playerWeaponFull;
+
+    /*
+        I need to:
+        reset weapons
+        reset upgrades
+        reset time
+        reset max health
+    */
 
     [Header("Wave 1")]
     [SerializeField]
@@ -35,11 +48,31 @@ public class GameManager : MonoBehaviour
 	SerializedDictionary<GameObject, int> wave3;
 
     private int wave;
+    private bool running;
+    private Coroutine startWaves;
 
     void Start()
     {
-        wave = 1;
-        StartCoroutine(StartWaves());
+        running = false;
+    }
+
+    void Update()
+    {
+        if (!running && gameStarted.Bool)
+        {
+            wave = 1;
+            startWaves = StartCoroutine(StartWaves());
+            running = true;
+        }
+
+        if (playerDead.Bool)
+        {
+            StopCoroutine(startWaves);
+            deathScreen.gameObject.SetActive(true);
+            playerDead.Bool = false;
+            gameStarted.Bool = false;
+            running = false;
+        }
     }
 
     private IEnumerator StartWaves()

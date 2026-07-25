@@ -11,6 +11,12 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private OptionsMenu optionsMenu;
     [SerializeField] private GameObject overlay;
 
+    [Header("SO References")]
+    [SerializeField] private BoolSO gamePlaying;
+
+    [Header("Camera Manager")]
+    [SerializeField] private CameraManager cameraManager;
+
     public void OnPause(InputAction.CallbackContext context)
     {
         if (gameObject.activeSelf)
@@ -41,7 +47,11 @@ public class PauseMenu : MonoBehaviour
 
     public void OnMainMenuClicked()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+        cameraManager.ActivateCamera(0);
+        gamePlaying.Bool = false;
+
+        gameObject.SetActive(true);
+        overlay.SetActive(true);
+        Time.timeScale = 0;
     }
 }

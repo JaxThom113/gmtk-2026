@@ -5,13 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
+    [Header("Menu References")]
+    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private GameObject hud;
+
+    [Header("SO References")]
+    [SerializeField] private BoolSO gamePlaying;
+
+    [Header("Camera Manager")]
+    [SerializeField] private CameraManager cameraManager;
+
     public void OnPlayAgainClicked()
     {
-        SceneManager.LoadScene("UI");
+        // reload scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnMainMenuClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        cameraManager.ActivateCamera(0);
+        gamePlaying.Bool = false;
+        hud.SetActive(false);
+
+        gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
     }
 }

@@ -8,10 +8,21 @@ public class MainMenu : MonoBehaviour
     [Header("Menu References")]
     [SerializeField] private OptionsMenu optionsMenu;
     [SerializeField] private TutorialMenu tutorialMenu;
+    [SerializeField] private GameObject hud;
+
+    [Header("SO References")]
+    [SerializeField] private BoolSO gamePlaying;
+
+    [Header("Camera Manager")]
+    [SerializeField] private CameraManager cameraManager;
 
     public void OnStartClicked()
     {
-        SceneManager.LoadScene("UI");
+        cameraManager.ActivateCamera(1);
+        gamePlaying.Bool = true;
+        hud.SetActive(true);
+        
+        gameObject.SetActive(false);
     }
 
     public void OnHowToPlaylicked()  

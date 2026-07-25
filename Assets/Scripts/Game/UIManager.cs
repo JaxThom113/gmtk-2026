@@ -10,21 +10,22 @@ using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     [Header("Topbar")]
+    [SerializeField] private GameObject topbar;
 	[SerializeField] private TextMeshProUGUI waveCounter;
 	[SerializeField] private GameObject screen;
 	[SerializeField] private TextMeshProUGUI clock;
 	[SerializeField] private TextMeshProUGUI levelNumber;
 	[SerializeField] private Slider experienceSlider;
 
-    [Header("Hotbar")]
+    [Header("Bottombar")]
+    [SerializeField] private GameObject bottombar;
     [SerializeField] private RectTransform selection;
     [SerializeField] private Image slot1;
     [SerializeField] private Image slot2;
     [SerializeField] private Image slot3;
     [SerializeField] private Image slot4;
-	
+   
     [Header("Menu References")]
-    [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject upgradeMenu;
     [SerializeField] private UpgradeMenu upgradeMenuScript;
 
@@ -35,7 +36,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private IntSO playerExperienceToNextLevelSO;
     [SerializeField] private IntSO playerSelectedWeaponSO;
     [SerializeField] private IntSO playerWeaponCountSO;
-    [SerializeField] private BoolSO isPlayerDeadSO;
 
     bool isFlashing;
     private Sequence flash;
@@ -54,7 +54,6 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        isPlayerDeadSO.Bool = false;
         isFlashing = false;
         clockTextColor = clock.color;
         previousLevel = playerLevelSO.Int;
@@ -68,9 +67,6 @@ public class UIManager : MonoBehaviour
 
         if (playerLevelSO.Int != previousLevel)
             UpdateLevel();
-
-        if (isPlayerDeadSO.Bool)
-            deathScreen.SetActive(true);
 
         previousLevel = playerLevelSO.Int;
     }   
