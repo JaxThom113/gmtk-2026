@@ -466,7 +466,7 @@ MonoBehaviour:
   healthDrainRate: 1
   secondLength: 1
   PCM: {fileID: 3326492603616964188}
-  iframeDur: 2
+  iframeDur: 0
   rend: {fileID: 6684728254698192254}
   duration: 1
 --- !u!114 &8662915930565529634

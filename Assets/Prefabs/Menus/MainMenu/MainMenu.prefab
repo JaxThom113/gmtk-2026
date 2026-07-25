@@ -368,7 +368,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2214456047873126609}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnHowToPlaylicked
+        m_MethodName: OnHowToPlayClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1676,8 +1676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
   optionsMenu: {fileID: 0}
   tutorialMenu: {fileID: 0}
-  gamePlaying: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
-  cameraManager: {fileID: 0}
+  hud: {fileID: 0}
 --- !u!1 &7092581337683028166
 GameObject:
   m_ObjectHideFlags: 0

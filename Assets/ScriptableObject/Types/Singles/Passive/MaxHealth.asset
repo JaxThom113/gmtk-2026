@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f9941d88651174e9668658ce97bb03, type: 3}
   m_Name: MaxHealth
   m_EditorClassIdentifier: Assembly-CSharp::IntSO
-  Descirption: 
+  Descirption: Current max health of the player
   _shouldReset: 1
   _defaultValue: 30
-  _int: 60
+  _int: 30

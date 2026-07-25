@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,22 +11,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TutorialMenu tutorialMenu;
     [SerializeField] private GameObject hud;
 
-    [Header("SO References")]
-    [SerializeField] private BoolSO gamePlaying;
-
-    [Header("Camera Manager")]
-    [SerializeField] private CameraManager cameraManager;
+    public event Action OnStartGame;
 
     public void OnStartClicked()
     {
-        cameraManager.ActivateCamera(1);
-        gamePlaying.Bool = true;
+        OnStartGame.Invoke();
+
         hud.SetActive(true);
-        
         gameObject.SetActive(false);
     }
 
-    public void OnHowToPlaylicked()  
+    public void OnHowToPlayClicked()  
     {
         tutorialMenu.gameObject.SetActive(true);
     }

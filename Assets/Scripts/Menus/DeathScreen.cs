@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class DeathScreen : MonoBehaviour
 {
@@ -9,11 +10,7 @@ public class DeathScreen : MonoBehaviour
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private GameObject hud;
 
-    [Header("SO References")]
-    [SerializeField] private BoolSO gamePlaying;
-
-    [Header("Camera Manager")]
-    [SerializeField] private CameraManager cameraManager;
+    public event Action OnEndGame;
 
     public void OnPlayAgainClicked()
     {
@@ -23,10 +20,9 @@ public class DeathScreen : MonoBehaviour
 
     public void OnMainMenuClicked()
     {
-        cameraManager.ActivateCamera(0);
-        gamePlaying.Bool = false;
-        hud.SetActive(false);
+        OnEndGame.Invoke();
 
+        hud.SetActive(false);
         gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
     }
