@@ -33,20 +33,12 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private IntSO playerWeaponCount;
 	[SerializeField] private BoolSO playerWeaponFull;
 
-    [Header("Wave 1")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave1;
+    [Header("Game to Play")]
+    [SerializeField] private GameSO game;
 
-    [Header("Wave 2")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave2;
+    [Header("Resetter")]
+	[SerializeField] private ResetterOBJ resetter;
 
-    [Header("Wave 3")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave3;
 
     private Coroutine startWaves;
     private GameObject enemyContainer;
@@ -71,15 +63,16 @@ public class GameManager : MonoBehaviour
         cameraManager.ActivateCamera(1);
 
         // reset stats
-        gameWave.Int = 1;
-        playerMaxHealth.Int = 30;
-        playerSpeed.Int = 8;
-        playerLevel.Int = 1;
-        playerExperience.Int = 0;
-        playerExperienceToNextLevel.Int = 100;
-        playerSelectedWeapon.Int = 0;
-        playerWeaponCount.Int = 0;
-        playerWeaponFull.Bool = false;
+        resetter.ResetValues();
+        // gameWave.Int = 1;
+        // playerMaxHealth.Int = 30;
+        // playerSpeed.Int = 8;
+        // playerLevel.Int = 1;
+        // playerExperience.Int = 0;
+        // playerExperienceToNextLevel.Int = 100;
+        // playerSelectedWeapon.Int = 0;
+        // playerWeaponCount.Int = 0;
+        // playerWeaponFull.Bool = false;
 
         enemyContainer = new GameObject("EnemyContainer");
 
@@ -90,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         uiManager.gameObject.SetActive(true);
         
-        startWaves = StartCoroutine(StartWaves());
+        startWaves = StartCoroutine(PlayGame());
     }
 
     private void EndGame()
@@ -111,52 +104,38 @@ public class GameManager : MonoBehaviour
         uiManager.gameObject.SetActive(false);
     }
 
-    private IEnumerator StartWaves()
+    private IEnumerator PlayGame()
     {
-        yield return new WaitForSeconds(3f);
+        foreach (var wave in game.waves)
+        {
+            yield return PlayWave(wave);
+            gameWave.Int++;
+            yield return new WaitForSeconds(game.waveDelay);
+        }
 
-        yield return SpawnEnemies(wave1);
-        gameWave.Int++;
-        yield return new WaitForSeconds(3f);
-
-        yield return SpawnEnemies(wave2);
-        gameWave.Int++;
-        yield return new WaitForSeconds(3f);
-
-        yield return SpawnEnemies(wave3);
-        gameWave.Int++;
+        // victory state
+        Debug.Log("Victory!");
     }
     
-    private IEnumerator SpawnEnemies(Dictionary<GameObject, int> wave)
+    private IEnumerator PlayWave(WaveSO wave)
     {
-        Dictionary<GameObject, int> remaining = new Dictionary<GameObject, int>(wave);
-
-        // spawn a random enemy every second from the given wave
-        while (remaining.Count > 0)
+        foreach (var spawn in wave.spawns)
         {
-            // Pick a random enemy type
-            List<GameObject> enemies = new List<GameObject>(remaining.Keys);
-            GameObject enemy = enemies[Random.Range(0, enemies.Count)];
+            // spawn however many enemies requested on the SpawnSO
+            for (int i = 0; i < spawn.count; i++)
+            {
+                Vector3 randPos = new Vector3(Random.Range(0, 15), 1, Random.Range(0, 15));
+                Pooler.GetObject<Enemy>(
+                    spawn.enemy,
+                    randPos,
+                    Quaternion.identity,
+                    enemyContainer.transform,
+                    onNewInstance: (e) => e.Initialize(spawnedPlayer != null ? spawnedPlayer.transform : playerPoint.transform),
+                    onGet: (e) => e.ResetObj()
+                );
+            }
 
-            // instantiate the enemy and give it a reference to the player's position
-            Vector3 randPos = new Vector3(Random.Range(0, 15), 1, Random.Range(0, 15));
-            Pooler.GetObject<Enemy>(
-                enemy,
-                randPos,
-                Quaternion.identity,
-                enemyContainer.transform,
-                onNewInstance: (e) => e.Initialize(spawnedPlayer != null ? spawnedPlayer.transform : playerPoint.transform),
-                onGet: (e) => e.ResetObj()
-            );
-
-            // decrement the amount of the enemy type just spawned
-            remaining[enemy]--;
-
-            // remove the enemy type if all of them have been spawned
-            if (remaining[enemy] <= 0)
-                remaining.Remove(enemy);
-
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawn.delay);
         }
     }
 }

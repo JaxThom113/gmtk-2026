@@ -14,7 +14,7 @@ public class HudMenu : MonoBehaviour
     [SerializeField] private float moveDistance = 40f;
     [SerializeField] private float duration = 0.4f;
 
-    void Start()
+    void OnEnable()
     {
         HudSlideIn();
     }

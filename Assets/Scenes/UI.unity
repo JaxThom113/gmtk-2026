@@ -1059,28 +1059,8 @@ MonoBehaviour:
   playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
   playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   playerWeaponFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
-  wave1:
-    _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 6
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 1
-    - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
-      Value: 2
-  wave2:
-    _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 8
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 2
-  wave3:
-    _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 10
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 4
-    - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
-      Value: 4
+  game: {fileID: 11400000, guid: 927af73ae125a564cbddb5c11a743a94, type: 2}
+  resetter: {fileID: 11400000, guid: 91506ebbe10ddad41bd566ac5e4325aa, type: 2}
 --- !u!4 &806026304
 Transform:
   m_ObjectHideFlags: 0
@@ -3218,6 +3198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 361131396120008429}
+  - component: {fileID: 2753250951005889516}
   m_Layer: 5
   m_Name: Hud
   m_TagString: Untagged
@@ -3225,6 +3206,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &2753250951005889516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753250951005889515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15953e9fc1234428f46c6590d379a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HudMenu
+  topbar: {fileID: 8749178322297747443}
+  bottombar: {fileID: 8525174696047019332}
+  moveDistance: 40
+  duration: 0.4
 --- !u!224 &2832913843623980328
 RectTransform:
   m_ObjectHideFlags: 0

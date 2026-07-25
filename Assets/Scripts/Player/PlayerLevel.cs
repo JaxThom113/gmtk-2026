@@ -26,6 +26,11 @@ public class PlayerLevel : MonoBehaviour
         playerExperienceToNextLevelSO.Int = initialExpRequirement;
     }
 
+    private void OnDisable()
+    {
+        adjustExp.onValueChanged -= AdjustExperience;
+    }
+
     public void AdjustExperience(object sender, System.EventArgs e)
     {
         // add however much exp is dropped by an enemy

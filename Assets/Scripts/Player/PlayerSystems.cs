@@ -48,6 +48,11 @@ public class PlayerSystems : MonoBehaviour
         adjustHealthSO.onValueChanged += AdjustHealth;
     }
 
+    private void OnDisable()
+    {
+        adjustHealthSO.onValueChanged -= AdjustHealth;
+    }
+
     // Update is called once per frame
     void Update()
     {
