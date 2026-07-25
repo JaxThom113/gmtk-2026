@@ -958,6 +958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 708278199450241882, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2936264493178492317, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.33

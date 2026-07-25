@@ -35,8 +35,9 @@ public class Enemy1 : Enemy
 
     protected override void FixedUpdate()
     {
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
+        if (isDead)
+            return;
+
         if (rb == null || player == null)
             return;
 
@@ -189,7 +190,6 @@ public class Enemy1 : Enemy
 
     public void TriggerAttack()
     {
-        Debug.Log("attack started");
         attackCollider.enabled = true;
         impact.Play();
 
@@ -197,12 +197,10 @@ public class Enemy1 : Enemy
 
     public void StopAttack()
     {
-        Debug.Log("attack stopped");
         attackCollider.enabled = false;
     }
     public void DoDamage()
     {
-        Debug.Log("damage?");
         playerTimeAdjustment.Int = -damage;
     }
 }

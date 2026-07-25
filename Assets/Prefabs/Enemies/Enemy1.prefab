@@ -105,6 +105,13 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 50
   playerTimeIncreaseAmount: 5
   playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  deathColor: {r: 3.1616123, g: 0, b: 11.984314, a: 1}
+  deathTimeDur: 1
+  rend: {fileID: 3207560567377082814}
+  outlineOBJ: {fileID: 3055076570474141587}
+  outlineLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   damage: 5
   expPrefab: {fileID: 5715302546398428204, guid: 066cfeacbfe9a4e498d58e136d8f8c3c, type: 3}
   expAmount: 50
