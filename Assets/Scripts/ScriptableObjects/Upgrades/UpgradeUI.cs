@@ -44,7 +44,7 @@ public class UpgradeUI : MonoBehaviour
         typeText.text = $"- {data.type.ToString()} -";
         typeText.color = new Color32(currentColor.r, currentColor.g, currentColor.b, 64);
 
-        artwork.sprite = data.image;
+        artwork.sprite = data.artwork;
         descriptionText.text = data.description;
 
         // when the select button is clicked, return the UpgradeSO
