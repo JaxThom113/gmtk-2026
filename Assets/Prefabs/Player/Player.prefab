@@ -463,10 +463,12 @@ MonoBehaviour:
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   playerMaxHealth: 30
-  healthDrainRate: 1
+  healthDrainRate: 0
   secondLength: 1
   PCM: {fileID: 3326492603616964188}
   iframeDur: 2
+  rend: {fileID: 6684728254698192254}
+  duration: 1
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,9 +535,8 @@ MonoBehaviour:
   - {fileID: 5560203313128661827}
   weapons:
     _serializedList: []
-  startingWeapon: {fileID: 6688111007867034967}
+  startingWeapon: {fileID: 6839509720024430606}
   playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
-  playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   weaponsFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
   current:
     currentSpot: {fileID: 0}
@@ -687,6 +688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerRig
       objectReference: {fileID: 0}
+    - target: {fileID: 5059840129627818774, guid: 3abe625ca6095e848b1dd71bc5519c45, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -727,6 +732,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!137 &6684728254698192254 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2827873731504850022, guid: 3abe625ca6095e848b1dd71bc5519c45, type: 3}
+  m_PrefabInstance: {fileID: 289834824983889636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1575011060657178843
 PrefabInstance:
   m_ObjectHideFlags: 0
