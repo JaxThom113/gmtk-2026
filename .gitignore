@@ -111,3 +111,5 @@ InitTestScene*.unity*
 # Ignore contents of Cache, but not the folder itself
 /[Cc]ache/*
 !/[Cc]ache/.gitkeep
+
+Assets/ScriptableObject/Types/ResetterSO.asset
