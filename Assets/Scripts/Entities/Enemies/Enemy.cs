@@ -48,7 +48,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     protected AnimationClip lastClip;
 
-    public void ResetObj()
+    public virtual void ResetObj()
     {
         CurrentHealth = MaxHealth;
     }

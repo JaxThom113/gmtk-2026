@@ -136,4 +136,10 @@ public class ListTypeSO<T> : TypeSO<T>, ITypeCanReset, IEnumerable<T>
     {
         return ((IEnumerable)list).GetEnumerator();
     }
+
+    public void ResetListeners()
+    {
+        onValueChanged = null;
+        onValueUpdated = null;
+    }
 }

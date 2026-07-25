@@ -17,13 +17,17 @@ public class Enemy2 : Enemy
     public AnimationClip walkAnim;
     public AnimationClip fireAnim;
 
+    [Header("MuzzleFlash")]
+    [SerializeField]
+    private ParticleSystem muzzleL;
+    [SerializeField]
+    private ParticleSystem muzzleR;
+
     private float nextFireTime;
     private bool isFiring;
 
     protected override void FixedUpdate()
-    {
-        if (rb != null)
-            rb.linearVelocity = Vector3.zero;
+    {        
 
         base.FixedUpdate();
         TryFire();
@@ -93,6 +97,8 @@ public class Enemy2 : Enemy
         if (muzzle == null)
             return;
 
+        muzzleL.Play(true);
+        muzzleR.Play(true);
         Pooler.GetObject<Bullet>(bullet, muzzle.position, muzzle.rotation,
             onNewInstance: (b) => b.Initialise(damage),
             onGet: (b) => b.ResetObj());
