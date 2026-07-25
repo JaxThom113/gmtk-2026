@@ -147,7 +147,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   layerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 8192
   renderQueue: 0
   occlusion: 2
   maskingStrategy: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   blendMode: 0
   extrusionMethod: 4
   scaling: 0
-  width: 5
+  width: 7
   minWidth: 0
   scaleWithResolution: 0
   referenceResolution: 0
