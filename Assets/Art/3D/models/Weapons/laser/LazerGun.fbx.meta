@@ -1,14 +1,19 @@
 fileFormatVersion: 2
-guid: ad55cfb871556694b9dfbe6262e63f9c
+guid: fd04e3009e57833438e25d492eee5dba
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: uvtest
+    second: {fileID: 2100000, guid: 807df52d212096842aa0b8009a40e1c9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

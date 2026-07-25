@@ -83,7 +83,7 @@ public class WeaponBase : MonoBehaviour
         anim.Play("Attack");
     }
 
-    public void StoreWeapon()
+    public virtual void StoreWeapon()
     {
         anim.SetBool("isStored", true);
     }

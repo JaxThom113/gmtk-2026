@@ -9766,7 +9766,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -50
   m_MaskInteraction: 0
-  m_Time: 1
+  m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -14717,6 +14717,7 @@ MonoBehaviour:
   - {fileID: 2990245806841693637}
   - {fileID: 4438886321381134944}
   - {fileID: 6928161918250429701}
+  impactPF: {fileID: 7762645010413659352, guid: d8c36f9710aee9e43ac4513ec2d6446b, type: 3}
 --- !u!54 &644075423701561185
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14838,7 +14839,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 1
+  m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -15122,7 +15123,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Time: 2
+  m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
