@@ -9953,7 +9953,7 @@ GameObject:
   - component: {fileID: 2876166631601799426}
   - component: {fileID: 2051037939330170992}
   - component: {fileID: 7246600494155786304}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LazerGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10045,7 +10045,7 @@ GameObject:
   - component: {fileID: 59996978259198614}
   - component: {fileID: 9084073636710376154}
   - component: {fileID: 8995734477490344422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: vfx_Implosion_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14979,7 +14979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5132829654644564023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24799,7 +24799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8198058403039555006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24832,7 +24832,7 @@ GameObject:
   - component: {fileID: 722080516225346592}
   - component: {fileID: 8568945523487266593}
   - component: {fileID: 812728496321232806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}

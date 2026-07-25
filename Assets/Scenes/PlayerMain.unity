@@ -1111,6 +1111,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   <times>k__BackingField: []
+--- !u!137 &1204073912 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6684728254698192254, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+  m_PrefabInstance: {fileID: 1968343516525037812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1233091091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 814223186946832025, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
@@ -1553,6 +1558,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -24.689
       objectReference: {fileID: 0}
+    - target: {fileID: 346587667392042918, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 814223186946832025, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.68
@@ -1613,6 +1622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -81.252
       objectReference: {fileID: 0}
+    - target: {fileID: 4773141565462302194, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6252057846998062362, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_Name
       value: Sword
@@ -1634,8 +1647,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1204073912}
+    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384605621985405168, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: playerMaxHealth
-      value: 999
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
       propertyPath: m_Name
@@ -1645,6 +1666,8 @@ PrefabInstance:
     - {fileID: 6688111007867034967, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
     - {fileID: 5992190326658195215, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
     - {fileID: 8697447680313760205, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+    - {fileID: 346587667392042918, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+    - {fileID: 462867660265180202, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8171539650069271838, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
