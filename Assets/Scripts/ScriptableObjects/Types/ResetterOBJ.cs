@@ -19,6 +19,8 @@ public class ResetterOBJ : ScriptableObject
             if(obj is ITypeCanReset)
             {
                 (obj as ITypeCanReset).ResetValue();
+                (obj as ITypeCanReset).ResetListeners();
+
             }
         }
     }
