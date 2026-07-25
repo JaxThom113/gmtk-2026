@@ -29106,6 +29106,7 @@ MonoBehaviour:
   rb: {fileID: 644075423701561185}
   despawnTimer: {fileID: 260130848920192701}
   trail: []
+  impactPF: {fileID: 7762645010413659352, guid: d8c36f9710aee9e43ac4513ec2d6446b, type: 3}
 --- !u!54 &644075423701561185
 Rigidbody:
   m_ObjectHideFlags: 0
