@@ -5,6 +5,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Costs
+{
+    dash,
+    blink,
+    slow,
+    freeze,
+    rapid,
+    arsenal,
+    hammer,
+    pistol,
+    railgun,
+    laser,
+    shotgun,
+    sword
+}
 public class PlayerUnlocks : MonoBehaviour
 {
     [SerializeField]
@@ -135,6 +150,6 @@ public class PlayerUnlocks : MonoBehaviour
     [SerializeField]
     private BoolSO isArsenalUnleashSO;
     public bool isArsenalUnleash;
-    
 
+    public SerializedDictionary<Costs, int> timeCost = new SerializedDictionary<Costs, int>();
 }

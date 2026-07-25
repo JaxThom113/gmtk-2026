@@ -24555,6 +24555,7 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 50
   playerTimeIncreaseAmount: 5
   playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  hitbox: {fileID: 8285160929733928142}
   deathColor: {r: 0.1551132, g: 7.999999, b: 0, a: 1}
   deathTimeDur: 1
   rend: {fileID: 96796403722358137}

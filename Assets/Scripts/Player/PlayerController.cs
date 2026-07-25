@@ -145,8 +145,11 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking = false;
     public void AttemptAttack(InputAction.CallbackContext context)
     {
-        isAttacking = true;
-        PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking);
+        
+        isAttacking = true; 
+        
+        PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking); 
+        
         if (PCM.timer.timer.IsTimeZero(CDTimer))
         {
             Attack();
@@ -176,8 +179,17 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-        activeWeapon.Attack((mousePos - transform.position).normalized);
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
+        if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[activeWeapon.weaponType]))
+        {
+            if (activeWeapon is LaserBehaviour)
+            {
+                (activeWeapon as LaserBehaviour).StopLaser();
+            }
+            return;
+        }
+        activeWeapon.Attack((mousePos - transform.position).normalized);
+        
     }
 
     public Vector3 GetAttackDir()
@@ -212,6 +224,10 @@ public class PlayerController : MonoBehaviour
     {
         if (PCM.unlocks.isBlinkUnlocked)
         {
+            if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.blink]))
+            {
+                return;
+            }
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
             propertyBlock.SetColor("_OutlineColour", dashColor);
             propertyBlock.SetFloat("_SpiralStrength", spiralness);
@@ -254,6 +270,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.dash]))
+            {
+                return;
+            }
             playerCol.excludeLayers += enemyLayer;
             state = playerState.dashing;
             Tween tween = transform.DOMove(direction * dashDistance + transform.position, dashDuration)

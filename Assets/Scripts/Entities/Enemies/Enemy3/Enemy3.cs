@@ -42,6 +42,14 @@ public class Enemy3 : Enemy
             
         TryFire();
     }
+
+    public override void ResetObj()
+    {
+        base.ResetObj();
+        //AimArm();
+        nextFireTime = Time.time + 2;
+        timer.StopSpecific();
+    }
     protected virtual void AimArm()
     {
         Vector3 playerDir = player.position - calculatePoint.position;
