@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 0
   artwork: {fileID: 21300000, guid: 5a8c1ed80b0c51243bffc44d09ddf3ef, type: 3}
   description: Charges up and fires high-damage, piercing rounds
-  nextLevel: {fileID: 11400000, guid: 799cda9dc2f64e4408df21df684aceef, type: 2}
+  nextLevel: {fileID: 0}
   weaponPF: {fileID: 4542480673720939051, guid: 9fd6dc237b2a92445b17a9700d606ecc, type: 3}
   weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
   icon: {fileID: 21300000, guid: 6d417a877d53d844ca7ac846dbbe6423, type: 3}

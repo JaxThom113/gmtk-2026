@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 0
   artwork: {fileID: 21300000, guid: 809c7e4375b01a34a945b335c52f578a, type: 3}
   description: Fires a continuous beam of light to vaporize your foes
-  nextLevel: {fileID: 11400000, guid: cb47ee53962ceac4d8a2e844044826cc, type: 2}
+  nextLevel: {fileID: 0}
   weaponPF: {fileID: 4630794833444348898, guid: 2fc396acd113e8343bdf4e1e8bf32190, type: 3}
   weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
   icon: {fileID: 21300000, guid: 582a65a6a4c576441bfad282f68589b4, type: 3}

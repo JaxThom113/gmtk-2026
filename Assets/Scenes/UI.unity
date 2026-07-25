@@ -1044,9 +1044,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerPoint: {fileID: 2004767064}
   player: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
-  waveCounter: {fileID: 9119802548766659487}
   mainMenu: {fileID: 151373869}
   deathScreen: {fileID: 11279038}
+  uiManager: {fileID: 1158712982}
   cameraManager: {fileID: 1017406901}
   gamePlaying: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
   gameWave: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
@@ -1054,6 +1054,8 @@ MonoBehaviour:
   playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
   playerSpeed: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
   playerLevel: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
+  playerExperience: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
+  playerExperienceToNextLevel: {fileID: 11400000, guid: 62fababf323a31d41a80ea585e3b2568, type: 2}
   playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
   playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   playerWeaponFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
@@ -1685,7 +1687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1158712982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,13 +1700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cdf18c58a635d4493a4d2ad26de550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  topbar: {fileID: 8749178322297747443}
   waveCounter: {fileID: 9119802548766659487}
   screen: {fileID: 7934365364583744581}
   clock: {fileID: 991233589287501463}
   levelNumber: {fileID: 5007178660512598477}
   experienceSlider: {fileID: 6152954217141856592}
-  bottombar: {fileID: 8525174696047019332}
   selection: {fileID: 1799720728137653090}
   slot1: {fileID: 4360239788338930955}
   slot2: {fileID: 243508629331997452}
@@ -1719,6 +1719,7 @@ MonoBehaviour:
   playerSelectedWeaponSO: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
   playerWeaponCountSO: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   playerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
+  gameWaveSO: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
 --- !u!4 &1158712983
 Transform:
   m_ObjectHideFlags: 0

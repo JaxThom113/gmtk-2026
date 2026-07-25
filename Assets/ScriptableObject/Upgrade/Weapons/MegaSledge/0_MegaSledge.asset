@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 0
   artwork: {fileID: 21300000, guid: 87f7a264c610c7947a4f1dc657d6ecf1, type: 3}
   description: Powerful hammer that knocks back enemies
-  nextLevel: {fileID: 11400000, guid: ef1e738204f90ff49ac287f737b1c707, type: 2}
+  nextLevel: {fileID: 0}
   weaponPF: {fileID: 2502413201572114709, guid: 916ed10367e17f8408ffa435f21f0e6c, type: 3}
   weaponSO: {fileID: 11400000, guid: ed35ab7fd8065e54b919e62a41648f01, type: 2}
   icon: {fileID: 21300000, guid: 2a01ee8430ec9304e867f60608b2bdf8, type: 3}
