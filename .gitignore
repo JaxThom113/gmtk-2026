@@ -113,3 +113,5 @@ InitTestScene*.unity*
 !/[Cc]ache/.gitkeep
 
 Assets/ScriptableObject/Types/ResetterSO.asset
+
+Assets/ScriptableObject/Types/ResetterSO.asset.meta
