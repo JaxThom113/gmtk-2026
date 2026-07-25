@@ -709,6 +709,7 @@ MonoBehaviour:
   <timer>k__BackingField: {fileID: 5719977272093131984}
   <unlocks>k__BackingField: {fileID: 6418179257755657505}
   <abilities>k__BackingField: {fileID: 7781489478450172478}
+  <systems>k__BackingField: {fileID: 7384605621985405168}
 --- !u!114 &7384605621985405168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +726,7 @@ MonoBehaviour:
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
-  playerMaxHealth: 30
+  playerMaxHealth: 999
   healthDrainRate: 0
   secondLength: 1
   iframeDur: 2
@@ -734,6 +735,9 @@ MonoBehaviour:
   rend: {fileID: 6684728254698192254}
   duration: 1
   deathColor: {r: 32, g: 0, b: 0, a: 1}
+  UiPF: {fileID: 4812161119680708746, guid: c7ac257b5693a3c499a0f20d58a56926, type: 3}
+  positive: {r: 0, g: 0.80655336, b: 1, a: 0}
+  negative: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,6 +824,32 @@ MonoBehaviour:
   isRapidFire: 0
   isArsenalUnleashSO: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   isArsenalUnleash: 0
+  timeCost:
+    _serializedList:
+    - Key: 0
+      Value: 2
+    - Key: 1
+      Value: 4
+    - Key: 2
+      Value: 8
+    - Key: 3
+      Value: 16
+    - Key: 4
+      Value: 10
+    - Key: 5
+      Value: 18
+    - Key: 6
+      Value: 2
+    - Key: 7
+      Value: 2
+    - Key: 8
+      Value: 5
+    - Key: 9
+      Value: 1
+    - Key: 10
+      Value: 3
+    - Key: 11
+      Value: 0
 --- !u!114 &7781489478450172478
 MonoBehaviour:
   m_ObjectHideFlags: 0

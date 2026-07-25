@@ -14926,6 +14926,7 @@ MonoBehaviour:
   isRapidActive: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 6004029071144731901}
+  weaponType: 9
   lineRenderer:
   - {fileID: 7198330472189739526}
   - {fileID: 515185560449729250}

@@ -14,5 +14,7 @@ public class PlayerComponentManager : MonoBehaviour
     public PlayerUnlocks unlocks { get; private set; }
     [field: SerializeField]
     public PlayerAbilities abilities { get; private set; }
+    [field: SerializeField]
+    public PlayerSystems systems { get; private set; }
     
 }

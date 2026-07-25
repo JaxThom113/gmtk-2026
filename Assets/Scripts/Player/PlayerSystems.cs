@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Sezylrin.SimplePooling;
 using System;
 using UnityEngine;
 
@@ -39,7 +40,15 @@ public class PlayerSystems : MonoBehaviour
     [ColorUsage(true, true),SerializeField]
     private Color deathColor;
 
-
+    [Header("UI")]
+    [SerializeField]
+    private GameObject UiPF;
+    [SerializeField]
+    [ColorUsage(true)]
+    private Color positive;
+    [SerializeField]
+    [ColorUsage(true)]
+    private Color negative;
 
     private int timerPos = (int)PlayerTimer.healthDrain;
     private int iFrames = (int)PlayerTimer.Iframes;
@@ -80,9 +89,38 @@ public class PlayerSystems : MonoBehaviour
             .SetEase(Ease.InBack)
             .onComplete += () => shield.gameObject.SetActive(true);
     }
-    public void UseHealth(int amount)
-    {
 
+    private void SpawnUI(int amount)
+    {
+        if (amount == 0)
+            return;
+        Color toUse;
+        string text;
+        if (amount < 0)
+        {
+            toUse = negative;
+            text = "-" + (Mathf.Abs(amount)).ToString();
+        }
+        else
+        {
+            toUse = positive;
+            text = "+" + amount.ToString();
+        }
+        Pooler.GetObject<DamageNumberUI>(UiPF, transform.position + new Vector3(0,2,1), UiPF.transform.rotation,
+            onGet: (s) => s.ResetObj(text, toUse));
+    }
+    public bool UseHealth(int amount)
+    {
+        if(playerCurrentHealthSO.Int <= amount)
+        {
+            return false;
+        }
+        else
+        {
+            playerCurrentHealthSO.Int -= amount;
+            SpawnUI(-amount);
+            return true;
+        }
     }
     public void AdjustHealth(object sender, EventArgs e)
     {
@@ -107,7 +145,7 @@ public class PlayerSystems : MonoBehaviour
             playerCurrentHealthSO.Int = playerMaxHealth;
         else
             playerCurrentHealthSO.Int += adjustHealthSO.Int;
-
+        SpawnUI(adjustHealthSO.Int);
         adjustHealthSO.ResetValue();
         CheckHealth();
     }

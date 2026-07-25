@@ -47,6 +47,16 @@ public class PlayerAbilities : MonoBehaviour
             return;
         if (PCM.timer.timer.IsTimeZero(TimeCD))
         {
+            if (PCM.unlocks.isFreezeTime)
+            {
+                if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.freeze]))
+                    return;
+            }
+            else
+            {
+                if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.slow]))
+                    return;
+            }
             PCM.timer.timer.RestartTimer(TimeDur);
             isTimeSlow.Bool = true;
         }
@@ -57,6 +67,16 @@ public class PlayerAbilities : MonoBehaviour
             return;
         if (PCM.timer.timer.IsTimeZero(ArsenalCD))
         {
+            if (PCM.unlocks.isArsenalUnleash)
+            {
+                if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.arsenal]))
+                    return;
+            }
+            else
+            {
+                if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.rapid]))
+                    return;
+            }
             PCM.timer.timer.RestartTimer(ArsenalDur);
             isRapidFire.Bool = true;
         }
