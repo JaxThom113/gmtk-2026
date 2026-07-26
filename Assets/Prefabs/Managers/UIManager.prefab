@@ -67,3 +67,4 @@ MonoBehaviour:
   playerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   gameWaveSO: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
   gameWinSO: {fileID: 11400000, guid: 9f2a91e7a29dcb54282fad7df8908388, type: 2}
+  game: {fileID: 11400000, guid: 927af73ae125a564cbddb5c11a743a94, type: 2}

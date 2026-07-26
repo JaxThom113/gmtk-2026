@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IntSO
   Descirption: Current max health of the player
   _shouldReset: 1
-  _defaultValue: 30
-  _int: 30
+  _defaultValue: 60
+  _int: 60
