@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("Topbar")]
 	[SerializeField] private TextMeshProUGUI waveCounter;
+    [SerializeField] private float charactersPerSecond;
 	[SerializeField] private GameObject screen;
 	[SerializeField] private TextMeshProUGUI clock;
 	[SerializeField] private TextMeshProUGUI levelNumber;
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
     private Sequence flash;
     private Color clockTextColor;
     private int previousLevel;
+    private int previousWave;
 
     void OnEnable()
     {
@@ -72,8 +74,10 @@ public class UIManager : MonoBehaviour
     {
         UpdateClock();
         UpdateExperience();
-        UpdateWave();
         UpdateHotbar();
+        
+        if (gameWaveSO.Int != previousWave)
+            UpdateWave();
 
         if (playerLevelSO.Int != previousLevel && playerLevelSO.Int != 1)
             UpdateLevel();
@@ -88,6 +92,7 @@ public class UIManager : MonoBehaviour
         }
 
         previousLevel = playerLevelSO.Int;
+        previousWave = gameWaveSO.Int;
     }   
 
     private void UpdateClock()
@@ -156,10 +161,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateWave()
     {
-        waveCounter.text = $"Wave {gameWaveSO.Int}";
-
-        if (gameWaveSO.Int == 4)
-            waveCounter.text = $"Victory!";
+        StartCoroutine(UpdateText());
     }
 
     private void UpdateHotbar()
@@ -192,5 +194,24 @@ public class UIManager : MonoBehaviour
                 slot4.sprite = sprite; 
                 break;
         }
+    }
+
+    public IEnumerator UpdateText()
+    {
+        StartCoroutine(TypeRoutine($"Starting Wave {gameWaveSO.Int}..."));
+        yield return new WaitForSeconds(5);
+        StartCoroutine(TypeRoutine($"Wave {gameWaveSO.Int}"));
+    }
+
+    private IEnumerator TypeRoutine(string message)
+    {
+        waveCounter.text = "";
+
+        foreach (char c in message)
+        {
+            waveCounter.text += c;
+            yield return new WaitForSeconds(1f / charactersPerSecond);
+        }
+
     }
 }
