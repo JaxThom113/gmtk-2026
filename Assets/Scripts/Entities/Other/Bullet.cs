@@ -20,6 +20,11 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     protected BoolSO timeSlowedActive;
+    [SerializeField]
+    protected BoolSO isTimeFreezeUnlocked;
+
+    [SerializeField]
+    protected bool despawnOnHit;
     public void Initialise(int damage)
     {
         dmg = damage;
@@ -38,27 +43,34 @@ public class Bullet : MonoBehaviour
 
     private void SlowDown(object sender, EventArgs e)
     {
+        SlowDown();
+    }
+
+    private void SlowDown()
+    {
         if (timeSlowedActive.Bool)
         {
-            rb.linearVelocity = transform.up * speed * 0.5f;
+            Debug.Log(rb.linearVelocity.magnitude);
+            rb.linearVelocity = transform.forward * speed * 0.5f;
+            Debug.Log(rb.linearVelocity.magnitude);
         }
         else
         {
-            rb.linearVelocity = transform.up * speed;
+            rb.linearVelocity = transform.forward * speed;
         }
     }
     public void ResetObj()
     {
-        rb.linearVelocity = transform.up * speed;
+        SlowDown();
         despawnTimer.RestartTimer();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        adjustHealthSO.Int = dmg;
-        PoolObject();
-        // delete the bullet instance
-        //Destroy(gameObject);
+        // ignore collisions with other enemies
+        adjustHealthSO.Int = -dmg;
+        if(despawnOnHit)
+            PoolObject();
     }
 
     private void PoolObject()
@@ -67,6 +79,5 @@ public class Bullet : MonoBehaviour
             return;
         despawnTimer.StopAll();
         Pooler.PoolObject(gameObject);
-
     }
 }

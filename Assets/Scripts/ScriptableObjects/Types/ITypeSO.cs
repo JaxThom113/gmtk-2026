@@ -12,4 +12,6 @@ public interface ITypeCanReset
 {
     public bool ShouldReset { get; set; }
     public void ResetValue();
+
+    public void ResetListeners();
 }

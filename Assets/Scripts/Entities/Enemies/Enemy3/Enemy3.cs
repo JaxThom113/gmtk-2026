@@ -1,82 +1,100 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using Sezylrin.SimplePooling;
+using System;
 using UnityEngine;
 
 public class Enemy3 : Enemy
 {
+    [Header("Enemy3 Shooting")]
+    [SerializeField] private float startShootingRange = 20f;
+    [SerializeField] private float shootRate;
+    [SerializeField] private float chargeShotTime;
+    [SerializeField] private GameObject bulletPF;
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform aimPoint;
+    [SerializeField] private Transform calculatePoint;
 
-    [Header("Movement Settings")]
-	[SerializeField] private float speed;
-	[SerializeField] private float stepSize;
-	[SerializeField] private float stopDistance;
 
-    private Vector3 playerDir;
-    private Vector3 stepPos;
-    private bool stepping = false;
+    [Header("Enemy3 Animations")]
+    public AnimationClip moveAnim;
+    public AnimationClip shootMoveAnim;
+    public AnimationClip standShootAnim;
 
+    [Header("timer")]
+    [SerializeField]
+    private Timer chargetimer;
+    [Header("vfx")]
+    [SerializeField]
+    private ParticleSystem chargeVFX;
+    [SerializeField]
+    private ParticleSystem muzzleVFX;
 
-    /*
-        This enemy moves continuously toward the player in steps
-    */
-
-    
-    void FixedUpdate()
+    private float nextFireTime;
+    protected override void FixedUpdate()
     {
-        FacePlayer();
-        Move();
-    }
-
-    private void Move()
-    {
-        if (!stepping)
-            StartCoroutine(TakeStep());
-    }
-
-    private void FacePlayer()
-    {
-        // face toward the player
-        if (playerDir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(playerDir);
-    }
-
-    private IEnumerator TakeStep()
-    {
-        if (player == null)
-            yield break;
-
-        // move towards player
-        float playerDistance = Vector3.Distance(transform.position, player.transform.position);
-        if (playerDistance <= stopDistance)
-            yield break;
-
-        stepping = true;
-
-        playerDir = (player.transform.position - transform.position).normalized;
-
-        // don't overshoot the stop distance
-        float step = Mathf.Min(stepSize, playerDistance - stopDistance);
-        stepPos = transform.position + playerDir * step;
-
-        // take a step (move toward step position)
-        while (Vector3.Distance(rb.position, stepPos) > 0.01f)
+        if (isDead)
+            return;
+        if (chargetimer.IsTimeZero())
         {
-            Vector3 previousPosition = rb.position;
-
-            float move = speed * Time.fixedDeltaTime;
-            rb.MovePosition(Vector3.MoveTowards(rb.position, stepPos, move));
-
-            yield return new WaitForFixedUpdate();
-
-            // if the enemy barely moved this frame, its step was block, so break out of the loop
-            if ((rb.position - previousPosition).sqrMagnitude < 0.000001f)
-                break;
+            FacePlayer();
+            Move();
         }
+            
+        TryFire();
+    }
 
-        // snap exactly to the destination
-        rb.MovePosition(stepPos);
+    public override void ResetObj()
+    {
+        base.ResetObj();
+        //AimArm();
+        nextFireTime = Time.time + 2;
+        chargetimer.StopSpecific();
+    }
+    protected virtual void AimArm()
+    {
+        Vector3 playerDir = player.position - calculatePoint.position;
+        playerDir.y = 0;
+        playerDir.Normalize();
+        aimPoint.rotation = Quaternion.LookRotation(playerDir);
+    }
+    public override void Initialize(Transform playerTransform)
+    {
+        base.Initialize(playerTransform);
+        chargetimer.GenerateTimer();
+        chargetimer.SetTime(chargeShotTime, false);
+        chargetimer.SubscribeToTimerIsZero(Fire);
+    }
 
-        yield return new WaitForSeconds(1f);
+    private void TryFire()
+    {
+        if (player == null || bulletPF == null || Time.time < nextFireTime)
+            return;
 
-        stepping = false;
+        float dist = Vector3.Distance(transform.position, player.position);
+        if (dist > startShootingRange)
+            return;
+
+        nextFireTime = Time.time + shootRate + chargeShotTime;
+        chargetimer.RestartTimer();
+        chargeVFX.Play(true);
+        AimArm();
+    }
+
+    private void Fire(object sender, EventArgs e)
+    {
+        chargeVFX.Stop();
+        muzzleVFX.Play(true);
+        Pooler.GetObject<Bullet>(bulletPF, muzzle.position, muzzle.rotation,
+            onNewInstance: (b) => b.Initialise(damage),
+            onGet: (b) => b.ResetObj());
+
+    }
+    protected override AnimationClip PickClip(float distanceFromPlayer)
+    {
+        if (distanceFromPlayer <= stopDistance)
+            return standShootAnim;
+        if (distanceFromPlayer <= startShootingRange)
+            return shootMoveAnim;
+        return moveAnim;
     }
 }

@@ -12,6 +12,19 @@ public class ResetterOBJ : ScriptableObject
 {
     public List<ScriptableObject> ScriptableObjectsToReset = new List<ScriptableObject>();
 
+    public void ResetValues()
+    {
+        foreach (var obj in ScriptableObjectsToReset)
+        {
+            if(obj is ITypeCanReset)
+            {
+                (obj as ITypeCanReset).ResetValue();
+                (obj as ITypeCanReset).ResetListeners();
+
+            }
+        }
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Reset Objects")]
     public void ResetObjectsContext()

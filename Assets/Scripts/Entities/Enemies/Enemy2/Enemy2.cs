@@ -1,77 +1,110 @@
-using Sezylrin.SimplePooling;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Sezylrin.SimplePooling;
 using UnityEngine;
 
 public class Enemy2 : Enemy
 {
+    [Header("Enemy2 Ranges")]
+    [SerializeField] private float startShootingRange = 15f;
+    [SerializeField] private float fireCooldown = 0.5f;
+
     [Header("Gun References")]
     [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform shootPos;
+    [SerializeField] private Transform shootPosL;
+    [SerializeField] private Transform shootPosR;
 
-    [Header("Movement Settings")]
-	[SerializeField] private float speed;
-	[SerializeField] private float stopDistance;
+    [Header("Enemy2 Animations")]
+    public AnimationClip walkAnim;
+    public AnimationClip fireAnim;
 
-    private Vector3 playerDir;
-    private bool shooting;
+    [Header("MuzzleFlash")]
+    [SerializeField]
+    private ParticleSystem muzzleL;
+    [SerializeField]
+    private ParticleSystem muzzleR;
 
+    private float nextFireTime;
+    private bool isFiring;
 
-    /*
-        This enemy moves toward the player, stops at a certain distance, then shoots
-    */
-
-    
-
-    void FixedUpdate()
+    public override void ResetObj()
     {
-        FacePlayer();
-        Move();
+        base.ResetObj();
+        nextFireTime = Time.time + 2f;
+    }
+    protected override void FixedUpdate()
+    {        
+
+        base.FixedUpdate();
+        TryFire();
     }
 
-    private void Move()
+    protected override void TakeStep(float playerDistance)
     {
-        if (player == null)
+        playerDir = (player.position - transform.position).normalized;
+
+        if (playerDistance > stopDistance)
+        {
+            float step = Mathf.Min(stepSize, playerDistance - stopDistance);
+            stepPos = transform.position + playerDir * step;
+            rb.MovePosition(stepPos);
+        }
+
+        if (!isFiring && walkAnim != null)
+        {
+            lastClip = null;
+            PlaySynced(walkAnim);
+        }
+
+        timer.RestartTimer();
+    }
+
+    protected override AnimationClip PickClip(float distanceFromPlayer)
+    {
+        if (isFiring || distanceFromPlayer <= startShootingRange)
+            return fireAnim;
+        return walkAnim;
+    }
+
+    private void TryFire()
+    {
+        if (player == null || bullet == null || Time.time < nextFireTime)
             return;
-        
-        playerDir = (player.transform.position - transform.position).normalized;
 
-        // move towards player
-        if (Vector3.Distance(transform.position, player.transform.position) > stopDistance)
-        {
-            rb.linearVelocity = playerDir * speed;
-        }
+        float dist = Vector3.Distance(transform.position, player.position);
+        if (dist > startShootingRange)
+            return;
+
+        nextFireTime = Time.time + fireCooldown;
+        StartCoroutine(FireRoutine());
+    }
+
+    private IEnumerator FireRoutine()
+    {
+        isFiring = true;
+        if (fireAnim != null)
+            PlayClip(fireAnim);
+
+        Fire(shootPosL);
+        Fire(shootPosR);
+
+        float hold = fireAnim != null ? fireAnim.length : 0f;
+        if (hold > 0f)
+            yield return new WaitForSeconds(hold);
         else
-        {
-            rb.linearVelocity = Vector3.zero;
-            if (!shooting)
-                StartCoroutine(Shoot());
-        }
+            yield return null;
+
+        isFiring = false;
     }
 
-    private void FacePlayer()
+    private void Fire(Transform muzzle)
     {
-        // face toward the player
-        if (playerDir.sqrMagnitude > 0.001f)
-            transform.rotation = Quaternion.LookRotation(playerDir);
-    }
+        if (muzzle == null)
+            return;
 
-    private IEnumerator Shoot()
-    {
-        shooting = true;
-
-        yield return new WaitForSeconds(1f);
-        Pooler.GetObject<Bullet>(bullet, shootPos.position, shootPos.rotation,
+        muzzleL.Play(true);
+        muzzleR.Play(true);
+        Pooler.GetObject<Bullet>(bullet, muzzle.position, muzzle.rotation,
             onNewInstance: (b) => b.Initialise(damage),
-            onGet: (b) => b.ResetObj() 
-            );
-        //Instantiate(bullet, shootPos.position, shootPos.rotation);
-
-        shooting = false;
-
-        // if player moved, break and chase player again
-        if (Vector3.Distance(transform.position, player.transform.position) > stopDistance)
-            yield break;
+            onGet: (b) => b.ResetObj());
     }
 }

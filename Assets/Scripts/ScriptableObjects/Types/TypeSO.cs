@@ -62,6 +62,13 @@ public class ResetableTypeSO<T> : TypeSO<T>, ITypeSO<T>, ITypeCanReset
     public virtual void ResetValue()
     {
 
+
+    }
+
+    public void ResetListeners()
+    {
+        onValueChanged = null;
+        onValueUpdated = null;
     }
     /// <summary>
     /// Reset value after invoke is called, only works if called during the same invoke

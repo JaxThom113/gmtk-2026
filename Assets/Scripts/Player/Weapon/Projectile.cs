@@ -9,8 +9,10 @@ public class Projectile : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private Timer despawnTimer;
-
-
+    [SerializeField]
+    private List<TrailRenderer> trail = new List<TrailRenderer>();
+    [SerializeField]
+    private GameObject impactPF;
     private int pierce;
     private float damage;
     public void Initialize()
@@ -20,6 +22,11 @@ public class Projectile : MonoBehaviour
     }
     public void ResetObj(Vector3 dir, int pierce, float projectileLifeTime, float projectileSpeed, float damage)
     {
+        if(trail != null)
+        {
+            foreach (TrailRenderer trail in trail)
+                trail.Clear();
+        }
         this.damage = damage;
         this.pierce = pierce;
         rb.linearVelocity = dir * projectileSpeed;
@@ -28,7 +35,9 @@ public class Projectile : MonoBehaviour
     private List<Collider> hits = new List<Collider>();
     private void OnTriggerEnter(Collider other)
     {
-        
+        Vector3 sp = other.ClosestPoint(transform.position);
+        Pooler.GetObject<Impact>(impactPF, sp, Quaternion.identity,
+            onGet: (e) => e.OnSpawn());
         if (other.TryGetComponent(out IHealth health))
         {
             if (!hits.Contains(other))

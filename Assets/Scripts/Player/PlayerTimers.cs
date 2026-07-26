@@ -6,7 +6,9 @@ public enum PlayerTimer
     Iframes,
     DashCD,
     timeSlowDuration,
-    timeSlowCD
+    timeSlowCD,
+    fullArsenalDuration,
+    fullArsenalCD,
 }
 public class PlayerTimers : MonoBehaviour
 {
