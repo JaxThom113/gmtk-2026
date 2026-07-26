@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
     private List<Collider> hits = new List<Collider>();
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 sp = other.ClosestPoint(transform.position);
+        Vector3 sp = transform.position;
         Pooler.GetObject<Impact>(impactPF, sp, Quaternion.identity,
             onGet: (e) => e.OnSpawn());
         if (other.TryGetComponent(out IHealth health))

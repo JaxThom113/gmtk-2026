@@ -92,6 +92,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
     protected float defaultStepSize;
     public virtual void ResetObj(Transform playerTransform)
     {
+        player = playerTransform;
         CurrentHealth = MaxHealth;
         isDead = false; 
         animator.enabled = true;
