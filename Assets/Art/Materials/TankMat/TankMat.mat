@@ -94,8 +94,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: 1.1
-    - _DissolveScale: 269
+    - _DissolveAmount: 0.76
+    - _DissolveScale: 53
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _ENVIRONMENTREFLECTIONS_OFF: 0
@@ -105,7 +105,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineThickness: 0.05
+    - _OutlineThickness: 0.09
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -113,7 +113,7 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpiralStrength: 0
+    - _SpiralStrength: 9
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0

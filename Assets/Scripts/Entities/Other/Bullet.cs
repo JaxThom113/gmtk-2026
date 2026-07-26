@@ -20,6 +20,8 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     protected BoolSO timeSlowedActive;
+    [SerializeField]
+    protected BoolSO isTimeFreezeUnlocked;
 
     [SerializeField]
     protected bool despawnOnHit;
@@ -41,9 +43,16 @@ public class Bullet : MonoBehaviour
 
     private void SlowDown(object sender, EventArgs e)
     {
+        SlowDown();
+    }
+
+    private void SlowDown()
+    {
         if (timeSlowedActive.Bool)
         {
+            Debug.Log(rb.linearVelocity.magnitude);
             rb.linearVelocity = transform.forward * speed * 0.5f;
+            Debug.Log(rb.linearVelocity.magnitude);
         }
         else
         {
@@ -52,7 +61,7 @@ public class Bullet : MonoBehaviour
     }
     public void ResetObj()
     {
-        rb.linearVelocity = transform.forward * speed;
+        SlowDown();
         despawnTimer.RestartTimer();
     }
     

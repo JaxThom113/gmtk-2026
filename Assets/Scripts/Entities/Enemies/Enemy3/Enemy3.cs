@@ -22,7 +22,7 @@ public class Enemy3 : Enemy
 
     [Header("timer")]
     [SerializeField]
-    private Timer timer;
+    private Timer chargetimer;
     [Header("vfx")]
     [SerializeField]
     private ParticleSystem chargeVFX;
@@ -34,7 +34,7 @@ public class Enemy3 : Enemy
     {
         if (isDead)
             return;
-        if (timer.IsTimeZero())
+        if (chargetimer.IsTimeZero())
         {
             FacePlayer();
             Move();
@@ -48,7 +48,7 @@ public class Enemy3 : Enemy
         base.ResetObj();
         //AimArm();
         nextFireTime = Time.time + 2;
-        timer.StopSpecific();
+        chargetimer.StopSpecific();
     }
     protected virtual void AimArm()
     {
@@ -60,9 +60,9 @@ public class Enemy3 : Enemy
     public override void Initialize(Transform playerTransform)
     {
         base.Initialize(playerTransform);
-        timer.GenerateTimer();
-        timer.SetTime(chargeShotTime, false);
-        timer.SubscribeToTimerIsZero(Fire);
+        chargetimer.GenerateTimer();
+        chargetimer.SetTime(chargeShotTime, false);
+        chargetimer.SubscribeToTimerIsZero(Fire);
     }
 
     private void TryFire()
@@ -75,7 +75,7 @@ public class Enemy3 : Enemy
             return;
 
         nextFireTime = Time.time + shootRate + chargeShotTime;
-        timer.RestartTimer();
+        chargetimer.RestartTimer();
         chargeVFX.Play(true);
         AimArm();
     }

@@ -26,6 +26,11 @@ public class Enemy2 : Enemy
     private float nextFireTime;
     private bool isFiring;
 
+    public override void ResetObj()
+    {
+        base.ResetObj();
+        nextFireTime = Time.time + 2f;
+    }
     protected override void FixedUpdate()
     {        
 
@@ -33,7 +38,7 @@ public class Enemy2 : Enemy
         TryFire();
     }
 
-    protected override IEnumerator TakeStep(float playerDistance)
+    protected override void TakeStep(float playerDistance)
     {
         playerDir = (player.position - transform.position).normalized;
 
@@ -50,8 +55,7 @@ public class Enemy2 : Enemy
             PlaySynced(walkAnim);
         }
 
-        yield return new WaitForSeconds(stepDelay);
-        stepping = false;
+        timer.RestartTimer();
     }
 
     protected override AnimationClip PickClip(float distanceFromPlayer)

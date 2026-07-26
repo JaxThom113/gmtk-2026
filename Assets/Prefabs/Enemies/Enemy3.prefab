@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 4863255914472255625}
   - component: {fileID: 4734179055309544617}
   - component: {fileID: 2618723330171625050}
+  - component: {fileID: 633512315673005463}
   m_Layer: 6
   m_Name: Enemy3
   m_TagString: Untagged
@@ -179,6 +180,9 @@ MonoBehaviour:
   outlineLayer:
     serializedVersion: 2
     m_Bits: 4096
+  SpawnColour: {r: 18.59623, g: 3.6525242, b: 1.087703, a: 1}
+  spawnDur: 2
+  spiralness: 11
   damage: 20
   expPrefab: {fileID: 5715302546398428204, guid: 066cfeacbfe9a4e498d58e136d8f8c3c, type: 3}
   expAmount: 50
@@ -188,6 +192,7 @@ MonoBehaviour:
   stepDelay: 0.5
   animator: {fileID: 3393523575590432270}
   stepsPerCycle: 4
+  timer: {fileID: 633512315673005463}
   startShootingRange: 20
   shootRate: 4
   chargeShotTime: 1
@@ -198,10 +203,23 @@ MonoBehaviour:
   moveAnim: {fileID: -2740270701081539464, guid: af19edfa11d288647bc51cae7a8267a4, type: 3}
   shootMoveAnim: {fileID: 4038046056696962017, guid: af19edfa11d288647bc51cae7a8267a4, type: 3}
   standShootAnim: {fileID: -8394002128078502529, guid: af19edfa11d288647bc51cae7a8267a4, type: 3}
-  timer: {fileID: 2618723330171625050}
+  chargetimer: {fileID: 2618723330171625050}
   chargeVFX: {fileID: 1931177248581335171}
   muzzleVFX: {fileID: 4936006141635970810}
 --- !u!114 &2618723330171625050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809141406093818479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d47a8e66693c040b784fa30f1372bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Timer
+  <times>k__BackingField: []
+--- !u!114 &633512315673005463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
