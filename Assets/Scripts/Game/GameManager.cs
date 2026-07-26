@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private IntSO gameWave;
 	[SerializeField] private BoolSO playerDead;
 	[SerializeField] private BoolSO gameWin;
+	[SerializeField] private IntSO playerHealthDrainRate;
 
     [Header("Game Settings")]
     [SerializeField] private GameSO game;
@@ -159,8 +160,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(game.waveDelay);
         }
 
-        // win state
+        // win state, kill all enemies
         gameWin.Bool = true;
+        playerHealthDrainRate.Int = 0;
+        foreach (var enemy in enemyContainer.GetComponentsInChildren<Enemy>(true))
+            enemy.TakeDamage(10000);
     }
     
     private IEnumerator PlayWave(WaveSO wave)

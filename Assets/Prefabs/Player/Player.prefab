@@ -817,7 +817,7 @@ MonoBehaviour:
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
-  healthDrainRate: 1
+  healthDrainRate: {fileID: 11400000, guid: b51c827e9e9ef9b43b6a361c2555d0fd, type: 2}
   secondLength: 1
   iframeDur: 2
   shield: {fileID: 3828010976309394273}

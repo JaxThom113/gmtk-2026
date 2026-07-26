@@ -8037,14 +8037,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 342733495}
     - target: {fileID: 6621370289878240751, guid: aba5e1555a47780469dfa57c454d1171, type: 3}
-      propertyPath: playerSpawnPoint.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6621370289878240751, guid: aba5e1555a47780469dfa57c454d1171, type: 3}
-      propertyPath: spawnLocations.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6621370289878240751, guid: aba5e1555a47780469dfa57c454d1171, type: 3}
       propertyPath: 'spawnLocations.Array.data[0]'
       value: 
       objectReference: {fileID: 879001295}
