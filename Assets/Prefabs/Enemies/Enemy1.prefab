@@ -105,7 +105,7 @@ MonoBehaviour:
   timeFreezeUnlocked: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 2
-  playerTimeIncreaseAmount: 10
+  playerTimeIncreaseAmount: 5
   playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   hitbox: {fileID: 946093162428378614}
   deathColor: {r: 3.1616123, g: 0, b: 11.984314, a: 1}

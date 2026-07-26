@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3190259767440824760}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36fdbea26765fb41946839543dec406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerSpawnPoint: {x: 0, y: 1.25, z: -10}
+  playerSpawnPoint: {x: 0, y: 2.5, z: -10}
   playerPoint: {fileID: 0}
   player: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
   mainMenu: {fileID: 0}
@@ -57,13 +57,12 @@ MonoBehaviour:
   gameWave: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
   playerDead: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   gameWin: {fileID: 11400000, guid: 9f2a91e7a29dcb54282fad7df8908388, type: 2}
-  playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
-  playerSpeed: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
-  playerLevel: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
-  playerExperience: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
-  playerExperienceToNextLevel: {fileID: 11400000, guid: 62fababf323a31d41a80ea585e3b2568, type: 2}
-  playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
-  playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
-  playerWeaponFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
+  playerHealthDrainRate: {fileID: 11400000, guid: b51c827e9e9ef9b43b6a361c2555d0fd, type: 2}
   game: {fileID: 11400000, guid: 927af73ae125a564cbddb5c11a743a94, type: 2}
+  spawnLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   resetter: {fileID: 11400000, guid: c12029b9ffef12a41973512ada80e48a, type: 2}
+  healthVfxPlane: {fileID: 0}
