@@ -42,7 +42,7 @@ public class WeaponBase : MonoBehaviour
     }
     private void StartAttacking()
     {
-        attackTimer.ResumeTimer();
+        attackTimer.RestartTimer();
     }
     protected virtual void RapidMode(object sender, EventArgs e)
     {

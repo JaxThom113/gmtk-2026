@@ -37,7 +37,7 @@ public class Enemy1 : Enemy
     {
         if (isDead)
             return;
-
+        if(isFrozen) return;
         if (rb == null || player == null)
             return;
 
