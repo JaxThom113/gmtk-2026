@@ -28,17 +28,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private IntSO gameWave;
 	[SerializeField] private BoolSO playerDead;
 	[SerializeField] private BoolSO gameWin;
-	[SerializeField] private IntSO playerMaxHealth;
-	[SerializeField] private IntSO playerSpeed;
-	[SerializeField] private IntSO playerLevel;
-    [SerializeField] private IntSO playerExperience;
-    [SerializeField] private IntSO playerExperienceToNextLevel;
-	[SerializeField] private IntSO playerSelectedWeapon;
-	[SerializeField] private IntSO playerWeaponCount;
-	[SerializeField] private BoolSO playerWeaponFull;
 
-    [Header("Game to Play")]
+    [Header("Game Settings")]
     [SerializeField] private GameSO game;
+    [SerializeField] private List<Transform> spawnLocations;
 
     [Header("Resetter")]
 	[SerializeField] private ResetterOBJ resetter;
@@ -74,15 +67,6 @@ public class GameManager : MonoBehaviour
 
         // reset stats
         resetter.ResetValues();
-        // gameWave.Int = 1;
-        // playerMaxHealth.Int = 30;
-        // playerSpeed.Int = 8;
-        // playerLevel.Int = 1;
-        // playerExperience.Int = 0;
-        // playerExperienceToNextLevel.Int = 100;
-        // playerSelectedWeapon.Int = 0;
-        // playerWeaponCount.Int = 0;
-        // playerWeaponFull.Bool = false;
 
         enemyContainer = new GameObject("EnemyContainer");
 
@@ -144,7 +128,12 @@ public class GameManager : MonoBehaviour
             // spawn however many enemies requested on the SpawnSO
             for (int i = 0; i < spawn.count; i++)
             {
-                Vector3 randPos = new Vector3(Random.Range(0, 15), 1, Random.Range(0, 15));
+                Vector3 randPos;
+                if (spawnLocations == null)
+                    randPos = new Vector3(Random.Range(0, 15), 1.25f, Random.Range(0, 15));
+                else
+                    randPos = spawnLocations[Random.Range(0, spawnLocations.Count)].position;
+                
                 Pooler.GetObject<Enemy>(
                     spawn.enemy,
                     randPos,
