@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8159556221268386537}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1272,6 +1272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca172892ab3ea041ab6eae623b1767b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsMenu
+  musicValue: {fileID: 3234125451736544640}
+  musicSlider: {fileID: 4395589112932661590}
+  sfxValue: {fileID: 714177152510243884}
+  sfxSlider: {fileID: 8361550303895241679}
 --- !u!1 &6590303584381491395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1644,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3982185009920709227}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:

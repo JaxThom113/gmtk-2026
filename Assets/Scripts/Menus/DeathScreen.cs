@@ -15,6 +15,8 @@ public class DeathScreen : MonoBehaviour
 
     public void OnPlayAgainClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         OnDeathStartGame.Invoke();
 
         gameObject.SetActive(false);
@@ -22,6 +24,8 @@ public class DeathScreen : MonoBehaviour
 
     public void OnMainMenuClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         OnEndGame.Invoke();
 
         hud.SetActive(false);

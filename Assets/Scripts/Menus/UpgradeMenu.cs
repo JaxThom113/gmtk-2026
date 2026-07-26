@@ -55,6 +55,8 @@ public class UpgradeMenu : MonoBehaviour
 
     public void OnSkipClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         foreach (var card in currentCards)
             Destroy(card.gameObject);
         
@@ -101,7 +103,7 @@ public class UpgradeMenu : MonoBehaviour
 
     private void OnUpgradeSelected(UpgradeSO selectedUpgrade)
     {
-        Debug.Log($"Selected {selectedUpgrade.name} (Level {selectedUpgrade.level})!");
+        AudioManager.Instance.PlaySound(AudioRef.Click);
 
         switch (selectedUpgrade.type)
         {
