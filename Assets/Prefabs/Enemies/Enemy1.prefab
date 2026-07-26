@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy1
   timeSlowedActive: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
+  timeFreezeUnlocked: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 50
   playerTimeIncreaseAmount: 5

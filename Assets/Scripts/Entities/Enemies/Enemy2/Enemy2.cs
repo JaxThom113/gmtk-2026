@@ -35,6 +35,8 @@ public class Enemy2 : Enemy
     {        
 
         base.FixedUpdate();
+        if (isFrozen)
+            return;
         TryFire();
     }
 

@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3599304827549570289}
   - component: {fileID: 6684728254698192254}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,8 +736,8 @@ MonoBehaviour:
   duration: 1
   deathColor: {r: 32, g: 0, b: 0, a: 1}
   UiPF: {fileID: 4812161119680708746, guid: c7ac257b5693a3c499a0f20d58a56926, type: 3}
-  positive: {r: 0, g: 0.80655336, b: 1, a: 0}
-  negative: {r: 1, g: 0, b: 0, a: 0}
+  positive: {r: 0, g: 0.80655336, b: 1, a: 1}
+  negative: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0

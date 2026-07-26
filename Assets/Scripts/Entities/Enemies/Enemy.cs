@@ -9,8 +9,11 @@ public abstract class Enemy : MonoBehaviour, IHealth
 {
     [Header("core")]
     protected Transform player;
+    [Header("time slow")]
     [SerializeField]
     protected BoolSO timeSlowedActive;
+    [SerializeField]
+    protected BoolSO timeFreezeUnlocked;
     [Header("Health")]
     [field: SerializeField]
     public float CurrentHealth { get; set; }
@@ -76,6 +79,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
     protected AnimationClip lastClip;
 
     protected bool isDead = false;
+
+    protected float defaultStepSize;
     public virtual void ResetObj()
     {
         CurrentHealth = MaxHealth;
@@ -85,6 +90,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         hitbox.enabled = true;
         SpawnIn();
         stepping = false;
+        slowTime();
     }
 
     public virtual void Initialize(Transform playerTransform)
@@ -96,6 +102,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         timer.GenerateTimer();
         timer.SetTime(stepDelay, false);
         timer.SubscribeToTimerIsZero(StopStepping);
+        defaultStepSize = stepSize;
     }
 
     private void SpawnIn()
@@ -114,9 +121,31 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     protected virtual void slowTime(object sender, EventArgs e)
     {
-
+        slowTime();
     }
-
+    protected bool isFrozen;
+    protected virtual void slowTime()
+    {
+        if (timeSlowedActive.Bool)
+        {
+            if(timeFreezeUnlocked.Bool)
+            {
+                animator.speed = 0.01f;
+                isFrozen = true;
+            }
+            else
+            {
+                animator.speed = 0.5f;
+                stepSize *= 0.5f;
+            }
+        }
+        else
+        {
+            isFrozen = false;
+            animator.speed = 1;
+            stepSize = defaultStepSize;
+        }
+    }
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
@@ -154,7 +183,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
     {
         if (isDead)
             return;
-
+        if (isFrozen)
+            return;
         FacePlayer();
         Move();
     }
