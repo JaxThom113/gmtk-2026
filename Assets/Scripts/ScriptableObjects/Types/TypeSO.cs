@@ -10,7 +10,8 @@ public class TypeSO<T> : BaseTypeSO
 
     public virtual EventHandler onValueChanged { get; set; }
     public virtual EventHandler onValueUpdated { get; set; }
-    protected bool delayReset;
+    protected bool delayReset; 
+    #if UNITY_EDITOR
     protected override void OnValidate()
     {
         if (EditorApplication.isPlaying)
@@ -27,7 +28,7 @@ public class TypeSO<T> : BaseTypeSO
         onValueChanged = null;
     }
 
-    
+    #endif
 }
 
 public class BaseTypeSO : ScriptableObject

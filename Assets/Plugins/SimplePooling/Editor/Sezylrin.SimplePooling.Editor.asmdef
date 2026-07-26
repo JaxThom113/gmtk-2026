@@ -2,7 +2,7 @@
     "name": "Sezylrin.SimplePooling.Editor",
     "rootNamespace": "Sezylrin.SimplePooling.Editor",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": ["Editor"],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

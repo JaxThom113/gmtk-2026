@@ -24,7 +24,8 @@ public class AudioClipSO : ScriptableObject
     [HideInInspector] public float minSpatialBlend;
     [HideInInspector] public AudioRolloffMode rolloffMode;
 
-    [HideInInspector] public bool defaultSet;
+    [HideInInspector] public bool defaultSet; 
+    #if UNITY_EDITOR 
     public void SetDefaultSetting()
     {
         EditorUtility.SetDirty(this);
@@ -40,4 +41,5 @@ public class AudioClipSO : ScriptableObject
         minSpatialBlend = setting.minSpatialBlend;
         rolloffMode = setting.rolloffMode;
     }
+    #endif
 }
