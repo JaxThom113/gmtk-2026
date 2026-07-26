@@ -160,6 +160,7 @@ public class Enemy1 : Enemy
         attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
         PlayClip(attackAnimation);
 
+
         float end = Time.time + attackAnimation.length;
         while (Time.time < end)
         {
