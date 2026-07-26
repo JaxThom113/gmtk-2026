@@ -1,0 +1,143 @@
+using System;
+using DG.Tweening;
+using UnityEngine;
+
+public class HealthToShaderOffset : MonoBehaviour
+{
+    [SerializeField] IntSO playerHealthSO;
+    [SerializeField] IntSO adjustHealthSO; // PlayerAdjustTimeInt — negative = damage, positive = time gain
+    [SerializeField] Vector2 offsetPerUnit = new Vector2(0.01f, 0f);
+    [SerializeField] float secondLength = 1f; // match PlayerSystems secondLength
+    [SerializeField] float emissionMin = 1f;
+    [SerializeField] float emissionMax = 15f;
+    [SerializeField] float dissolveMin = 1.1f;
+    [SerializeField] float dissolveMax = 0.75f;
+    [SerializeField] float damagePulseDuration = 0.25f;
+
+    // Must match Shader Graph properties set to Global HLSL declaration
+    static readonly int OffsetId = Shader.PropertyToID("_Offset");
+    static readonly int EmissionMultiplyId = Shader.PropertyToID("_EmissionMultiply");
+    static readonly int DissolveAmountId = Shader.PropertyToID("_DissolveAmount");
+    static readonly int DamageSliderId = Shader.PropertyToID("_DamageSlider");
+
+    Vector2 _currentOffset;
+    float _currentEmission = 1f;
+    float _currentDissolve = 1.1f;
+    float _currentDamageSlider;
+    Tween _offsetTween;
+    Tween _damagePulseTween;
+
+    void OnEnable()
+    {
+        _currentOffset = offsetPerUnit * playerHealthSO.Int;
+        _currentEmission = emissionMin;
+        _currentDissolve = dissolveMin;
+        _currentDamageSlider = 0f;
+        Shader.SetGlobalVector(OffsetId, _currentOffset);
+        Shader.SetGlobalFloat(EmissionMultiplyId, _currentEmission);
+        Shader.SetGlobalFloat(DissolveAmountId, _currentDissolve);
+        Shader.SetGlobalFloat(DamageSliderId, _currentDamageSlider);
+
+        playerHealthSO.onValueChanged += OnHealthChanged;
+        if (adjustHealthSO != null)
+            adjustHealthSO.onValueChanged += OnAdjustHealth;
+    }
+
+    void OnDisable()
+    {
+        _offsetTween?.Kill();
+        _damagePulseTween?.Kill();
+        Shader.SetGlobalFloat(EmissionMultiplyId, emissionMin);
+        Shader.SetGlobalFloat(DissolveAmountId, dissolveMin);
+        Shader.SetGlobalFloat(DamageSliderId, 0f);
+        if (playerHealthSO != null)
+            playerHealthSO.onValueChanged -= OnHealthChanged;
+        if (adjustHealthSO != null)
+            adjustHealthSO.onValueChanged -= OnAdjustHealth;
+    }
+
+    void OnHealthChanged(object sender, EventArgs e)
+    {
+        Vector2 target = offsetPerUnit * playerHealthSO.Int;
+        _offsetTween?.Kill();
+        _offsetTween = DOTween.To(
+                () => _currentOffset,
+                v =>
+                {
+                    _currentOffset = v;
+                    Shader.SetGlobalVector(OffsetId, v);
+                },
+                target,
+                secondLength)
+            .SetEase(Ease.Linear);
+    }
+
+    void OnAdjustHealth(object sender, EventArgs e)
+    {
+        int adjust = adjustHealthSO.Int;
+        if (adjust == 0)
+            return;
+
+        // Damage → red (slider 1). Kill / time gain → blue (slider 0).
+        bool isDamage = adjust < 0;
+        PlayEmissionPulse(isDamage);
+    }
+
+    void PlayEmissionPulse(bool isDamage)
+    {
+        _damagePulseTween?.Kill();
+
+        float returnDuration = damagePulseDuration * 3f;
+
+        // Snap color: red for damage, blue (Default/Outline) for kill
+        _currentDamageSlider = isDamage ? 1f : 0f;
+        Shader.SetGlobalFloat(DamageSliderId, _currentDamageSlider);
+
+        _currentEmission = emissionMax;
+        _currentDissolve = dissolveMax;
+        Shader.SetGlobalFloat(EmissionMultiplyId, _currentEmission);
+        Shader.SetGlobalFloat(DissolveAmountId, _currentDissolve);
+
+        Sequence pulse = DOTween.Sequence();
+        pulse.Join(
+            DOTween.To(
+                    () => _currentEmission,
+                    v =>
+                    {
+                        _currentEmission = v;
+                        Shader.SetGlobalFloat(EmissionMultiplyId, v);
+                    },
+                    emissionMin,
+                    returnDuration)
+                .SetEase(Ease.Linear));
+        pulse.Join(
+            DOTween.To(
+                    () => _currentDissolve,
+                    v =>
+                    {
+                        _currentDissolve = v;
+                        Shader.SetGlobalFloat(DissolveAmountId, v);
+                    },
+                    dissolveMin,
+                    returnDuration)
+                .SetEase(Ease.Linear));
+
+        // Snap to red, then immediately linear-flash back (not after emission settles)
+        if (isDamage)
+        {
+            pulse.Join(
+                DOTween.To(
+                        () => _currentDamageSlider,
+                        v =>
+                        {
+                            _currentDamageSlider = v;
+                            Shader.SetGlobalFloat(DamageSliderId, v);
+                        },
+                        0f,
+                        damagePulseDuration / 3f)
+                    .SetEase(Ease.Linear));
+        }
+
+        _damagePulseTween = pulse;
+    }
+}
