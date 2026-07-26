@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
                     Quaternion.identity,
                     enemyContainer.transform,
                     onNewInstance: (e) => e.Initialize(spawnedPlayer != null ? spawnedPlayer.transform : playerPoint.transform),
-                    onGet: (e) => e.ResetObj()
+                    onGet: (e) => e.ResetObj(spawnedPlayer != null ? spawnedPlayer.transform : playerPoint.transform)
                 );
             }
 

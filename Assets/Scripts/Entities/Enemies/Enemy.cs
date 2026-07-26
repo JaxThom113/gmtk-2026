@@ -90,7 +90,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
     protected bool isDead = false;
 
     protected float defaultStepSize;
-    public virtual void ResetObj()
+    public virtual void ResetObj(Transform playerTransform)
     {
         CurrentHealth = MaxHealth;
         isDead = false; 
