@@ -73,12 +73,12 @@ Material:
     - _EmissionMultiply: 3.3
     - _OcclusionStrength: 1
     - _Opaque: 0
-    - _OutlineThickness: 0.002
+    - _OutlineThickness: 0.004
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
-    - _SpiralStrength: 9.2
+    - _SpiralStrength: 6
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _DamageColor: {r: 2, g: 0, b: 0, a: 1}
