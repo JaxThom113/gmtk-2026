@@ -40,6 +40,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private IntSO gameWaveSO;
     [SerializeField] private BoolSO gameWinSO;
 
+    [Header("Game Settings")]
+    [SerializeField] private GameSO game;
+
     bool isFlashing;
     private Sequence flash;
     private Color clockTextColor;
@@ -199,7 +202,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator UpdateText()
     {
         StartCoroutine(TypeRoutine($"Starting Wave {gameWaveSO.Int}..."));
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(game.waveDelay);
         StartCoroutine(TypeRoutine($"Wave {gameWaveSO.Int}"));
     }
 

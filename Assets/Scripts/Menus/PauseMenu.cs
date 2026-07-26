@@ -34,6 +34,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnResumeClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         gameObject.SetActive(false);
         overlay.SetActive(false);
         Time.timeScale = 1;
@@ -41,11 +43,15 @@ public class PauseMenu : MonoBehaviour
 
     public void OnOptionsClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         optionsMenu.gameObject.SetActive(true);
     }
 
     public void OnMainMenuClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         Time.timeScale = 1;
 
         OnEndGamePause.Invoke();

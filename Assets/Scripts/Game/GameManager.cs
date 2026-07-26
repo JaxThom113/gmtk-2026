@@ -5,6 +5,7 @@ using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using TMPro;
 using Sezylrin.SimplePooling;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class GameManager : MonoBehaviour
     private GameObject enemyContainer;
     private GameObject spawnedPlayer;
 
+    private AudioObj menuTrack; 
+    private AudioObj gameTrack; 
+
     void OnEnable()
     {
         mainMenu.OnStartGame += StartGame;
@@ -60,6 +64,14 @@ public class GameManager : MonoBehaviour
         mainMenu.OnStartGame -= StartGame;
         deathScreen.OnEndGame -= EndGame;
         winScreen.OnWinGame -= EndGame;
+    }
+
+    void Start()
+    {
+        // start menu music
+        if (gameTrack != null && gameTrack.IsSourcePlaying())
+            gameTrack.StopSound();
+        menuTrack = AudioManager.Instance.PlaySound(AudioRef.MenuMusic, true);
     }
 
     private void StartGame()
@@ -87,6 +99,21 @@ public class GameManager : MonoBehaviour
         uiManager.gameObject.SetActive(true);
         
         startWaves = StartCoroutine(PlayGame());
+
+        // start game music
+        if (menuTrack != null && menuTrack.IsSourcePlaying())
+            menuTrack.StopSound();
+
+        List<AudioRef> gameTracks = new List<AudioRef>()
+        {
+            AudioRef.Track1,
+            AudioRef.Track2,
+            AudioRef.Track3,
+            AudioRef.Track4,
+            AudioRef.Track5
+        };
+        int randTrack = Random.Range(0, gameTracks.Count);
+        gameTrack = AudioManager.Instance.PlaySound(gameTracks[randTrack], true);
     }
 
     private void EndGame()
@@ -108,6 +135,11 @@ public class GameManager : MonoBehaviour
             healthVfxPlane.SetActive(false);
 
         uiManager.gameObject.SetActive(false);
+
+        // start menu music
+        if (gameTrack != null && gameTrack.IsSourcePlaying())
+            gameTrack.StopSound();
+        menuTrack = AudioManager.Instance.PlaySound(AudioRef.MenuMusic, true);
     }
 
     private void RefreshGame()
@@ -118,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlayGame()
     {
-        yield return new WaitForSeconds(game.waveDelay);
+        yield return new WaitForSeconds(3);
 
         foreach (var wave in game.waves)
         {

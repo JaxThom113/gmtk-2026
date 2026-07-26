@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
 
     public void OnStartClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         OnStartGame.Invoke();
 
         hud.SetActive(true);
@@ -23,16 +25,22 @@ public class MainMenu : MonoBehaviour
 
     public void OnHowToPlayClicked()  
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         tutorialMenu.gameObject.SetActive(true);
     }
 
     public void OnOptionsClicked()  
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         optionsMenu.gameObject.SetActive(true);
     }
 
     public void OnQuitClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         Application.Quit();
     }
 }

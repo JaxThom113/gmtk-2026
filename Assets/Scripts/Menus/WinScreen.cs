@@ -15,6 +15,8 @@ public class WinScreen : MonoBehaviour
 
     public void OnPlayAgainClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         OnWinStartGame.Invoke();
 
         gameObject.SetActive(false);
@@ -22,6 +24,8 @@ public class WinScreen : MonoBehaviour
 
     public void OnMainMenuClicked()
     {
+        AudioManager.Instance.PlaySound(AudioRef.Click);
+
         OnWinGame.Invoke();
 
         hud.SetActive(false);

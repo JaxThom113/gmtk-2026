@@ -48,8 +48,8 @@ Material:
     - _RotSpeed: 15
     - _VertexFrequency: 4
     m_Colors:
-    - _Fresnel: {r: 4.190712, g: 0, b: 16.57115, a: 0}
-    - _FrontColor: {r: 0, g: 18.37917, b: 18.19921, a: 1}
+    - _Fresnel: {r: 2.095356, g: 0, b: 8.285575, a: 0}
+    - _FrontColor: {r: 0, g: 0.57434905, b: 0.5687253, a: 1}
     - _VertexAmount: {r: 0.1, g: 0.1, b: 0.1, a: 0}
     - _backColor: {r: 0.09019608, g: 0.1294118, b: 0.5490196, a: 1}
   m_BuildTextureStacks: []

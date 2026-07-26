@@ -130,6 +130,11 @@ public class PlayerSystems : MonoBehaviour
             return true;
         }
     }
+    [ContextMenu("why")]
+    public void testHealth()
+    {
+        adjustHealthSO.Int = -5;
+    }
     public void AdjustHealth(object sender, EventArgs e)
     {
         if(adjustHealthSO.Int < 0)

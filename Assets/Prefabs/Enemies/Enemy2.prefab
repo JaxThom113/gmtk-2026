@@ -24508,7 +24508,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -24554,8 +24554,8 @@ MonoBehaviour:
   timeSlowedActive: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
   timeFreezeUnlocked: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}
   <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 6
-  playerTimeIncreaseAmount: 5
+  <MaxHealth>k__BackingField: 4
+  playerTimeIncreaseAmount: 15
   playerTimeAdjustment: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   hitbox: {fileID: 8285160929733928142}
   deathColor: {r: 0.1551132, g: 7.999999, b: 0, a: 1}
@@ -24575,6 +24575,11 @@ MonoBehaviour:
   stepSize: 0.5
   stopDistance: 10
   stepDelay: 0.4
+  stepCollisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  separationPadding: 0.4
+  separationStrength: 0.5
   animator: {fileID: 1435391223461626580}
   stepsPerCycle: 4
   timer: {fileID: 7309332989670611687}
