@@ -203,7 +203,7 @@ MonoBehaviour:
   startShootingRange: 20
   shootRate: 4
   chargeShotTime: 1
-  bulletPF: {fileID: 5776959003838503944, guid: 2236f7f98ac302942b22e5212228ecc4, type: 3}
+  bulletPF: {fileID: 2785155816233761640, guid: a8d3dc71371407c45b2af9e5f5f99703, type: 3}
   muzzle: {fileID: 7981501905988676771}
   aimPoint: {fileID: 5507018173885946866}
   calculatePoint: {fileID: 5698327912427470140}
