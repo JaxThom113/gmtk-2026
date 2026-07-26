@@ -64,5 +64,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  upgrades:
+  - {fileID: 11400000, guid: 815546e23f3ec3745b4f4ad66258739a, type: 2}
+  - {fileID: 11400000, guid: 5ba4fad1713f4b947a226883ff8b5109, type: 2}
+  - {fileID: 11400000, guid: 505f9f46153598b4aa24fcbd40aa025e, type: 2}
+  - {fileID: 11400000, guid: 0efc07e072de615418bceb94fb8cb2cd, type: 2}
+  - {fileID: 11400000, guid: e37c49b7b8da2a04c8654d84a6ef4027, type: 2}
+  - {fileID: 11400000, guid: a224bbf412c3c20409e9a8910ea73e29, type: 2}
+  - {fileID: 11400000, guid: b83f6c8f10aee40479bc5cb4cb562f84, type: 2}
+  - {fileID: 11400000, guid: 0e0d0dc7bcb946149ac4a08739373d6a, type: 2}
+  - {fileID: 11400000, guid: 143295bbf13751a48996f0daa19d9e71, type: 2}
+  - {fileID: 11400000, guid: f8d58763400946f47b58825d371cf5c0, type: 2}
   resetter: {fileID: 11400000, guid: c12029b9ffef12a41973512ada80e48a, type: 2}
   healthVfxPlane: {fileID: 0}

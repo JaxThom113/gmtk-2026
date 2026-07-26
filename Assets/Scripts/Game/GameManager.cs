@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Settings")]
     [SerializeField] private GameSO game;
     [SerializeField] private List<Transform> spawnLocations;
+    [SerializeField] public List<UpgradeSO> upgrades;
 
     [Header("Resetter")]
 	[SerializeField] private ResetterOBJ resetter;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     private Coroutine startWaves;
     private GameObject enemyContainer;
     private GameObject spawnedPlayer;
+    private List<UpgradeSO> originalUpgrades;
 
     private AudioObj menuTrack; 
     private AudioObj gameTrack; 
@@ -73,6 +75,9 @@ public class GameManager : MonoBehaviour
         if (gameTrack != null && gameTrack.IsSourcePlaying())
             gameTrack.StopSound();
         menuTrack = AudioManager.Instance.PlaySound(AudioRef.MenuMusic, true);
+
+        // save a copy of the upgrades
+        originalUpgrades = new List<UpgradeSO>(upgrades);
     }
 
     private void StartGame()
@@ -119,7 +124,6 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-
         gamePlaying.Bool = false;
         cameraManager.ActivateCamera(0);
 
@@ -137,6 +141,9 @@ public class GameManager : MonoBehaviour
             healthVfxPlane.SetActive(false);
 
         uiManager.gameObject.SetActive(false);
+
+        // reset upgrades
+        upgrades = new List<UpgradeSO>(originalUpgrades);
 
         // start menu music
         if (gameTrack != null && gameTrack.IsSourcePlaying())

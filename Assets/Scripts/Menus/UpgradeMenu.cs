@@ -10,11 +10,13 @@ public class UpgradeMenu : MonoBehaviour
 {
     [Header("Upgrades")]
     [SerializeField] private UpgradeUI upgradeTemplate;
-    [SerializeField] private List<UpgradeSO> upgrades;
     [SerializeField] private List<RectTransform> slotPositions;
 
     [Header("Menu References")]
     [SerializeField] private GameObject overlay;
+
+    [Header("Manager References")]
+    [SerializeField] private GameManager gameManager;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerWeaponCount;
@@ -31,26 +33,24 @@ public class UpgradeMenu : MonoBehaviour
     {
         overlay.SetActive(true);
         Time.timeScale = 0;
+
         currentCards = new List<UpgradeUI>();
 
         // remove weapons if the player already has all slots filled
         if (playerWeaponCount.Int == 3)
         {
             var toRemove = new List<UpgradeSO>();
-            foreach (var upgrade in upgrades)
+            foreach (var upgrade in gameManager.upgrades)
             {
                 if (upgrade.type == UpgradeType.Weapon)
                     toRemove.Add(upgrade);
             }
 
             foreach (var upgrade in toRemove)
-                upgrades.Remove(upgrade);
+                gameManager.upgrades.Remove(upgrade);
         }
 
         StartCoroutine(SpawnCards());
-        
-        // if an upgrade with levels is selected, remove it from the upgrades list and 
-        // add its upgraded version so you don't see the level 1 version anymore
     }
 
     public void OnSkipClicked()
@@ -67,8 +67,10 @@ public class UpgradeMenu : MonoBehaviour
 
     private IEnumerator SpawnCards()
     {
+        // copy from the upgrades list in GameManager
+        List<UpgradeSO> remainingUpgrades = new List<UpgradeSO>(gameManager.upgrades);
+        
         // pick 3 random upgrades to display
-        List<UpgradeSO> remainingUpgrades = new List<UpgradeSO>(upgrades);
         for (int i = 0; i < 3; i++)
         {
             int randUpgrade = UnityEngine.Random.Range(0, remainingUpgrades.Count);
@@ -135,9 +137,9 @@ public class UpgradeMenu : MonoBehaviour
         }
 
         // remove the current upgrade, add the leveled up version if there is one
-        upgrades.Remove(selectedUpgrade);
+        gameManager.upgrades.Remove(selectedUpgrade);
         if (selectedUpgrade.nextLevel != null)
-            upgrades.Add(selectedUpgrade.nextLevel);
+            gameManager.upgrades.Add(selectedUpgrade.nextLevel);
 
         foreach (var card in currentCards)
             Destroy(card.gameObject);
