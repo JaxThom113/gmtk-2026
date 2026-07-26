@@ -6,6 +6,7 @@ public class HealthToShaderOffset : MonoBehaviour
 {
     [SerializeField] IntSO playerHealthSO;
     [SerializeField] IntSO adjustHealthSO; // PlayerAdjustTimeInt — negative = damage, positive = time gain
+    [SerializeField] BoolSO isTimeSlow;
     [SerializeField] Vector2 offsetPerUnit = new Vector2(0.01f, 0f);
     [SerializeField] float secondLength = 1f; // match PlayerSystems secondLength
     [SerializeField] float emissionMin = 1f;
@@ -26,6 +27,7 @@ public class HealthToShaderOffset : MonoBehaviour
     float _currentDamageSlider;
     Tween _offsetTween;
     Tween _damagePulseTween;
+    Tween _timeSlowEmissionTween;
 
     void OnEnable()
     {
@@ -41,12 +43,15 @@ public class HealthToShaderOffset : MonoBehaviour
         playerHealthSO.onValueChanged += OnHealthChanged;
         if (adjustHealthSO != null)
             adjustHealthSO.onValueChanged += OnAdjustHealth;
+        if (isTimeSlow != null)
+            isTimeSlow.onValueChanged += OnTimeSlowChanged;
     }
 
     void OnDisable()
     {
         _offsetTween?.Kill();
         _damagePulseTween?.Kill();
+        _timeSlowEmissionTween?.Kill();
         Shader.SetGlobalFloat(EmissionMultiplyId, emissionMin);
         Shader.SetGlobalFloat(DissolveAmountId, dissolveMin);
         Shader.SetGlobalFloat(DamageSliderId, 0f);
@@ -54,10 +59,16 @@ public class HealthToShaderOffset : MonoBehaviour
             playerHealthSO.onValueChanged -= OnHealthChanged;
         if (adjustHealthSO != null)
             adjustHealthSO.onValueChanged -= OnAdjustHealth;
+        if (isTimeSlow != null)
+            isTimeSlow.onValueChanged -= OnTimeSlowChanged;
     }
 
     void OnHealthChanged(object sender, EventArgs e)
     {
+        // Time slow freezes environment time displacement
+        if (isTimeSlow != null && isTimeSlow.Bool)
+            return;
+
         Vector2 target = offsetPerUnit * playerHealthSO.Int;
         _offsetTween?.Kill();
         _offsetTween = DOTween.To(
@@ -72,10 +83,55 @@ public class HealthToShaderOffset : MonoBehaviour
             .SetEase(Ease.Linear);
     }
 
+    void OnTimeSlowChanged(object sender, EventArgs e)
+    {
+        bool slowed = isTimeSlow.Bool;
+
+        if (slowed)
+        {
+            // Freeze time displacement where it is
+            _offsetTween?.Kill();
+            // Hold emission at max for the duration of slow
+            _damagePulseTween?.Kill();
+            _timeSlowEmissionTween?.Kill();
+            _timeSlowEmissionTween = DOTween.To(
+                    () => _currentEmission,
+                    v =>
+                    {
+                        _currentEmission = v;
+                        Shader.SetGlobalFloat(EmissionMultiplyId, v);
+                    },
+                    emissionMax,
+                    damagePulseDuration)
+                .SetEase(Ease.Linear);
+        }
+        else
+        {
+            // Revert emission, then catch offset up to current health
+            _timeSlowEmissionTween?.Kill();
+            _timeSlowEmissionTween = DOTween.To(
+                    () => _currentEmission,
+                    v =>
+                    {
+                        _currentEmission = v;
+                        Shader.SetGlobalFloat(EmissionMultiplyId, v);
+                    },
+                    emissionMin,
+                    damagePulseDuration)
+                .SetEase(Ease.Linear);
+
+            OnHealthChanged(null, EventArgs.Empty);
+        }
+    }
+
     void OnAdjustHealth(object sender, EventArgs e)
     {
         int adjust = adjustHealthSO.Int;
         if (adjust == 0)
+            return;
+
+        // Emission is owned by time-slow while active
+        if (isTimeSlow != null && isTimeSlow.Bool)
             return;
 
         bool isDamage = adjust < 0;
@@ -124,7 +180,7 @@ public class HealthToShaderOffset : MonoBehaviour
                             Shader.SetGlobalFloat(DamageSliderId, v);
                         },
                         0f,
-                        damagePulseDuration / 3f)
+                        damagePulseDuration / 1.5f)
                     .SetEase(Ease.Linear));
         }
 
