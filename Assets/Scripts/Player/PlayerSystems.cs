@@ -57,7 +57,7 @@ public class PlayerSystems : MonoBehaviour
     {
         scaleSize = shield.localScale;
         shield.localScale = Vector3.zero;
-        playerCurrentHealthSO.Int = playerMaxHealth;
+        playerCurrentHealthSO.Int = playerMaxHealth.Int;
         shield.gameObject.SetActive(false);
 
         PCM.timer.timer.ModifyTimerMode(timerPos, TimerMode.Precise);

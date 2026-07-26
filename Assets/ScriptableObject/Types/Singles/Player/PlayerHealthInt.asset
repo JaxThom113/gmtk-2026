@@ -15,4 +15,4 @@ MonoBehaviour:
   Descirption: Current player health
   _shouldReset: 0
   _defaultValue: 0
-  _int: 1
+  _int: 13

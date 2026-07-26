@@ -9,6 +9,7 @@ using Sezylrin.SimplePooling;
 public class GameManager : MonoBehaviour
 {
     [Header("Player Reference")]
+	[SerializeField] private Vector3 playerSpawnPoint;
 	[SerializeField] private Transform playerPoint;
 	[SerializeField] private GameObject player;
 
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         deathScreen.OnEndGame += EndGame;
         winScreen.OnWinGame += EndGame;
+        pauseMenu.OnEndGamePause += EndGame;
     }
 
     void OnDisable()
@@ -85,12 +87,12 @@ public class GameManager : MonoBehaviour
         enemyContainer = new GameObject("EnemyContainer");
 
         // spawn the player, give its InputManager a reference to the PauseMenu
-        spawnedPlayer = Instantiate(player, new Vector3(0, 1.25f, 0), Quaternion.identity);
+        spawnedPlayer = Instantiate(player, playerSpawnPoint, Quaternion.identity);
         var inputController = spawnedPlayer.GetComponent<InputController>();
         inputController?.SetPauseMenu(pauseMenu);
 
         // attach the camera follow point
-        playerPoint.position = new Vector3(0, 1.25f, 0);
+        playerPoint.position = playerSpawnPoint;
         playerPoint.SetParent(spawnedPlayer.transform, true);
 
         uiManager.gameObject.SetActive(true);

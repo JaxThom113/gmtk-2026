@@ -729,8 +729,9 @@ MonoBehaviour:
   playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
   healthDrainRate: 1
   secondLength: 1
-  PCM: {fileID: 3326492603616964188}
-  iframeDur: 0
+  iframeDur: 2
+  shield: {fileID: 2936264493178492317, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
+  shieldTweenDur: 0.25
   rend: {fileID: 6684728254698192254}
   duration: 1
   deathColor: {r: 32, g: 0, b: 0, a: 1}

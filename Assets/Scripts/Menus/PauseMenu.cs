@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("Menu References")]
     [SerializeField] private OptionsMenu optionsMenu;
+    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private GameObject hud;
     [SerializeField] private GameObject overlay;
 
     [Header("SO References")]
@@ -16,6 +19,8 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Camera Manager")]
     [SerializeField] private CameraManager cameraManager;
+
+    public event Action OnEndGamePause;
 
     public void OnPause(InputAction.CallbackContext context)
     {
@@ -47,11 +52,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OnMainMenuClicked()
     {
-        cameraManager.ActivateCamera(0);
-        gamePlaying.Bool = false;
+        Time.timeScale = 1;
 
-        gameObject.SetActive(true);
-        overlay.SetActive(true);
-        Time.timeScale = 0;
+        OnEndGamePause.Invoke();
+
+        gameObject.SetActive(false);
+        overlay.SetActive(false);
+        hud.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
     }
 }
