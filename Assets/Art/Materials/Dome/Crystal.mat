@@ -68,17 +68,17 @@ Material:
     - _DamageSlider: 0
     - _DamageTaken: 0
     - _DissolveAmount: 1.1
-    - _DissolveScale: 0
+    - _DissolveScale: 398
     - _ENVIRONMENTREFLECTIONS_OFF: 0
     - _EmissionMultiply: 4.95
     - _OcclusionStrength: 1
     - _Opaque: 1
-    - _OutlineThickness: 1
+    - _OutlineThickness: 0.592
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
-    - _SpiralStrength: 1.1
+    - _SpiralStrength: 0.8
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _DamageColor: {r: 2, g: 0, b: 0, a: 1}

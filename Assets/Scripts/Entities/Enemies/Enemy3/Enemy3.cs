@@ -39,10 +39,10 @@ public class Enemy3 : Enemy
             return;
         if (chargetimer.IsTimeZero())
         {
-            FacePlayer();
+           
             Move();
         }
-            
+         FacePlayer();
         TryFire();
     }
 
