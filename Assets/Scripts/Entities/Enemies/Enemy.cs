@@ -37,6 +37,15 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     private int layer;
 
+    [Header("Spawning")]
+    [SerializeField]
+    [ColorUsage(true, true)]
+    private Color SpawnColour; 
+    [SerializeField]
+    private float spawnDur;
+    [SerializeField]
+    private int spiralness;
+
     [Header("Enemy Stats")]
     [SerializeField] protected int damage;
 
@@ -61,6 +70,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
     [Header("Animation")]
     [SerializeField] protected Animator animator;
     [SerializeField] protected float stepsPerCycle = 4f;
+    [SerializeField]
+    protected Timer timer;
 
     protected AnimationClip lastClip;
 
@@ -72,6 +83,8 @@ public abstract class Enemy : MonoBehaviour, IHealth
         animator.enabled = true;
         outlineOBJ.layer = layer;
         hitbox.enabled = true;
+        SpawnIn();
+        stepping = false;
     }
 
     public virtual void Initialize(Transform playerTransform)
@@ -80,6 +93,23 @@ public abstract class Enemy : MonoBehaviour, IHealth
         rb = GetComponent<Rigidbody>();
         timeSlowedActive.onValueChanged += slowTime;
         layer = (int)Mathf.Log(outlineLayer.value, 2);
+        timer.GenerateTimer();
+        timer.SetTime(stepDelay, false);
+        timer.SubscribeToTimerIsZero(StopStepping);
+    }
+
+    private void SpawnIn()
+    {
+        outlineOBJ.layer = LayerMask.NameToLayer("Default");
+        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        block.SetColor("_OutlineColour", SpawnColour);
+        block.SetFloat("_SpiralStrength", spiralness);
+        DOVirtual.Float(0, 1.1f, spawnDur,
+                onVirtualUpdate: (f) =>
+                {
+                    block.SetFloat("_DissolveAmount", f);
+                    rend.SetPropertyBlock(block);
+                }).OnComplete(() => outlineOBJ.layer = layer);
     }
 
     protected virtual void slowTime(object sender, EventArgs e)
@@ -137,7 +167,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         float playerDistance = Vector3.Distance(transform.position, player.position);
 
         stepping = true;
-        StartCoroutine(TakeStep(playerDistance));
+        TakeStep(playerDistance);
     }
 
     protected virtual void FacePlayer()
@@ -148,7 +178,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
             transform.rotation = Quaternion.LookRotation(flat);
     }
 
-    protected virtual IEnumerator TakeStep(float playerDistance)
+    protected virtual void TakeStep(float playerDistance)
     {
         playerDir = (player.position - transform.position).normalized;
 
@@ -160,7 +190,11 @@ public abstract class Enemy : MonoBehaviour, IHealth
         }
 
         PlaySynced(PickClip(playerDistance));
-        yield return new WaitForSeconds(stepDelay);
+        timer.RestartTimer();
+    }
+    
+    protected void StopStepping(object sender, EventArgs e)
+    {
         stepping = false;
     }
 

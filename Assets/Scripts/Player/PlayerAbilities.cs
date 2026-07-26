@@ -45,6 +45,8 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (!PCM.unlocks.isSlowTime)
             return;
+        if (isTimeSlow.Bool)
+            return;
         if (PCM.timer.timer.IsTimeZero(TimeCD))
         {
             if (PCM.unlocks.isFreezeTime)

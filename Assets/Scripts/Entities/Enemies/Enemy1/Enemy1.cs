@@ -55,8 +55,21 @@ public class Enemy1 : Enemy
 
         FacePlayer();
         Move();
+        AttemptAttack();
     }
-
+    private void AttemptAttack()
+    {
+        if (isAttacking || isCooldown)
+            return;
+        float playerDistance = Vector3.Distance(transform.position, player.position);
+        if (playerDistance <= attackRange)
+        {
+            isAttacking = true;
+            attackTime = 0f;
+            attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+            StartCoroutine(AttackRoutine());
+        }
+    }
     protected override void FacePlayer()
     {
         if (isCooldown || isAttacking)
@@ -71,38 +84,26 @@ public class Enemy1 : Enemy
         rb.MoveRotation(Quaternion.LookRotation(playerDir));
     }
 
-    protected override IEnumerator TakeStep(float playerDistance)
+    protected override void TakeStep(float playerDistance)
     {
         Vector3 toPlayer = player.position - transform.position;
         toPlayer.y = 0f;
         if (toPlayer.sqrMagnitude > 0.001f)
             playerDir = toPlayer.normalized;
 
-        if (isCooldown)
+        timer.RestartTimer();
+        if (isCooldown || isAttacking)
         {
-            attackCollider.enabled = false;
-            while (isCooldown)
-                yield return null;
-            stepping = false;
-            yield break;
+            return;
         }
 
-        if (isAttacking)
+        /*if (isAttacking)
         {
-            yield return AttackRoutine();
-            stepping = false;
-            yield break;
-        }
+            StartCoroutine(AttackRoutine());
+            return;
+        }*/
 
-        if (playerDistance <= attackRange)
-        {
-            isAttacking = true;
-            attackTime = 0f;
-            attackLockRot = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
-            yield return AttackRoutine();
-            stepping = false;
-            yield break;
-        }
+        
 
         float step = Mathf.Min(stepSize, playerDistance - attackRange);
         if (step > 0f)
@@ -115,8 +116,6 @@ public class Enemy1 : Enemy
 
         attackCollider.enabled = false;
         PlaySynced(runAnim);
-        yield return new WaitForSeconds(stepDelay);
-        stepping = false;
     }
 
     private bool IsStepBlockedByEnemy1(Vector3 targetPos)
