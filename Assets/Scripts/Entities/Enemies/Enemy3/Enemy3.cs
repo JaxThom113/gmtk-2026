@@ -32,6 +32,9 @@ public class Enemy3 : Enemy
     private float nextFireTime;
     protected override void FixedUpdate()
     {
+        if (isFrozen)
+            return;
+
         if (isDead)
             return;
         if (chargetimer.IsTimeZero())

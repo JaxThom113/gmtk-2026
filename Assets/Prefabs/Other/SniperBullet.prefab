@@ -342,7 +342,16 @@ MonoBehaviour:
   despawnTime: 10
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   timeSlowedActive: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
+  isTimeFreezeUnlocked: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}
   despawnOnHit: 1
+  particles:
+  - {fileID: 1393785587376128537}
+  - {fileID: 7070644678005386897}
+  - {fileID: 4661080152162747632}
+  trailRenderers:
+  - {fileID: 5075111229623034521}
+  - {fileID: 858454323211081947}
+  - {fileID: 402440726766629766}
 --- !u!114 &2760515981638923203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,5 +949,20 @@ PrefabInstance:
 --- !u!4 &986765828221236704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4559080999636468818, guid: bc142210df3ec4545a4e3e1f21e00da7, type: 3}
+  m_PrefabInstance: {fileID: 3671751226750300594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1393785587376128537 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2423806116100273067, guid: bc142210df3ec4545a4e3e1f21e00da7, type: 3}
+  m_PrefabInstance: {fileID: 3671751226750300594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4661080152162747632 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8240415215158998338, guid: bc142210df3ec4545a4e3e1f21e00da7, type: 3}
+  m_PrefabInstance: {fileID: 3671751226750300594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7070644678005386897 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5830850444779986723, guid: bc142210df3ec4545a4e3e1f21e00da7, type: 3}
   m_PrefabInstance: {fileID: 3671751226750300594}
   m_PrefabAsset: {fileID: 0}

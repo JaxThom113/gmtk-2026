@@ -25,23 +25,17 @@ public class Enemy1 : Enemy
     {
         base.Initialize(playerTransform);
         attackCollider.enabled = false;
-
-        // Physics can't spin us — only this script sets yaw
-        rb.constraints = RigidbodyConstraints.FreezePositionY
-            | RigidbodyConstraints.FreezeRotationX
-            | RigidbodyConstraints.FreezeRotationY
-            | RigidbodyConstraints.FreezeRotationZ;
     }
 
     protected override void FixedUpdate()
     {
         if (isDead)
             return;
-
+        if(isFrozen) return;
         if (rb == null || player == null)
             return;
 
-        rb.angularVelocity = Vector3.zero;
+        SeparateFromNearbyEnemies();
 
         if (isAttacking)
         {
@@ -109,50 +103,11 @@ public class Enemy1 : Enemy
         if (step > 0f)
         {
             stepPos = transform.position + playerDir * step;
-            stepPos.y = transform.position.y;
-            if (!IsStepBlockedByEnemy1(stepPos))
-                rb.MovePosition(stepPos);
+            TryStepTo(stepPos);
         }
 
         attackCollider.enabled = false;
         PlaySynced(runAnim);
-    }
-
-    private bool IsStepBlockedByEnemy1(Vector3 targetPos)
-    {
-        var cap = GetComponent<CapsuleCollider>();
-        if (cap == null)
-            return false;
-
-        Vector3 delta = targetPos - transform.position;
-        float dist = delta.magnitude;
-        if (dist < 0.001f)
-            return false;
-
-        Vector3 dir = delta / dist;
-        float scale = Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
-        float radius = cap.radius * scale * 0.95f;
-
-        Vector3 axis = Vector3.up;
-        if (cap.direction == 0) axis = transform.right;
-        else if (cap.direction == 2) axis = transform.forward;
-
-        float height = Mathf.Max(0f, cap.height * transform.lossyScale.y - 2f * radius);
-        Vector3 worldCenter = transform.TransformPoint(cap.center);
-        Vector3 p1 = worldCenter + axis * (height * 0.5f);
-        Vector3 p2 = worldCenter - axis * (height * 0.5f);
-
-        int mask = LayerMask.GetMask("Enemy");
-        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist, mask, QueryTriggerInteraction.Ignore))
-        {
-            if (hit.collider != null
-                && hit.collider.gameObject != gameObject
-                && hit.rigidbody != rb
-                && hit.collider.GetComponentInParent<Enemy1>() != null)
-                return true;
-        }
-
-        return false;
     }
 
     private IEnumerator AttackRoutine()
@@ -165,7 +120,6 @@ public class Enemy1 : Enemy
         while (Time.time < end)
         {
             rb.MoveRotation(attackLockRot);
-            rb.angularVelocity = Vector3.zero;
             yield return null;
         }
 

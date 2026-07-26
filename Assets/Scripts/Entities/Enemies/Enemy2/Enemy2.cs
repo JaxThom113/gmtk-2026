@@ -33,20 +33,24 @@ public class Enemy2 : Enemy
     }
     protected override void FixedUpdate()
     {        
-
         base.FixedUpdate();
+        if (isFrozen)
+            return;
         TryFire();
     }
 
     protected override void TakeStep(float playerDistance)
     {
         playerDir = (player.position - transform.position).normalized;
+        playerDir.y = 0f;
+        if (playerDir.sqrMagnitude > 0.001f)
+            playerDir.Normalize();
 
         if (playerDistance > stopDistance)
         {
             float step = Mathf.Min(stepSize, playerDistance - stopDistance);
             stepPos = transform.position + playerDir * step;
-            rb.MovePosition(stepPos);
+            TryStepTo(stepPos);
         }
 
         if (!isFiring && walkAnim != null)
