@@ -14,12 +14,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject overlay;
 
-    [Header("SO References")]
-    [SerializeField] private BoolSO gamePlaying;
-
-    [Header("Camera Manager")]
-    [SerializeField] private CameraManager cameraManager;
-
     public event Action OnEndGamePause;
 
     public void OnPause(InputAction.CallbackContext context)

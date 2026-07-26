@@ -16,6 +16,9 @@ public class UpgradeMenu : MonoBehaviour
     [Header("Menu References")]
     [SerializeField] private GameObject overlay;
 
+    [Header("SO References")]
+    [SerializeField] private IntSO playerWeaponCount;
+
     [Header("Card Movement Settings")]
     [SerializeField] private float moveDistance = 40f;
     [SerializeField] private float duration = 0.4f;
@@ -29,6 +32,20 @@ public class UpgradeMenu : MonoBehaviour
         overlay.SetActive(true);
         Time.timeScale = 0;
         currentCards = new List<UpgradeUI>();
+
+        // remove weapons if the player already has all slots filled
+        if (playerWeaponCount.Int == 3)
+        {
+            var toRemove = new List<UpgradeSO>();
+            foreach (var upgrade in upgrades)
+            {
+                if (upgrade.type == UpgradeType.Weapon)
+                    toRemove.Add(upgrade);
+            }
+
+            foreach (var upgrade in toRemove)
+                upgrades.Remove(upgrade);
+        }
 
         StartCoroutine(SpawnCards());
         

@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: 8740765126297464253}
   - {fileID: 2338199052354013288}
   overlay: {fileID: 0}
+  playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
   moveDistance: 40
   duration: 0.4
 --- !u!1 &6541835147439115034
