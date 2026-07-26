@@ -3182,6 +3182,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9054652397533259094, guid: aba5e1555a47780469dfa57c454d1171, type: 3}
   m_PrefabInstance: {fileID: 5720737720588979575}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &806026305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6621370289878240751, guid: aba5e1555a47780469dfa57c454d1171, type: 3}
+  m_PrefabInstance: {fileID: 5720737720588979575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36fdbea26765fb41946839543dec406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!4 &834775217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e72016f680e053842ad56db2a957daaa, type: 3}
@@ -4652,9 +4663,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 582748666}
     - target: {fileID: 2700392842229595262, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
-      propertyPath: upgrades.Array.size
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 806026305}
     - target: {fileID: 4563873622669743724, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4738,10 +4749,6 @@ PrefabInstance:
     - target: {fileID: 4626579040184842363, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
       propertyPath: m_Name
       value: UpgradeMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626579040184842363, guid: 1810a71c18fa6f845bf3888c80d28931, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
