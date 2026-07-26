@@ -92,6 +92,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         CurrentHealth = MaxHealth;
         isDead = false; 
         animator.enabled = true;
+        lastClip = null;
         outlineOBJ.layer = layer;
         hitbox.enabled = true;
         SpawnIn();

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   spawns:
+  - {fileID: 11400000, guid: a5e18ea2a6cfe5343a921e9113984329, type: 2}
   - {fileID: 11400000, guid: 246fdfe26ae621e48868cd04ea097286, type: 2}
-  - {fileID: 11400000, guid: 246fdfe26ae621e48868cd04ea097286, type: 2}
-  - {fileID: 11400000, guid: 246fdfe26ae621e48868cd04ea097286, type: 2}
+  - {fileID: 11400000, guid: fa9aa6dbebd96ed4cbb11720726f757f, type: 2}
   - {fileID: 11400000, guid: 246fdfe26ae621e48868cd04ea097286, type: 2}
   - {fileID: 11400000, guid: 246fdfe26ae621e48868cd04ea097286, type: 2}
