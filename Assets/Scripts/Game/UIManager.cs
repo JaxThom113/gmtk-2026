@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UpgradeMenu upgradeMenu;
     [SerializeField] private DeathScreen deathScreen;
     [SerializeField] private WinScreen winScreen;
+    [SerializeField] private UnlockAbility unlockAbility;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
@@ -59,6 +60,7 @@ public class UIManager : MonoBehaviour
         slot2.gameObject.SetActive(false);
         slot3.gameObject.SetActive(false);
         slot4.gameObject.SetActive(false);
+        unlockAbility.ResetIcon();
     }
 
     void OnDisable()

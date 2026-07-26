@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
     private GameObject modelObj;
     [SerializeField]
     private LayerMask playerLayer;
+    [SerializeField]
+    private FloatSO dashCDSO;
 
     [Header("Animation")]
     [SerializeField]
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dashCDSO.Float = PCM.timer.timer.RatioOfTimePassed(DashCD);
     }
 
     private void FixedUpdate()

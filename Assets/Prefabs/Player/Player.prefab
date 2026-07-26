@@ -759,6 +759,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  dashCDSO: {fileID: 11400000, guid: 0cf54d63b5f7e5b4aaeaa0a203eb140c, type: 2}
   animator: {fileID: 2708490409788090358}
   modelTurnSpeed: 5
   cameraGroundCollisionMask:
@@ -960,6 +961,8 @@ MonoBehaviour:
   isRapidFire: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
   timeArsenalDuration: 5
   timeArsenalCD: 10
+  rapidRatioSO: {fileID: 11400000, guid: 9ad5945e64c5fed499d3395249d76f5d, type: 2}
+  slowRatioSO: {fileID: 11400000, guid: 2c287ebfac5b3bb4886a68aedfe3cc1a, type: 2}
 --- !u!1 &9190717472721306908
 GameObject:
   m_ObjectHideFlags: 0
