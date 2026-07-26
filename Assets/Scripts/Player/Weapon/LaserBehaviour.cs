@@ -15,10 +15,14 @@ public class LaserBehaviour : WeaponBase
     private ParticleSystem charge;
     [SerializeField]
     private ParticleSystem impact;
+
+    private AudioObj audioObj;
     public override void Attack(Vector3 attackDir)
     {
         if (!laserStarted)
         {
+            audioObj = AudioManager.Instance.PlaySound(AudioRef.Laser, true, volume);
+            audioObj.FadeIn(0, volume, 0.2f);
             impact.Play(true);
             laserStarted = true;
             charge.Play(true);
@@ -34,7 +38,6 @@ public class LaserBehaviour : WeaponBase
             {
                 health.TakeDamage(damage);
             }
-
         }
     }
 
@@ -46,6 +49,7 @@ public class LaserBehaviour : WeaponBase
 
     public void StopLaser()
     {
+        audioObj.StopSound(true, 0.2f);
         anim.Play("Idle");
         laserStarted=false;
         charge.Stop();

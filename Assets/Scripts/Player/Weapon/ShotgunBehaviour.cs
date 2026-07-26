@@ -11,6 +11,7 @@ public class ShotgunBehaviour : RangedWeapon
 
     public override void Attack(Vector3 attackDir)
     {
+        base.Attack(attackDir);
         anim.Play("Attack");
         particles.Play();
         Vector2 initial = new Vector2(attackDir.x, attackDir.z).normalized;

@@ -732,6 +732,7 @@ MonoBehaviour:
   iframeDur: 2
   shield: {fileID: 2936264493178492317, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
   shieldTweenDur: 0.25
+  volume: 0.7
   rend: {fileID: 6684728254698192254}
   duration: 1
   deathColor: {r: 32, g: 0, b: 0, a: 1}
