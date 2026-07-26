@@ -30,9 +30,9 @@ public class Enemy1 : Enemy
         attackCollider.enabled = false;
     }
 
-    public override void ResetObj()
+    public override void ResetObj(Transform playerTransform)
     {
-        base.ResetObj();
+        base.ResetObj(playerTransform);
         isCooldown = false;
         isAttacking = false;
         attackTime = 0f;

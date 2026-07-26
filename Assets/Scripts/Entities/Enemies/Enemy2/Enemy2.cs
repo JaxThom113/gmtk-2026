@@ -26,9 +26,9 @@ public class Enemy2 : Enemy
     private float nextFireTime;
     private bool isFiring;
 
-    public override void ResetObj()
+    public override void ResetObj(Transform playerTransform)
     {
-        base.ResetObj();
+        base.ResetObj(playerTransform);
         nextFireTime = Time.time + 2f;
     }
     protected override void FixedUpdate()

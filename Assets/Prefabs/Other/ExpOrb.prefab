@@ -15121,6 +15121,7 @@ MonoBehaviour:
   adjustExp: {fileID: 11400000, guid: 7dc50d259182c0245bddff6633bfcc5f, type: 2}
   tweenDur: 0.5
   volume: 0
+  gamePlaying: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
 --- !u!135 &338971975288940804
 SphereCollider:
   m_ObjectHideFlags: 0
