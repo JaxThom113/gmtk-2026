@@ -19,6 +19,7 @@ public class WeaponBase : MonoBehaviour
     protected BoolSO isArsenalUnlocked;
     [SerializeField]
     protected Timer attackTimer;
+    public Costs weaponType;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {

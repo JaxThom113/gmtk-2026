@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerComponentManager PCM;
 
+   
+
     [SerializeField]
     private BoolSO isPlayerDeadSO;
 
@@ -56,6 +58,19 @@ public class PlayerController : MonoBehaviour
     private LayerMask enemyLayer;
     [SerializeField]
     private float dashCD;
+    [SerializeField]
+    private SkinnedMeshRenderer rend;
+    [SerializeField]
+    [ColorUsage(true, true)]
+    private Color dashColor;
+    [SerializeField]
+    private float spiralness;
+    [SerializeField]
+    private float blinkDuration;
+    [SerializeField]
+    private GameObject modelObj;
+    [SerializeField]
+    private LayerMask playerLayer;
 
     [Header("Animation")]
     [SerializeField]
@@ -130,8 +145,11 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking = false;
     public void AttemptAttack(InputAction.CallbackContext context)
     {
-        isAttacking = true;
-        PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking);
+        
+        isAttacking = true; 
+        
+        PCM.timer.timer.SubscribeToTimerIsZero(CDTimer, StartAttacking); 
+        
         if (PCM.timer.timer.IsTimeZero(CDTimer))
         {
             Attack();
@@ -161,8 +179,17 @@ public class PlayerController : MonoBehaviour
     }
     public void Attack()
     {
-        activeWeapon.Attack((mousePos - transform.position).normalized);
         PCM.timer.timer.SetTime(CDTimer, activeWeapon.GetAttackInterval());
+        if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[activeWeapon.weaponType]))
+        {
+            if (activeWeapon is LaserBehaviour)
+            {
+                (activeWeapon as LaserBehaviour).StopLaser();
+            }
+            return;
+        }
+        activeWeapon.Attack((mousePos - transform.position).normalized);
+        
     }
 
     public Vector3 GetAttackDir()
@@ -197,10 +224,56 @@ public class PlayerController : MonoBehaviour
     {
         if (PCM.unlocks.isBlinkUnlocked)
         {
-            transform.position = direction * dashDistance + transform.position;
+            if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.blink]))
+            {
+                return;
+            }
+            MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_OutlineColour", dashColor);
+            propertyBlock.SetFloat("_SpiralStrength", spiralness);
+            modelObj.layer = LayerMask.NameToLayer("Default");
+
+            DOVirtual.Float(1.1f, 0, blinkDuration,
+                onVirtualUpdate: (f) =>
+                {
+                    propertyBlock.SetFloat("_DissolveAmount", f);
+                    rend.SetPropertyBlock(propertyBlock);
+                }
+                ).OnComplete(
+                () =>
+                {
+                    transform.position = direction * dashDistance + transform.position;
+                    Collider[] enemies = Physics.OverlapSphere(transform.position, 3, enemyLayer);
+                    foreach (Collider c in enemies)
+                    {
+                        if(c.TryGetComponent(out Enemy enemy))
+                        {
+                            Vector3 knockpackDir = c.transform.position - transform.position;
+                            knockpackDir.y = 0;
+                            knockpackDir.Normalize();
+                            enemy.TakeKnockback(knockpackDir, 3);
+                        }
+
+                    }
+                    DOVirtual.Float(0, 1.1f, blinkDuration,
+                    onVirtualUpdate: (f) =>
+                    {
+                        propertyBlock.SetFloat("_DissolveAmount", f);
+                        rend.SetPropertyBlock(propertyBlock);
+                    }
+                    ).OnComplete(()=>
+                    {
+                        modelObj.layer = LayerMask.NameToLayer("Player");
+                    });
+                }
+                );
         }
         else
         {
+            if (!PCM.systems.UseHealth(PCM.unlocks.timeCost[Costs.dash]))
+            {
+                return;
+            }
             playerCol.excludeLayers += enemyLayer;
             state = playerState.dashing;
             Tween tween = transform.DOMove(direction * dashDistance + transform.position, dashDuration)

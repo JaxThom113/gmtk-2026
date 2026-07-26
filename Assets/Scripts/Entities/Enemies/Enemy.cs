@@ -20,6 +20,22 @@ public abstract class Enemy : MonoBehaviour, IHealth
     protected int playerTimeIncreaseAmount;
     [SerializeField]
     protected IntSO playerTimeAdjustment;
+    [SerializeField]
+    protected Collider hitbox;
+    [Header("Disintegrate")]
+    [SerializeField]
+    [ColorUsage(true,true)]
+    private Color deathColor;
+    [SerializeField]
+    private float deathTimeDur;
+    [SerializeField]
+    private SkinnedMeshRenderer rend;
+    [SerializeField]
+    private GameObject outlineOBJ;
+    [SerializeField]
+    private LayerMask outlineLayer;
+
+    private int layer;
 
     [Header("Enemy Stats")]
     [SerializeField] protected int damage;
@@ -48,9 +64,14 @@ public abstract class Enemy : MonoBehaviour, IHealth
 
     protected AnimationClip lastClip;
 
+    protected bool isDead = false;
     public virtual void ResetObj()
     {
         CurrentHealth = MaxHealth;
+        isDead = false; 
+        animator.enabled = true;
+        outlineOBJ.layer = layer;
+        hitbox.enabled = true;
     }
 
     public virtual void Initialize(Transform playerTransform)
@@ -58,6 +79,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         player = playerTransform;
         rb = GetComponent<Rigidbody>();
         timeSlowedActive.onValueChanged += slowTime;
+        layer = (int)Mathf.Log(outlineLayer.value, 2);
     }
 
     protected virtual void slowTime(object sender, EventArgs e)
@@ -70,6 +92,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
+            hitbox.enabled = false;
             playerTimeAdjustment.Int += playerTimeIncreaseAmount;
             Pooler.GetObject<ExpOrb>(expPrefab, transform.position, Quaternion.identity,
                 onGet: (e) =>
@@ -78,12 +101,30 @@ public abstract class Enemy : MonoBehaviour, IHealth
                     e.SetExpAmount(expAmount);
                 }
                 );
-            Pooler.PoolObject(gameObject);
+
+            isDead = true;
+
+            outlineOBJ.layer = LayerMask.NameToLayer("Default");
+
+            animator.enabled = false;
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            block.SetColor("_OutlineColour", deathColor);
+            block.SetFloat("_SpiralStrength", 0);
+            DOVirtual.Float(1.1f,0,deathTimeDur,
+                onVirtualUpdate: (f) =>
+                {
+                    block.SetFloat("_DissolveAmount", f);
+                    rend.SetPropertyBlock(block);
+                }).OnComplete(() => Pooler.PoolObject(gameObject));
+
         }
     }
 
     protected virtual void FixedUpdate()
     {
+        if (isDead)
+            return;
+
         FacePlayer();
         Move();
     }

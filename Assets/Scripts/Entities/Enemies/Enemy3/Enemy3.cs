@@ -32,6 +32,8 @@ public class Enemy3 : Enemy
     private float nextFireTime;
     protected override void FixedUpdate()
     {
+        if (isDead)
+            return;
         if (timer.IsTimeZero())
         {
             FacePlayer();
@@ -39,6 +41,14 @@ public class Enemy3 : Enemy
         }
             
         TryFire();
+    }
+
+    public override void ResetObj()
+    {
+        base.ResetObj();
+        //AimArm();
+        nextFireTime = Time.time + 2;
+        timer.StopSpecific();
     }
     protected virtual void AimArm()
     {

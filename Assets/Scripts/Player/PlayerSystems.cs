@@ -1,9 +1,13 @@
 using DG.Tweening;
+using Sezylrin.SimplePooling;
 using System;
 using UnityEngine;
 
 public class PlayerSystems : MonoBehaviour
 {
+    [Header("Core")]
+    [SerializeField]
+    private PlayerComponentManager PCM;
     [Header("SO References")]
     [SerializeField]
     private IntSO playerCurrentHealthSO;
@@ -19,25 +23,42 @@ public class PlayerSystems : MonoBehaviour
     private int healthDrainRate; // how many seconds are subtracted per second
     [SerializeField]
     private float secondLength; // length of a second, decrease to make seconds go by faster
-
-    [Header("Other")]
-    [SerializeField]
-    private PlayerComponentManager PCM;
+    [Header("Iframe")]
     [SerializeField]
     private float iframeDur;
+    [SerializeField]
+    private Transform shield;
+    private Vector3 scaleSize;
+    [SerializeField]
+    private float shieldTweenDur;
 
     [Header("death")]
     [SerializeField]
     private SkinnedMeshRenderer rend;
     [SerializeField]
     float duration;
+    [ColorUsage(true, true),SerializeField]
+    private Color deathColor;
+
+    [Header("UI")]
+    [SerializeField]
+    private GameObject UiPF;
+    [SerializeField]
+    [ColorUsage(true)]
+    private Color positive;
+    [SerializeField]
+    [ColorUsage(true)]
+    private Color negative;
 
     private int timerPos = (int)PlayerTimer.healthDrain;
     private int iFrames = (int)PlayerTimer.Iframes;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerCurrentHealthSO.Int = playerMaxHealth.Int;
+        scaleSize = shield.localScale;
+        shield.localScale = Vector3.zero;
+        playerCurrentHealthSO.Int = playerMaxHealth;
+        shield.gameObject.SetActive(false);
 
         PCM.timer.timer.ModifyTimerMode(timerPos, TimerMode.Precise);
         PCM.timer.timer.SetTime(timerPos, secondLength);
@@ -46,6 +67,8 @@ public class PlayerSystems : MonoBehaviour
         PCM.timer.timer.SetAdditionalLoops( timerPos, -1);
         PCM.timer.timer.SubscribeToTimerIsZero(timerPos , OnHealthDrain);
         adjustHealthSO.onValueChanged += AdjustHealth;
+
+        PCM.timer.timer.SubscribeToTimerIsZero(iFrames, IframeOver);
     }
 
     private void OnDisable()
@@ -65,6 +88,45 @@ public class PlayerSystems : MonoBehaviour
         CheckHealth();
     }
 
+    private void IframeOver(object sender, EventArgs e)
+    {
+        shield.transform.DOScale(Vector3.zero, shieldTweenDur)
+            .SetEase(Ease.InBack)
+            .onComplete += () => shield.gameObject.SetActive(true);
+    }
+
+    private void SpawnUI(int amount)
+    {
+        if (amount == 0)
+            return;
+        Color toUse;
+        string text;
+        if (amount < 0)
+        {
+            toUse = negative;
+            text = "-" + (Mathf.Abs(amount)).ToString();
+        }
+        else
+        {
+            toUse = positive;
+            text = "+" + amount.ToString();
+        }
+        Pooler.GetObject<DamageNumberUI>(UiPF, transform.position + new Vector3(0,2,1), UiPF.transform.rotation,
+            onGet: (s) => s.ResetObj(text, toUse));
+    }
+    public bool UseHealth(int amount)
+    {
+        if(playerCurrentHealthSO.Int <= amount)
+        {
+            return false;
+        }
+        else
+        {
+            playerCurrentHealthSO.Int -= amount;
+            SpawnUI(-amount);
+            return true;
+        }
+    }
     public void AdjustHealth(object sender, EventArgs e)
     {
         if(adjustHealthSO.Int < 0)
@@ -77,6 +139,9 @@ public class PlayerSystems : MonoBehaviour
             else
             {
                 PCM.timer.timer.SetTime(iFrames, iframeDur);
+                shield.gameObject.SetActive(true);
+                shield.transform.DOScale(scaleSize,shieldTweenDur)
+                    .SetEase(Ease.OutBack);
             }
         }
 
@@ -85,7 +150,7 @@ public class PlayerSystems : MonoBehaviour
             playerCurrentHealthSO.Int = playerMaxHealth.Int;
         else
             playerCurrentHealthSO.Int += adjustHealthSO.Int;
-
+        SpawnUI(adjustHealthSO.Int);
         adjustHealthSO.ResetValue();
         CheckHealth();
     }
@@ -98,7 +163,9 @@ public class PlayerSystems : MonoBehaviour
             PCM.timer.timer.StopSpecific(timerPos);
             PCM.input.DisablePlayerInputs();
             MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
-            
+
+            propertyBlock.SetColor("_OutlineColour", deathColor);
+            propertyBlock.SetFloat("_SpiralStrength", 0);
             DOVirtual.Float(1.1f, 0, duration, onVirtualUpdate: (f) =>
             {
                 propertyBlock.SetFloat("_DissolveAmount", f);
