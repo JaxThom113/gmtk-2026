@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 2360809967272669609}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25651553, y: 1.1201686, z: 0.051133577}
+  m_LocalPosition: {x: 0.25651553, y: 1.2, z: 0.051133577}
   m_LocalScale: {x: 6.802993, y: 6.802993, z: 6.802993}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -244,7 +244,7 @@ MonoBehaviour:
   offsetPerUnit: {x: 0.01, y: 0}
   secondLength: 1
   emissionMin: 3.3
-  emissionMax: 15
+  emissionMax: 20
   dissolveMin: 0.6
   dissolveMax: 0.5
   damagePulseDuration: 0.25
@@ -387,8 +387,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.045366, y: -1.92, z: -3.5386}
-  m_LocalScale: {x: 1.9282811, y: 1.9282811, z: 1.9282811}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8301590822702740000}
   - {fileID: 7373286406792707882}
