@@ -78,23 +78,14 @@ public class HealthToShaderOffset : MonoBehaviour
         if (adjust == 0)
             return;
 
-        // Damage → red (slider 1). Kill / time gain → blue (slider 0).
         bool isDamage = adjust < 0;
-        PlayEmissionPulse(isDamage);
-    }
-
-    void PlayEmissionPulse(bool isDamage)
-    {
         _damagePulseTween?.Kill();
 
         float returnDuration = damagePulseDuration * 3f;
-
-        // Snap color: red for damage, blue (Default/Outline) for kill
         _currentDamageSlider = isDamage ? 1f : 0f;
-        Shader.SetGlobalFloat(DamageSliderId, _currentDamageSlider);
-
         _currentEmission = emissionMax;
         _currentDissolve = dissolveMax;
+        Shader.SetGlobalFloat(DamageSliderId, _currentDamageSlider);
         Shader.SetGlobalFloat(EmissionMultiplyId, _currentEmission);
         Shader.SetGlobalFloat(DissolveAmountId, _currentDissolve);
 
@@ -122,7 +113,6 @@ public class HealthToShaderOffset : MonoBehaviour
                     returnDuration)
                 .SetEase(Ease.Linear));
 
-        // Snap to red, then immediately linear-flash back (not after emission settles)
         if (isDamage)
         {
             pulse.Join(
