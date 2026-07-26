@@ -49,6 +49,12 @@ public class Enemy1 : Enemy
         if (isDead)
             return;
         if(isFrozen) return;
+
+        if (debugTest)
+        {
+            Debug.Log("rb: " + rb);
+            Debug.Log("player: " + player);
+        }
         if (rb == null || player == null)
             return;
         if (debugTest)
