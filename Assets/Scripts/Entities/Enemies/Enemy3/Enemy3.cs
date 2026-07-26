@@ -46,9 +46,9 @@ public class Enemy3 : Enemy
         TryFire();
     }
 
-    public override void ResetObj()
+    public override void ResetObj(Transform playerTransform)
     {
-        base.ResetObj();
+        base.ResetObj(playerTransform);
         //AimArm();
         nextFireTime = Time.time + 2;
         chargetimer.StopSpecific();
