@@ -49,7 +49,9 @@ public class LaserBehaviour : WeaponBase
 
     public void StopLaser()
     {
-        audioObj.StopSound(true, 0.2f);
+        if (audioObj != null)
+            audioObj.StopSound(true, 0.2f);
+        
         anim.Play("Idle");
         laserStarted=false;
         charge.Stop();
