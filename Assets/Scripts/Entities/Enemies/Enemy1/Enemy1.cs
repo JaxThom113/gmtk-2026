@@ -27,6 +27,15 @@ public class Enemy1 : Enemy
         attackCollider.enabled = false;
     }
 
+    public override void ResetObj()
+    {
+        base.ResetObj();
+        isCooldown = false;
+        isAttacking = false;
+        attackTime = 0f;
+        attackCollider.enabled = false;
+    }
+
     protected override void FixedUpdate()
     {
         if (isDead)
@@ -107,7 +116,11 @@ public class Enemy1 : Enemy
         }
 
         attackCollider.enabled = false;
-        PlaySynced(runAnim);
+        if (runAnim != null)
+        {
+            lastClip = null;
+            PlaySynced(runAnim);
+        }
     }
 
     private IEnumerator AttackRoutine()

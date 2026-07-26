@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     [Header("Resetter")]
 	[SerializeField] private ResetterOBJ resetter;
 
+    [Header("Environment VFX")]
+    [SerializeField] private GameObject healthVfxPlane;
+
     private Coroutine startWaves;
     private GameObject enemyContainer;
     private GameObject spawnedPlayer;
@@ -70,10 +73,12 @@ public class GameManager : MonoBehaviour
 
         enemyContainer = new GameObject("EnemyContainer");
 
-        // spawn the player, give its InputManager a reference to the PauseMenu
         spawnedPlayer = Instantiate(player, playerSpawnPoint, Quaternion.identity);
         var inputController = spawnedPlayer.GetComponent<InputController>();
         inputController?.SetPauseMenu(pauseMenu);
+
+        if (healthVfxPlane != null)
+            healthVfxPlane.SetActive(true);
 
         // attach the camera follow point
         playerPoint.position = playerSpawnPoint;
@@ -98,6 +103,9 @@ public class GameManager : MonoBehaviour
         playerPoint.SetParent(null, true);
         Destroy(spawnedPlayer);
         spawnedPlayer = null;
+
+        if (healthVfxPlane != null)
+            healthVfxPlane.SetActive(false);
 
         uiManager.gameObject.SetActive(false);
     }
