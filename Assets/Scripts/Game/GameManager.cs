@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlayGame()
     {
+        yield return new WaitForSeconds(game.waveDelay);
+
         foreach (var wave in game.waves)
         {
             yield return PlayWave(wave);

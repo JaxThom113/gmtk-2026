@@ -14921,7 +14921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserBehaviour
   anim: {fileID: 4529741059577660179}
-  damage: 5
+  damage: 1
   attackInterval: 0.25
   isRapidActive: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
