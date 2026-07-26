@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 1
   title: Blink
   type: 1
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 880852369aae44341885364ce0e52b61, type: 3}
   description: Teleport instead of dashing, passing through enemies
   nextLevel: {fileID: 0}
   unlockAbility: {fileID: 11400000, guid: be65cf4ef8429eb4da0d4f859a6a64a4, type: 2}

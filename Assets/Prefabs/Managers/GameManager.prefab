@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &349080831438188171
+--- !u!1 &3190259767440824760
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 261320244360011870}
-  - component: {fileID: 8383072738296148234}
+  - component: {fileID: 9054652397533259094}
+  - component: {fileID: 6621370289878240751}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17,57 +17,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &261320244360011870
+--- !u!4 &9054652397533259094
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349080831438188171}
+  m_GameObject: {fileID: 3190259767440824760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.31909, y: 0, z: 2.71017}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8383072738296148234
+--- !u!114 &6621370289878240751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349080831438188171}
+  m_GameObject: {fileID: 3190259767440824760}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d36fdbea26765fb41946839543dec406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  waveCounter: {fileID: 0}
-  player: {fileID: 0}
-  enemy1: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-  enemy2: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-  enemy3: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
-  wave1:
-    _serializedList:
-    - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
-      Value: 2
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 2
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 2
-  wave2:
-    _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 8
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 8
-  wave3:
-    _serializedList:
-    - Key: {fileID: 164428457850135086, guid: 4fc88d58c6177b04e9cc70ada4a4b926, type: 3}
-      Value: 10
-    - Key: {fileID: 809141406093818479, guid: e9ef6fa2e175ecd4f91bf282eaf9c3ff, type: 3}
-      Value: 4
-    - Key: {fileID: 2056616251855898735, guid: fbaf4d993674b5949a9ce9f3d609d207, type: 3}
-      Value: 4
+  playerSpawnPoint: {x: 0, y: 1.25, z: -10}
+  playerPoint: {fileID: 0}
+  player: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+  mainMenu: {fileID: 0}
+  deathScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  uiManager: {fileID: 0}
+  cameraManager: {fileID: 0}
+  gamePlaying: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
+  gameWave: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
+  playerDead: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
+  gameWin: {fileID: 11400000, guid: 9f2a91e7a29dcb54282fad7df8908388, type: 2}
+  playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
+  playerSpeed: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
+  playerLevel: {fileID: 11400000, guid: b0b8001b44ce9ab49aefa9b3f42bb16b, type: 2}
+  playerExperience: {fileID: 11400000, guid: e1addf0a1389a014ea31ffc18eebbf8c, type: 2}
+  playerExperienceToNextLevel: {fileID: 11400000, guid: 62fababf323a31d41a80ea585e3b2568, type: 2}
+  playerSelectedWeapon: {fileID: 11400000, guid: 7fe333cdb545ab3419589e3eb4b3445c, type: 2}
+  playerWeaponCount: {fileID: 11400000, guid: 9bccc80d1a47111498c258ff8d26cb91, type: 2}
+  playerWeaponFull: {fileID: 11400000, guid: db2837dc1ddeff843a3d00e8f1c80239, type: 2}
+  game: {fileID: 11400000, guid: 927af73ae125a564cbddb5c11a743a94, type: 2}
+  resetter: {fileID: 11400000, guid: c12029b9ffef12a41973512ada80e48a, type: 2}

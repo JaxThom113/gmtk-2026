@@ -16,17 +16,17 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI levelNumber;
 	[SerializeField] private Slider experienceSlider;
 
-    [Header("Hotbar")]
+    [Header("Bottombar")]
     [SerializeField] private RectTransform selection;
     [SerializeField] private Image slot1;
     [SerializeField] private Image slot2;
     [SerializeField] private Image slot3;
     [SerializeField] private Image slot4;
-	
+   
     [Header("Menu References")]
-    [SerializeField] private GameObject deathScreen;
-    [SerializeField] private GameObject upgradeMenu;
-    [SerializeField] private UpgradeMenu upgradeMenuScript;
+    [SerializeField] private UpgradeMenu upgradeMenu;
+    [SerializeField] private DeathScreen deathScreen;
+    [SerializeField] private WinScreen winScreen;
 
     [Header("SO References")]
     [SerializeField] private IntSO playerHealthSO;
@@ -35,7 +35,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private IntSO playerExperienceToNextLevelSO;
     [SerializeField] private IntSO playerSelectedWeaponSO;
     [SerializeField] private IntSO playerWeaponCountSO;
-    [SerializeField] private BoolSO isPlayerDeadSO;
+    [SerializeField] private BoolSO playerDeadSO;
+    [SerializeField] private IntSO gameWaveSO;
+    [SerializeField] private BoolSO gameWinSO;
 
     bool isFlashing;
     private Sequence flash;
@@ -44,17 +46,23 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        upgradeMenuScript.OnNewWeapon += UpdateSlots;
+        upgradeMenu.OnNewWeapon += UpdateSlots;
+
+        // reset everything when enabled
+        waveCounter.text = "Wave 0";
+        levelNumber.text = "Lvl 00";
+        slot2.gameObject.SetActive(false);
+        slot3.gameObject.SetActive(false);
+        slot4.gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
-        upgradeMenuScript.OnNewWeapon -= UpdateSlots;
+        upgradeMenu.OnNewWeapon -= UpdateSlots;
     }
 
     void Start()
     {
-        isPlayerDeadSO.Bool = false;
         isFlashing = false;
         clockTextColor = clock.color;
         previousLevel = playerLevelSO.Int;
@@ -64,19 +72,29 @@ public class UIManager : MonoBehaviour
     {
         UpdateClock();
         UpdateExperience();
+        UpdateWave();
         UpdateHotbar();
 
-        if (playerLevelSO.Int != previousLevel)
+        if (playerLevelSO.Int != previousLevel && playerLevelSO.Int != 1)
             UpdateLevel();
+        
+        if (!deathScreen.gameObject.activeSelf && playerDeadSO.Bool)
+            deathScreen.gameObject.SetActive(true);
 
-        if (isPlayerDeadSO.Bool)
-            deathScreen.SetActive(true);
+        if (!winScreen.gameObject.activeSelf && gameWinSO.Bool)
+        {
+            winScreen.gameObject.SetActive(true);
+            gameWinSO.Bool = false;
+        }
 
         previousLevel = playerLevelSO.Int;
     }   
 
     private void UpdateClock()
     {
+        if (playerHealthSO.Int <= 0)
+            return;
+
         int minutes = playerHealthSO.Int / 60;
         int seconds = playerHealthSO.Int - (60 * minutes);
 
@@ -133,7 +151,15 @@ public class UIManager : MonoBehaviour
         levelNumber.text = $"LVL {levelString}";
 
         // display upgrade menu s
-        upgradeMenu.SetActive(true);
+        upgradeMenu.gameObject.SetActive(true);
+    }
+
+    private void UpdateWave()
+    {
+        waveCounter.text = $"Wave {gameWaveSO.Int}";
+
+        if (gameWaveSO.Int == 4)
+            waveCounter.text = $"Victory!";
     }
 
     private void UpdateHotbar()

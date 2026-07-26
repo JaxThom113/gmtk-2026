@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 1
   title: Time Freeze
   type: 1
-  image: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 6ae603661e4d71e45bc232b87d547403, type: 3}
   description: Freeze time for a short duration
   nextLevel: {fileID: 0}
   unlockAbility: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}

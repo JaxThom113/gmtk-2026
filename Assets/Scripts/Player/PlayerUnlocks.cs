@@ -63,12 +63,24 @@ public class PlayerUnlocks : MonoBehaviour
         PCM.control.SwitchActiveWeapon(startingWeapon);
         newWeapon.onValueChanged += AddNewWeapon;
 
-        isDashUnlockedSO.onValueChanged += (object sender, EventArgs e) => isDashUnlocked = isDashUnlockedSO.Bool;
-        isBlinkUnlockedSO.onValueChanged += (object sender, EventArgs e) => isBlinkUnlocked = isBlinkUnlockedSO.Bool;
-        isSlowTimeSO.onValueChanged += (object sender, EventArgs e) => isSlowTime = isSlowTimeSO.Bool;
-        isFreezeTimeSO.onValueChanged += (object sender, EventArgs e) => isFreezeTime = isFreezeTimeSO.Bool;
-        isRapidFireSO.onValueChanged += (object sender, EventArgs e) => isRapidFire = isRapidFireSO.Bool;
-        isArsenalUnleashSO.onValueChanged += (object sender, EventArgs e) => isArsenalUnleash = isArsenalUnleashSO.Bool;
+        isDashUnlockedSO.onValueChanged += UnlockDash;
+        isBlinkUnlockedSO.onValueChanged += UnlockBlink;
+        isSlowTimeSO.onValueChanged += UnlockSlow;
+        isFreezeTimeSO.onValueChanged += UnlockFreeze;
+        isRapidFireSO.onValueChanged += UnlockRapid;
+        isArsenalUnleashSO.onValueChanged += UnlockArsenal;
+    }
+
+    private void OnDisable()
+    {
+        newWeapon.onValueChanged -= AddNewWeapon;
+
+        isDashUnlockedSO.onValueChanged -= UnlockDash;
+        isBlinkUnlockedSO.onValueChanged -= UnlockBlink;
+        isSlowTimeSO.onValueChanged -= UnlockSlow;
+        isFreezeTimeSO.onValueChanged -= UnlockFreeze;
+        isRapidFireSO.onValueChanged -= UnlockRapid;
+        isArsenalUnleashSO.onValueChanged -= UnlockArsenal;
     }
 
     private void SetWeapon(weaponPos weapon)
@@ -104,6 +116,7 @@ public class PlayerUnlocks : MonoBehaviour
     }
     private void AddNewWeapon(object sender, EventArgs e)
     {
+        Debug.Log("so weapon: " + newWeapon.WeaponBase);
         AddWeapon(newWeapon.WeaponBase);
         newWeapon.ResetValue();
     }
@@ -134,21 +147,45 @@ public class PlayerUnlocks : MonoBehaviour
     }
     [SerializeField]
     private BoolSO isDashUnlockedSO;
+    private void UnlockDash(object sender, EventArgs e)
+    {
+        isDashUnlocked = isDashUnlockedSO.Bool;
+    }
     public bool isDashUnlocked;
     [SerializeField]
-    private BoolSO isBlinkUnlockedSO;
+    private BoolSO isBlinkUnlockedSO; 
+    private void UnlockBlink(object sender, EventArgs e)
+    {
+        isBlinkUnlocked = isBlinkUnlockedSO.Bool;
+    }
     public bool isBlinkUnlocked;
     [SerializeField]
     private BoolSO isSlowTimeSO;
+    private void UnlockSlow(object sender, EventArgs e)
+    {
+        isSlowTime = isSlowTimeSO.Bool;
+    }
     public bool isSlowTime;
     [SerializeField]
     private BoolSO isFreezeTimeSO;
+    private void UnlockFreeze(object sender, EventArgs e)
+    {
+        isFreezeTime = isFreezeTimeSO.Bool;
+    }
     public bool isFreezeTime;
     [SerializeField]
     private BoolSO isRapidFireSO;
+    private void UnlockRapid(object sender, EventArgs e)
+    {
+        isRapidFire = isRapidFireSO.Bool;
+    }
     public bool isRapidFire;
     [SerializeField]
     private BoolSO isArsenalUnleashSO;
+    private void UnlockArsenal(object sender, EventArgs e)
+    {
+        isArsenalUnleash = isArsenalUnleashSO.Bool;
+    }
     public bool isArsenalUnleash;
 
     public SerializedDictionary<Costs, int> timeCost = new SerializedDictionary<Costs, int>();

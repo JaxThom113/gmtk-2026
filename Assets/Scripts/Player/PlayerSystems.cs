@@ -18,7 +18,7 @@ public class PlayerSystems : MonoBehaviour
 
     [Header("Health/Clock Settings")]
     [SerializeField]
-    private int playerMaxHealth; // max time the player can have on the clock
+    private IntSO playerMaxHealth; // max time the player can have on the clock
     [SerializeField]
     private int healthDrainRate; // how many seconds are subtracted per second
     [SerializeField]
@@ -57,7 +57,7 @@ public class PlayerSystems : MonoBehaviour
     {
         scaleSize = shield.localScale;
         shield.localScale = Vector3.zero;
-        playerCurrentHealthSO.Int = playerMaxHealth;
+        playerCurrentHealthSO.Int = playerMaxHealth.Int;
         shield.gameObject.SetActive(false);
 
         PCM.timer.timer.ModifyTimerMode(timerPos, TimerMode.Precise);
@@ -69,6 +69,11 @@ public class PlayerSystems : MonoBehaviour
         adjustHealthSO.onValueChanged += AdjustHealth;
 
         PCM.timer.timer.SubscribeToTimerIsZero(iFrames, IframeOver);
+    }
+
+    private void OnDisable()
+    {
+        adjustHealthSO.onValueChanged -= AdjustHealth;
     }
 
     // Update is called once per frame
@@ -141,8 +146,8 @@ public class PlayerSystems : MonoBehaviour
         }
 
         // add health (time) back when killing an enemy
-        if (playerCurrentHealthSO.Int + adjustHealthSO.Int >= playerMaxHealth)
-            playerCurrentHealthSO.Int = playerMaxHealth;
+        if (playerCurrentHealthSO.Int + adjustHealthSO.Int >= playerMaxHealth.Int)
+            playerCurrentHealthSO.Int = playerMaxHealth.Int;
         else
             playerCurrentHealthSO.Int += adjustHealthSO.Int;
         SpawnUI(adjustHealthSO.Int);

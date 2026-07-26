@@ -16,6 +16,9 @@ public class UpgradeMenu : MonoBehaviour
     [Header("Menu References")]
     [SerializeField] private GameObject overlay;
 
+    [Header("SO References")]
+    [SerializeField] private IntSO playerWeaponCount;
+
     [Header("Card Movement Settings")]
     [SerializeField] private float moveDistance = 40f;
     [SerializeField] private float duration = 0.4f;
@@ -29,6 +32,20 @@ public class UpgradeMenu : MonoBehaviour
         overlay.SetActive(true);
         Time.timeScale = 0;
         currentCards = new List<UpgradeUI>();
+
+        // remove weapons if the player already has all slots filled
+        if (playerWeaponCount.Int == 3)
+        {
+            var toRemove = new List<UpgradeSO>();
+            foreach (var upgrade in upgrades)
+            {
+                if (upgrade.type == UpgradeType.Weapon)
+                    toRemove.Add(upgrade);
+            }
+
+            foreach (var upgrade in toRemove)
+                upgrades.Remove(upgrade);
+        }
 
         StartCoroutine(SpawnCards());
         
@@ -92,8 +109,9 @@ public class UpgradeMenu : MonoBehaviour
                 WeaponSO weapon = selectedUpgrade as WeaponSO;
                 if (weapon != null)
                 {
-                    weapon.weaponSO.WeaponBase = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
+                    WeaponBase temp = Instantiate(weapon.weaponPF, Vector3.zero, Quaternion.identity).GetComponent<WeaponBase>();
                     
+                    weapon.weaponSO.WeaponBase = temp;
                     OnNewWeapon?.Invoke(weapon.icon);
                 }
                 else
@@ -109,6 +127,8 @@ public class UpgradeMenu : MonoBehaviour
                 }
                 break;
             case UpgradeType.Passive:
+                PassiveSO passive = selectedUpgrade as PassiveSO;
+                passive.statToIncrease.Int += passive.increase;
                 break;
         }
 

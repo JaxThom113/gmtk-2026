@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float acceleration;
     [SerializeField]
-    private float maxSpeed;
+    private IntSO speedSO;
     [SerializeField]
     private float drag;
     [SerializeField] [ReadOnlyProp]
@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
     {
         if (state.Equals(playerState.dashing))
             return;
-        currentMaxSpeed = maxSpeed;
+        currentMaxSpeed = speedSO.Int;
         currentSpeed = rb.linearVelocity.magnitude;
         if (direction.Equals(Vector2.zero))
         {

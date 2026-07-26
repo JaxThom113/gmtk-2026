@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("Menu References")]
     [SerializeField] private OptionsMenu optionsMenu;
+    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private GameObject hud;
     [SerializeField] private GameObject overlay;
+
+    public event Action OnEndGamePause;
 
     public void OnPause(InputAction.CallbackContext context)
     {
@@ -42,6 +47,12 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuClicked()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
+
+        OnEndGamePause.Invoke();
+
+        gameObject.SetActive(false);
+        overlay.SetActive(false);
+        hud.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
     }
 }

@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3599304827549570289}
   - component: {fileID: 6684728254698192254}
-  m_Layer: 3
+  m_Layer: 13
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ MonoBehaviour:
   PCM: {fileID: 3326492603616964188}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
   acceleration: 50
-  maxSpeed: 8
+  speedSO: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
   drag: 5
   currentMaxSpeed: 0
   currentSpeed: 0
@@ -726,18 +726,18 @@ MonoBehaviour:
   playerCurrentHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
   isPlayerDeadSO: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
-  playerMaxHealth: 999
-  healthDrainRate: 0
+  playerMaxHealth: {fileID: 11400000, guid: 6dcac062e7331c94aa4b800ec975a059, type: 2}
+  healthDrainRate: 1
   secondLength: 1
   iframeDur: 2
-  shield: {fileID: 3828010976309394273}
+  shield: {fileID: 2936264493178492317, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
   shieldTweenDur: 0.25
   rend: {fileID: 6684728254698192254}
   duration: 1
   deathColor: {r: 32, g: 0, b: 0, a: 1}
   UiPF: {fileID: 4812161119680708746, guid: c7ac257b5693a3c499a0f20d58a56926, type: 3}
-  positive: {r: 0, g: 0.80655336, b: 1, a: 0}
-  negative: {r: 1, g: 0, b: 0, a: 0}
+  positive: {r: 0, g: 0.80655336, b: 1, a: 1}
+  negative: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &8662915930565529634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   isBlinkUnlockedSO: {fileID: 11400000, guid: be65cf4ef8429eb4da0d4f859a6a64a4, type: 2}
   isBlinkUnlocked: 0
   isSlowTimeSO: {fileID: 11400000, guid: ba901a2db2dafbf40bf3d8cec816ecad, type: 2}
-  isSlowTime: 0
+  isSlowTime: 1
   isFreezeTimeSO: {fileID: 11400000, guid: 2aac4958765dec146be5e13fc6af87cb, type: 2}
   isFreezeTime: 0
   isRapidFireSO: {fileID: 11400000, guid: aec37815df8bf1b42a974f5626f9c1a5, type: 2}
@@ -987,6 +987,10 @@ PrefabInstance:
     - target: {fileID: 708278199450241882, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 708278199450241882, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2936264493178492317, guid: af11161d7b062ff4b8083d314a704b17, type: 3}
       propertyPath: m_LocalPosition.x

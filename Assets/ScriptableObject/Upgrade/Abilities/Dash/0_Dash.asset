@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 0
   title: Dash
   type: 1
-  image: {fileID: 0}
-  description: Allows a quick dash to get out of harm's way
+  artwork: {fileID: 21300000, guid: 3ec9ef4c318857b439e78aa30b142a47, type: 3}
+  description: Press LEFT SHIFT to quickly dash out of harm's way
   nextLevel: {fileID: 11400000, guid: a8c5c106a0ce6f44fa366f08171c6187, type: 2}
   unlockAbility: {fileID: 11400000, guid: 4dad1879b02935441aaef3eeb1530726, type: 2}

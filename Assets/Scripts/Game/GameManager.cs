@@ -8,88 +8,143 @@ using Sezylrin.SimplePooling;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("UI Reference")]
-	[SerializeField] private TextMeshProUGUI waveCounter;
-
     [Header("Player Reference")]
+	[SerializeField] private Vector3 playerSpawnPoint;
+	[SerializeField] private Transform playerPoint;
 	[SerializeField] private GameObject player;
 
-    [Header("Enemy References")]
-	[SerializeField] private GameObject enemy1;
-	[SerializeField] private GameObject enemy2;
-	[SerializeField] private GameObject enemy3;
+    [Header("Menu References")]
+	[SerializeField] private MainMenu mainMenu;
+	[SerializeField] private DeathScreen deathScreen;
+	[SerializeField] private WinScreen winScreen;
+	[SerializeField] private PauseMenu pauseMenu;
 
-    [Header("Wave 1")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave1;
+    [Header("Manager References")]
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private CameraManager cameraManager;
 
-    [Header("Wave 2")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave2;
+    [Header("SO References")]
+	[SerializeField] private BoolSO gamePlaying;
+	[SerializeField] private IntSO gameWave;
+	[SerializeField] private BoolSO playerDead;
+	[SerializeField] private BoolSO gameWin;
 
-    [Header("Wave 3")]
-    [SerializeField]
-    [SerializedDictionary("Enemy", "Amount")]
-	SerializedDictionary<GameObject, int> wave3;
+    [Header("Game Settings")]
+    [SerializeField] private GameSO game;
+    [SerializeField] private List<Transform> spawnLocations;
 
-    private int wave;
+    [Header("Resetter")]
+	[SerializeField] private ResetterOBJ resetter;
 
-    void Start()
+    private Coroutine startWaves;
+    private GameObject enemyContainer;
+    private GameObject spawnedPlayer;
+
+    void OnEnable()
     {
-        wave = 1;
-        StartCoroutine(StartWaves());
+        mainMenu.OnStartGame += StartGame;
+
+        deathScreen.OnDeathStartGame += RefreshGame;
+        winScreen.OnWinStartGame += RefreshGame;
+
+        deathScreen.OnEndGame += EndGame;
+        winScreen.OnWinGame += EndGame;
+        pauseMenu.OnEndGamePause += EndGame;
     }
 
-    private IEnumerator StartWaves()
+    void OnDisable()
     {
-        waveCounter.text = $"Starting Wave {wave}...";
-        yield return new WaitForSeconds(3f);
+        mainMenu.OnStartGame -= StartGame;
+        deathScreen.OnEndGame -= EndGame;
+        winScreen.OnWinGame -= EndGame;
+    }
 
-        waveCounter.text = $"Wave {wave}";
-        yield return SpawnEnemies(wave1);
-        wave++;
-        waveCounter.text = $"Starting Wave {wave}...";
-        yield return new WaitForSeconds(3f);
+    private void StartGame()
+    {
+        gamePlaying.Bool = true;
+        playerDead.Bool = false;
+        cameraManager.ActivateCamera(1);
 
-        waveCounter.text = $"Wave {wave}";
-        yield return SpawnEnemies(wave2);
-        wave++;
-        waveCounter.text = $"Starting Wave {wave}...";
-        yield return new WaitForSeconds(3f);
+        // reset stats
+        resetter.ResetValues();
 
-        waveCounter.text = $"Wave {wave}";
-        yield return SpawnEnemies(wave3);
-        waveCounter.text = $"Victory!";
+        enemyContainer = new GameObject("EnemyContainer");
+
+        // spawn the player, give its InputManager a reference to the PauseMenu
+        spawnedPlayer = Instantiate(player, playerSpawnPoint, Quaternion.identity);
+        var inputController = spawnedPlayer.GetComponent<InputController>();
+        inputController?.SetPauseMenu(pauseMenu);
+
+        // attach the camera follow point
+        playerPoint.position = playerSpawnPoint;
+        playerPoint.SetParent(spawnedPlayer.transform, true);
+
+        uiManager.gameObject.SetActive(true);
+        
+        startWaves = StartCoroutine(PlayGame());
+    }
+
+    private void EndGame()
+    {
+        gamePlaying.Bool = false;
+        cameraManager.ActivateCamera(0);
+
+        StopCoroutine(startWaves);
+
+        Destroy(enemyContainer);
+        // Pooler.ClearObject<Enemy>();
+
+        // despawn the player, detach the camera follow point
+        playerPoint.SetParent(null, true);
+        Destroy(spawnedPlayer);
+        spawnedPlayer = null;
+
+        uiManager.gameObject.SetActive(false);
+    }
+
+    private void RefreshGame()
+    {
+        EndGame();
+        StartGame();
+    }
+
+    private IEnumerator PlayGame()
+    {
+        foreach (var wave in game.waves)
+        {
+            yield return PlayWave(wave);
+            gameWave.Int++;
+            yield return new WaitForSeconds(game.waveDelay);
+        }
+
+        // win state
+        gameWin.Bool = true;
     }
     
-    private IEnumerator SpawnEnemies(Dictionary<GameObject, int> wave)
+    private IEnumerator PlayWave(WaveSO wave)
     {
-        Dictionary<GameObject, int> remaining = new Dictionary<GameObject, int>(wave);
-
-        // spawn a random enemy every second from the given wave
-        while (remaining.Count > 0)
+        foreach (var spawn in wave.spawns)
         {
-            // Pick a random enemy type
-            List<GameObject> enemies = new List<GameObject>(remaining.Keys);
-            GameObject enemy = enemies[Random.Range(0, enemies.Count)];
+            // spawn however many enemies requested on the SpawnSO
+            for (int i = 0; i < spawn.count; i++)
+            {
+                Vector3 randPos;
+                if (spawnLocations == null)
+                    randPos = new Vector3(Random.Range(0, 15), 1.25f, Random.Range(0, 15));
+                else
+                    randPos = spawnLocations[Random.Range(0, spawnLocations.Count)].position;
+                
+                Pooler.GetObject<Enemy>(
+                    spawn.enemy,
+                    randPos,
+                    Quaternion.identity,
+                    enemyContainer.transform,
+                    onNewInstance: (e) => e.Initialize(spawnedPlayer != null ? spawnedPlayer.transform : playerPoint.transform),
+                    onGet: (e) => e.ResetObj()
+                );
+            }
 
-            // instantiate the enemy and give it a reference to the player's position
-            Vector3 randPos = new Vector3(Random.Range(0, 15), 1, Random.Range(0, 15));
-            /*GameObject enemyObj = Instantiate(enemy, randPos, Quaternion.identity);
-            enemyObj.GetComponent<Enemy>()?.Initialize(player.transform);*/
-            Pooler.GetObject<Enemy>(enemy, randPos, Quaternion.identity, 
-                onNewInstance: (e) => e.Initialize(player.transform),
-                onGet: (e) => e.ResetObj());
-            // decrement the amount of the enemy type just spawned
-            remaining[enemy]--;
-
-            // remove the enemy type if all of them have been spawned
-            if (remaining[enemy] <= 0)
-                remaining.Remove(enemy);
-
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawn.delay);
         }
     }
 }
