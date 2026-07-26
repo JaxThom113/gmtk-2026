@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthToShaderOffset
   playerHealthSO: {fileID: 11400000, guid: 43fb31bf0b9c0ea43a5c366ae378515e, type: 2}
   adjustHealthSO: {fileID: 11400000, guid: 1b632ed497e205649921b31e275c3ea0, type: 2}
+  isTimeSlow: {fileID: 11400000, guid: 6aa1b4459d77e5044ba73e824b11cb1a, type: 2}
   offsetPerUnit: {x: 0.01, y: 0}
   secondLength: 1
   emissionMin: 3.3

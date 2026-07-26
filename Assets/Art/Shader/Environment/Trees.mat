@@ -68,7 +68,7 @@ Material:
     - _DamageSlider: 0
     - _DamageTaken: 0
     - _DissolveAmount: 1.058
-    - _DissolveScale: 0
+    - _DissolveScale: 137
     - _ENVIRONMENTREFLECTIONS_OFF: 0
     - _EmissionMultiply: 3.3
     - _OcclusionStrength: 1
@@ -78,7 +78,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
-    - _SpiralStrength: 1.1
+    - _SpiralStrength: 26.1
     m_Colors:
     - _BaseColor: {r: 0, g: 0.7600646, b: 1, a: 1}
     - _DamageColor: {r: 2, g: 0, b: 0, a: 1}
@@ -86,7 +86,7 @@ Material:
     - _EmissionColor: {r: 2, g: 2, b: 2, a: 1}
     - _Offset: {r: 1.0930905, g: 0, b: 0, a: 0}
     - _OutlineColour: {r: 0, g: 2.4533858, b: 2.9960785, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 0.01, g: 0.08, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5301551299854787008
