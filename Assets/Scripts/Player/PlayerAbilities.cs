@@ -61,6 +61,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             PCM.timer.timer.RestartTimer(TimeDur);
             isTimeSlow.Bool = true;
+            AudioManager.Instance.PlaySound(AudioRef.TimeSlow, volume:0.3f);
         }
     }
     public void UseArsenal(InputAction.CallbackContext context)

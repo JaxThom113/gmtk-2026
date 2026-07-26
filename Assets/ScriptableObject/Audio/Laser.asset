@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
-  m_Name: Example2
+  m_Name: Laser
   m_EditorClassIdentifier: 
-  ReferenceName: example2
-  clips: []
+  ReferenceName: Laser
+  clips:
+  - {fileID: 8300000, guid: 536f0d2bacde07f40a56e8af85a53cb3, type: 3}
   mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
   notDefault: 0

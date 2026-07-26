@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HammerBehaviour : MeleeWeapon
@@ -10,10 +11,16 @@ public class HammerBehaviour : MeleeWeapon
     private ParticleSystem impact;
     [SerializeField]
     private float knockback;
+
+    public void PlayHammerSound()
+    {
+        AudioManager.Instance.PlaySound(sound, volume: volume);
+
+    }
     public void EnableHammerCollider()
     {
         hammerCol.enabled = true;
-        impact.Play();
+        impact.Play(); 
     }
     public void EnableHammerTrail()
     {
@@ -24,7 +31,11 @@ public class HammerBehaviour : MeleeWeapon
         hammerCol.enabled = false;
         hitColliders.Clear();
     }
-
+    public override void Attack(Vector3 attackDir)
+    {
+        this.attackDir = attackDir;
+        anim.Play("Attack");
+    }
     public void DisableHammerTrail()
     {
         trailRenderer.enabled = false;

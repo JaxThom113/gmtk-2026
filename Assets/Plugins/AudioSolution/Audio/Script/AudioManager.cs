@@ -57,10 +57,13 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        UpdateDict(loadedAudio);
+        UpdateDict(loadedAudio); 
+        BGMMixerGroup.audioMixer.SetFloat("BGM_Volume", LinearToDecibel(bgmVolume / 100f));
+        MasterMixerGroup.audioMixer.SetFloat("Master_Volume", LinearToDecibel(masterVolume / 100f));
+        SFXMixerGroup.audioMixer.SetFloat("SFX_Volume", LinearToDecibel(sfxVolume / 100f));
     }
 #if UNITY_EDITOR
-    
+
     public void LoadSounds(AudioClipSO[] newList)
     {
         string[] guids = AssetDatabase.FindAssets("t:LoadedSoundDict", new[] { setting.SoundLibPath });

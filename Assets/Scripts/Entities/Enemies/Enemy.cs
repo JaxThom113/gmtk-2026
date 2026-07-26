@@ -76,6 +76,9 @@ public abstract class Enemy : MonoBehaviour, IHealth
     [SerializeField]
     protected Timer timer;
 
+    [Header("sounds")]
+    [SerializeField] protected float volume;
+
     protected AnimationClip lastClip;
 
     protected bool isDead = false;
@@ -149,6 +152,7 @@ public abstract class Enemy : MonoBehaviour, IHealth
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        AudioManager.Instance.PlaySound(AudioRef.Hit, volume: volume);
         if (CurrentHealth <= 0)
         {
             hitbox.enabled = false;

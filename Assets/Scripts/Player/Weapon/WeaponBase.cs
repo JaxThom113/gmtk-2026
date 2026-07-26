@@ -1,8 +1,11 @@
 using Sezylrin.SimplePooling;
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class WeaponBase : MonoBehaviour
 {
@@ -20,6 +23,11 @@ public class WeaponBase : MonoBehaviour
     [SerializeField]
     protected Timer attackTimer;
     public Costs weaponType;
+    [SerializeField]
+    protected string sound;
+    [SerializeField]
+    [Range(0f, 1f)]
+    protected float volume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -80,8 +88,7 @@ public class WeaponBase : MonoBehaviour
 
     public virtual void Attack(Vector3 attackDir)
     {
-        this.attackDir = attackDir;
-        anim.Play("Attack");
+        AudioManager.Instance.PlaySound(sound, volume: volume);
     }
 
     public virtual void StoreWeapon()
@@ -116,7 +123,12 @@ public class MeleeWeapon : WeaponBase
             health.TakeDamage(damage);
         }
     }
-
+    public override void Attack(Vector3 attackDir)
+    {
+        base.Attack(attackDir);
+        this.attackDir = attackDir;
+        anim.Play("Attack");
+    }
     public void AnimationPlaying()
     {
         isAnimPlaying = true;
