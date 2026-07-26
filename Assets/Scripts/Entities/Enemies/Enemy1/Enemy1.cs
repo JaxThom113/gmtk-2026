@@ -21,6 +21,9 @@ public class Enemy1 : Enemy
     private float attackTime;
     private Quaternion attackLockRot;
 
+    [SerializeField]
+    private bool debugTest;
+
     public override void Initialize(Transform playerTransform)
     {
         base.Initialize(playerTransform);
@@ -38,12 +41,20 @@ public class Enemy1 : Enemy
 
     protected override void FixedUpdate()
     {
+        if(debugTest)
+        {
+            Debug.Log(isDead);
+            Debug.Log(isFrozen);
+        }
         if (isDead)
             return;
         if(isFrozen) return;
         if (rb == null || player == null)
             return;
-
+        if (debugTest)
+        {
+            Debug.Log("Passed");
+        }
         SeparateFromNearbyEnemies();
 
         if (isAttacking)
