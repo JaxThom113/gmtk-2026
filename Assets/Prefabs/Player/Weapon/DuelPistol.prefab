@@ -39285,7 +39285,9 @@ MonoBehaviour:
   isRapidActive: {fileID: 11400000, guid: 9a73721aa4075eb44a47e47aeeee585a, type: 2}
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 2564964379760949491}
-  weaponType: 0
+  weaponType: 7
+  sound: Pistol
+  volume: 1
   bulletPF: {fileID: 5719014062922970482, guid: fcbe85f3474ae8847bd5c3127912e7b9, type: 3}
   projectileLifeTime: 4
   projectileSpeed: 20

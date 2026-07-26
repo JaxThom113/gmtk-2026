@@ -133,6 +133,7 @@ MonoBehaviour:
   animator: {fileID: 1548901035496142236}
   stepsPerCycle: 4
   timer: {fileID: 5406670185685812719}
+  volume: 0.5
   attackRange: 3
   cooldown: 0
   attackStepDelay: 0.3

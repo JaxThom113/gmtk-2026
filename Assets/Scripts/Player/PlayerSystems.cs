@@ -31,6 +31,9 @@ public class PlayerSystems : MonoBehaviour
     private Vector3 scaleSize;
     [SerializeField]
     private float shieldTweenDur;
+    [Header("volume")]
+    [SerializeField]
+    private float volume;
 
     [Header("death")]
     [SerializeField]
@@ -138,6 +141,7 @@ public class PlayerSystems : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.PlaySound(AudioRef.PlayerHit, volume: volume);
                 PCM.timer.timer.SetTime(iFrames, iframeDur);
                 shield.gameObject.SetActive(true);
                 shield.transform.DOScale(scaleSize,shieldTweenDur)

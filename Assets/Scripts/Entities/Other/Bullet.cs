@@ -80,7 +80,6 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Debug.Log("slow stopped");
             rb.linearVelocity = transform.forward * speed; 
             for (int i = 0; i < renderTimes.Count; i++)
             {

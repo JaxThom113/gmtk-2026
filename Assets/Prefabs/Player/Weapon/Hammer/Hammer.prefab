@@ -15105,6 +15105,8 @@ MonoBehaviour:
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 1478257280792006453}
   weaponType: 6
+  sound: HammerSwing
+  volume: 1
   isAnimPlaying: 0
   hammerCol: {fileID: 116583244615003863}
   trailRenderer: {fileID: 2595581396790728553}

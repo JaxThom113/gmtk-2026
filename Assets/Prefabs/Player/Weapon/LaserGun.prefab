@@ -14927,6 +14927,8 @@ MonoBehaviour:
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 6004029071144731901}
   weaponType: 9
+  sound: 0
+  volume: 1
   lineRenderer:
   - {fileID: 7198330472189739526}
   - {fileID: 515185560449729250}

@@ -199,6 +199,7 @@ MonoBehaviour:
   animator: {fileID: 3393523575590432270}
   stepsPerCycle: 4
   timer: {fileID: 633512315673005463}
+  volume: 0.5
   startShootingRange: 20
   shootRate: 4
   chargeShotTime: 1
