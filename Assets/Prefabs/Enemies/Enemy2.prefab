@@ -24578,6 +24578,7 @@ MonoBehaviour:
   animator: {fileID: 1435391223461626580}
   stepsPerCycle: 4
   timer: {fileID: 7309332989670611687}
+  volume: 0.5
   startShootingRange: 15
   fireCooldown: 2
   bullet: {fileID: 5776959003838503944, guid: 6aa4d26310d046f42b36477ab928cd3d, type: 3}

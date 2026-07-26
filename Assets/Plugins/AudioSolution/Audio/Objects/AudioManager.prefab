@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2971286594892441983}
   - component: {fileID: 3228649878572426441}
-  - component: {fileID: 6496086803416966059}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -52,32 +51,14 @@ MonoBehaviour:
   bgmVolume: 100
   LoadedAudioClips:
     _serializedList:
-    - Key: AlienDeath
-      Value: {fileID: 11400000, guid: 788e73c608f24f74aa00b7c980cfd91f, type: 2}
-    - Key: AlienGIbberish
-      Value: {fileID: 11400000, guid: 25b3e525bc4e8ce4bb3054cea192489b, type: 2}
-    - Key: bossTheme
-      Value: {fileID: 11400000, guid: 83b946319064e6a4599248dbd7a83bcf, type: 2}
-    - Key: EngineDriving
-      Value: {fileID: 11400000, guid: 68a78990cd914524c827f6b841640043, type: 2}
-    - Key: EngineIdle
-      Value: {fileID: 11400000, guid: 545c191d4f3847a4d8c1c79696d88e10, type: 2}
-    - Key: EngineStart
-      Value: {fileID: 11400000, guid: 1746ede39cc1ca34aa1907490933b341, type: 2}
-    - Key: CarHum
-      Value: {fileID: 11400000, guid: b76cfeefeb38e494ca9252ac81ba49ec, type: 2}
-    - Key: endTheme
-      Value: {fileID: 11400000, guid: 930483299e0d3a5438197c104a2f5abc, type: 2}
-    - Key: levelTheme
-      Value: {fileID: 11400000, guid: 06de345f6cee3a047892c6786be2ff9d, type: 2}
-    - Key: mainTheme
-      Value: {fileID: 11400000, guid: d267489d187aa9e46a3ebfcbd4b85259, type: 2}
-    - Key: UFODeploy
-      Value: {fileID: 11400000, guid: 662deca6a995ab04f84c97136dd916bb, type: 2}
-    - Key: UFOFlyIn
-      Value: {fileID: 11400000, guid: 946d3a1a1f519fb41a503dcffa1d65ce, type: 2}
-    - Key: UFOFlyOut
-      Value: {fileID: 11400000, guid: 69f5a5ebacd1f1a4b8f38ff2a49b984a, type: 2}
+    - Key: Pistol
+      Value: {fileID: 11400000, guid: f8df8eeaf7e378042bbb99d3e3727ce4, type: 2}
+    - Key: RailgunCharge
+      Value: {fileID: 11400000, guid: 45c2c541f2b87a84bb612c451e759d1b, type: 2}
+    - Key: RailgunFire
+      Value: {fileID: 11400000, guid: 3345a83b5c3babc458aa97fc28443369, type: 2}
+    - Key: Shotgun
+      Value: {fileID: 11400000, guid: 7807dadd0dadef84dab43c2af4fa0c84, type: 2}
   SFXMixerGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   BGMMixerGroup: {fileID: 2784030454044810183, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
   MasterMixerGroup: {fileID: 24300002, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
@@ -91,20 +72,3 @@ MonoBehaviour:
   maxSpatialBlend: 0
   minSpatialBlend: 0
   rolloffMode: 1
---- !u!114 &6496086803416966059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2993619267012225655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2ed940e9b47894682f58244191a636, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 0.5
-  Volume: 0.5
-  bossSpawned: {fileID: 11400000, guid: 3f59c5f6ddbf7294d8118d174da35f6c, type: 2}
-  triggerWinScreen: {fileID: 11400000, guid: 0b33f16d2bc332043b1f14514efd8874, type: 2}
-  AmbVolume: 0.2

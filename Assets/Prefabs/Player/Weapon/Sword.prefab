@@ -10088,6 +10088,8 @@ MonoBehaviour:
   isArsenalUnlocked: {fileID: 11400000, guid: 2b05db254084ace4285dc133479ce317, type: 2}
   attackTimer: {fileID: 7633881366539829331}
   weaponType: 11
+  sound: SwordSwing
+  volume: 1
   isAnimPlaying: 0
   swordCol: {fileID: 7530579623934687904}
   trailRenderer: {fileID: 776053293541213731}

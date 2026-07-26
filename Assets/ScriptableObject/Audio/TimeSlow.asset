@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b27ba0174814be419888b22a1f8099e, type: 3}
+  m_Name: TimeSlow
+  m_EditorClassIdentifier: 
+  ReferenceName: TimeSlow
+  clips:
+  - {fileID: 8300000, guid: 60ed5971e277f4349a4fb360d1bd7ece, type: 3}
+  mixGroup: {fileID: -3833594322038420439, guid: 4faf6d1bf90e5594ca3f6f2e70ecd618, type: 2}
+  setting: {fileID: 11400000, guid: 5e8b5d6917cd7b74592fec7a1b25810b, type: 2}
+  notDefault: 0
+  maxDistance: 0
+  minDistance: 0
+  transitionPoint: 0
+  isStaticSpatial: 0
+  staticSpatial: 0
+  maxSpatialBlend: 0
+  minSpatialBlend: 0
+  rolloffMode: 0
+  defaultSet: 1

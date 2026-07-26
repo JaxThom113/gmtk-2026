@@ -17,6 +17,8 @@ public class ExpOrb : MonoBehaviour
     [SerializeField]
     private float tweenDur;
     private bool isCollected = false;
+    [SerializeField]
+    private float volume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     
@@ -50,6 +52,7 @@ public class ExpOrb : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.PlaySound(AudioRef.ExpPickup, volume: volume);
             adjustExp.Int = expAmount;
             Pooler.PoolObject(gameObject);
         }
