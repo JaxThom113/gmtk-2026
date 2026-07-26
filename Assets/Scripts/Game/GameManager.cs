@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
+
         gamePlaying.Bool = false;
         cameraManager.ActivateCamera(0);
 

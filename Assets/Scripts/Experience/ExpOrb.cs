@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Sezylrin.SimplePooling;
+using System;
 using UnityEngine;
 
 public class ExpOrb : MonoBehaviour
@@ -19,9 +20,20 @@ public class ExpOrb : MonoBehaviour
     private bool isCollected = false;
     [SerializeField]
     private float volume;
+    [SerializeField]
+    private BoolSO gamePlaying;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
-    
+    public void PoolSelf(object sender, EventArgs e)
+    {
+        if(!gamePlaying.Bool)
+            Pooler.PoolObject(gameObject);
+
+    }
+    public  void Initialize()
+    {
+        gamePlaying.onValueChanged += PoolSelf;
+    }
     public void ResetObj()
     {
         isCollected = false;
