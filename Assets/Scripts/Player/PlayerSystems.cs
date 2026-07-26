@@ -20,7 +20,7 @@ public class PlayerSystems : MonoBehaviour
     [SerializeField]
     private IntSO playerMaxHealth; // max time the player can have on the clock
     [SerializeField]
-    private int healthDrainRate; // how many seconds are subtracted per second
+    private IntSO healthDrainRate; // how many seconds are subtracted per second
     [SerializeField]
     private float secondLength; // length of a second, decrease to make seconds go by faster
     [Header("Iframe")]
@@ -87,7 +87,7 @@ public class PlayerSystems : MonoBehaviour
 
     private void OnHealthDrain(object sender, EventArgs e)
     {
-        playerCurrentHealthSO.Int -= healthDrainRate;
+        playerCurrentHealthSO.Int -= healthDrainRate.Int;
         CheckHealth();
     }
 
