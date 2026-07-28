@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3190259767440824760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9054652397533259094}
+  - component: {fileID: 6621370289878240751}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9054652397533259094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190259767440824760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6621370289878240751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190259767440824760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36fdbea26765fb41946839543dec406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  playerSpawnPoint: {x: 0, y: 2.5, z: -10}
+  playerPoint: {fileID: 0}
+  player: {fileID: 9013176277656355755, guid: 5f0a22f452ba10e4691b1a88727bb48e, type: 3}
+  mainMenu: {fileID: 0}
+  deathScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  uiManager: {fileID: 0}
+  cameraManager: {fileID: 0}
+  gamePlaying: {fileID: 11400000, guid: 493116f538e28284aa7318b3bca4e7a8, type: 2}
+  gameWave: {fileID: 11400000, guid: 24faa5efe92a69744be63037df97f1c5, type: 2}
+  playerDead: {fileID: 11400000, guid: a0ffc6ec5f7ae5447bfe79f6ad1f71fe, type: 2}
+  gameWin: {fileID: 11400000, guid: 9f2a91e7a29dcb54282fad7df8908388, type: 2}
+  playerHealthDrainRate: {fileID: 11400000, guid: b51c827e9e9ef9b43b6a361c2555d0fd, type: 2}
+  game: {fileID: 11400000, guid: 927af73ae125a564cbddb5c11a743a94, type: 2}
+  spawnLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  upgrades:
+  - {fileID: 11400000, guid: 815546e23f3ec3745b4f4ad66258739a, type: 2}
+  - {fileID: 11400000, guid: 5ba4fad1713f4b947a226883ff8b5109, type: 2}
+  - {fileID: 11400000, guid: 505f9f46153598b4aa24fcbd40aa025e, type: 2}
+  - {fileID: 11400000, guid: 0efc07e072de615418bceb94fb8cb2cd, type: 2}
+  - {fileID: 11400000, guid: e37c49b7b8da2a04c8654d84a6ef4027, type: 2}
+  - {fileID: 11400000, guid: a224bbf412c3c20409e9a8910ea73e29, type: 2}
+  - {fileID: 11400000, guid: b83f6c8f10aee40479bc5cb4cb562f84, type: 2}
+  - {fileID: 11400000, guid: 0e0d0dc7bcb946149ac4a08739373d6a, type: 2}
+  - {fileID: 11400000, guid: 143295bbf13751a48996f0daa19d9e71, type: 2}
+  - {fileID: 11400000, guid: f8d58763400946f47b58825d371cf5c0, type: 2}
+  resetter: {fileID: 11400000, guid: c12029b9ffef12a41973512ada80e48a, type: 2}
+  healthVfxPlane: {fileID: 0}

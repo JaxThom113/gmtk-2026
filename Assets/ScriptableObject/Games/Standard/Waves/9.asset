@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9fa9f469731ecb4f8aec7695ac8615f, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: Assembly-CSharp::WaveSO
+  spawns:
+  - {fileID: 11400000, guid: a5e18ea2a6cfe5343a921e9113984329, type: 2}
+  - {fileID: 11400000, guid: 582d7ad4e8429e348852dacbb30631f9, type: 2}
+  - {fileID: 11400000, guid: a5e18ea2a6cfe5343a921e9113984329, type: 2}
+  - {fileID: 11400000, guid: 582d7ad4e8429e348852dacbb30631f9, type: 2}

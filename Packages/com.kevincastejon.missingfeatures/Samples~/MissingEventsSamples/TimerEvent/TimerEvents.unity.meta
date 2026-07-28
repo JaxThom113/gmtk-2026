@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e83ee4b320b25104f86efa2faf368f0b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingEventsSamples/TimerEvent/TimerEvents.unity
+  uploadId: 678106

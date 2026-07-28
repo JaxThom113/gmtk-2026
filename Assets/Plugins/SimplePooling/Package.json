@@ -1,0 +1,23 @@
+{
+  "name": "com.Sezylrin.SimplePooling",
+  "version": "1.1.5",
+  "displayName": "SimplePooling",
+  "description": "This is an example package",
+  "unity": "2022.3",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.9"
+ },
+ "keywords": [
+    "Pooling",
+    "Pool",
+    "Pooler"
+  ],
+  "author": {
+    "name": "Sezylrin",
+    "email": "sezylrinproduction@gmail.com"
+  }
+}

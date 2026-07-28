@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 604c5a69a25616b41aec2c7eeec77f63
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/Layer/TestLayerAttribute.cs
+  uploadId: 678106

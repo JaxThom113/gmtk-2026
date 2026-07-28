@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Plugins/SimplePooling/Editor/PoolingSetting.uss?fileID=7433441132597879392&amp;guid=a071f6f021e62614ea5e209273f11f6d&amp;type=3#PoolingSetting"/>
+    <ui:VisualElement name="Main" style="flex-grow: 1; text-overflow: ellipsis; white-space: nowrap; width: auto;">
+        <ui:Label tabindex="-1" text="Pooler Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 24px; -unity-font-style: bold; width: 301px; text-overflow: clip; flex-wrap: wrap-reverse; white-space: nowrap; align-self: stretch; flex-direction: column; max-width: 100%;"/>
+        <ui:Toggle label="Disable Warning Message" usage-hints="None" tooltip="Disables the warning message if applicable when opening the project" name="disableWarning" style="margin-top: 10px;"/>
+    </ui:VisualElement>
+</ui:UXML>

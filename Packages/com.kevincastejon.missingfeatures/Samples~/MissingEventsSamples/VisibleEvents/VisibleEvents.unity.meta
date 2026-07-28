@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4b37525f6cb66b147807518023004d4f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingEventsSamples/VisibleEvents/VisibleEvents.unity
+  uploadId: 678106

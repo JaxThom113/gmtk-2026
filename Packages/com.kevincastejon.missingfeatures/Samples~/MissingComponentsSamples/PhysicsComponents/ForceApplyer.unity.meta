@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 33c2bd7376c1af443a93e1df3bfd93ba
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingComponentsSamples/PhysicsComponents/ForceApplyer.unity
+  uploadId: 678106

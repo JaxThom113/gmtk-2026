@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ce96cf0c11dba459943281d6fcece4, type: 3}
+  m_Name: LoadedSoundDictionary
+  m_EditorClassIdentifier: 
+  loadedSound:
+    _serializedList:
+    - Key: Click
+      Value: {fileID: 11400000, guid: 482e06f17ce06da48a44b6fc55595b3f, type: 2}
+    - Key: ExpPickup
+      Value: {fileID: 11400000, guid: 3ce201fa45b005546bde27a022f8f8f3, type: 2}
+    - Key: HammerSwing
+      Value: {fileID: 11400000, guid: aca97207c659dc24b9506e2a9af4860e, type: 2}
+    - Key: Hit
+      Value: {fileID: 11400000, guid: f70f4ff8124647141b3f79c93544b3ac, type: 2}
+    - Key: Laser
+      Value: {fileID: 11400000, guid: 4872ed45ffe9a624ead5be54560018a7, type: 2}
+    - Key: MenuMusic
+      Value: {fileID: 11400000, guid: 94d12efdfa7b242479c69735e448c6f1, type: 2}
+    - Key: PickUp
+      Value: {fileID: 11400000, guid: f650489b8778fa54ab016f8c0cc43e5f, type: 2}
+    - Key: Pistol
+      Value: {fileID: 11400000, guid: f8df8eeaf7e378042bbb99d3e3727ce4, type: 2}
+    - Key: PlayerHit
+      Value: {fileID: 11400000, guid: cede3a51629ae9c44a93c33cc822b7fb, type: 2}
+    - Key: RailgunCharge
+      Value: {fileID: 11400000, guid: 45c2c541f2b87a84bb612c451e759d1b, type: 2}
+    - Key: RailgunFire
+      Value: {fileID: 11400000, guid: 3345a83b5c3babc458aa97fc28443369, type: 2}
+    - Key: Shotgun
+      Value: {fileID: 11400000, guid: 7807dadd0dadef84dab43c2af4fa0c84, type: 2}
+    - Key: SwordSwing
+      Value: {fileID: 11400000, guid: 6ff8a5c072c74064398bb69b7aabcd1e, type: 2}
+    - Key: TimeSlow
+      Value: {fileID: 11400000, guid: e4b05f6d44649ae44ac7eef986125ec1, type: 2}
+    - Key: Track1
+      Value: {fileID: 11400000, guid: 04c9c810148052d4e86b9bf566710e67, type: 2}
+    - Key: Track2
+      Value: {fileID: 11400000, guid: 496910f6e0200dd40a44755f1016f6ec, type: 2}
+    - Key: Track3
+      Value: {fileID: 11400000, guid: 6280585873b906e429f48e22186bf3a3, type: 2}
+    - Key: Track4
+      Value: {fileID: 11400000, guid: 7c213157909c98b48adf0149a1470001, type: 2}
+    - Key: Track5
+      Value: {fileID: 11400000, guid: 4c0b4c018aa9e2c4aa07c1513d557d4e, type: 2}

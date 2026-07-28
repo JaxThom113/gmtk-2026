@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f74a27be5a9c3304ab99236c4a79290d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/HideOnPlay/TestHideOnPlayAttribute.unity
+  uploadId: 678106

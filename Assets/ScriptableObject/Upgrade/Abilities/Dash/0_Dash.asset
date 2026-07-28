@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b5f56036963e84c82fc228b77a2fb0, type: 3}
+  m_Name: 0_Dash
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
+  level: 0
+  title: Dash
+  type: 1
+  artwork: {fileID: 21300000, guid: 3ec9ef4c318857b439e78aa30b142a47, type: 3}
+  description: Press LEFT SHIFT to quickly dash out of harm's way
+  nextLevel: {fileID: 11400000, guid: a8c5c106a0ce6f44fa366f08171c6187, type: 2}
+  unlockAbility: {fileID: 11400000, guid: 4dad1879b02935441aaef3eeb1530726, type: 2}

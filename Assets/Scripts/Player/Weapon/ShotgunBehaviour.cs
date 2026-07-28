@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class ShotgunBehaviour : RangedWeapon
+{
+    [SerializeField]
+    private int projectiles;
+    [SerializeField]
+    private int spread;
+    [SerializeField]
+    private ParticleSystem particles;
+
+    public override void Attack(Vector3 attackDir)
+    {
+        base.Attack(attackDir);
+        anim.Play("Attack");
+        particles.Play();
+        Vector2 initial = new Vector2(attackDir.x, attackDir.z).normalized;
+        Quaternion initialRot = Quaternion.Euler(0, 0, ((float)projectiles - 1) * 0.5f * spread);
+        initial = initialRot * initial;
+        for (int i = 0; i < projectiles; i++)
+        {
+            ShootBullet(new Vector3(initial.x,0,initial.y));
+            initial = Quaternion.Euler(0, 0, -spread) * initial;
+        }
+    }
+}

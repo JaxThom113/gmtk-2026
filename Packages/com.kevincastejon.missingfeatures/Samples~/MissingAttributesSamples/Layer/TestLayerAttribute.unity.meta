@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 67473e4faa6adbc48a033af5389bb499
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283473
+  packageName: Missing Features
+  packageVersion: 1.0.21
+  assetPath: Packages/com.kevincastejon.missingfeatures/Samples~/MissingAttributesSamples/Layer/TestLayerAttribute.unity
+  uploadId: 678106

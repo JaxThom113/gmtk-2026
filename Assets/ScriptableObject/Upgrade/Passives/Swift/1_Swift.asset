@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91bedf0e7dbb9c42ba8d20791159169, type: 3}
+  m_Name: 1_Swift
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeSO
+  level: 1
+  title: 'Swift '
+  type: 2
+  artwork: {fileID: 21300000, guid: 8d0edbe97fb3c9341ba6cc96bd07b14a, type: 3}
+  description: Increase your running speed (total +4)
+  nextLevel: {fileID: 11400000, guid: a951d3281ae9f854083b9826ce4ecb39, type: 2}
+  increase: 2
+  statToIncrease: {fileID: 11400000, guid: e9a8fe47c572de34593a3b4494866bbb, type: 2}
